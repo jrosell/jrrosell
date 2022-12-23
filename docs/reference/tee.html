@@ -19,7 +19,7 @@ is used for its side-effect, say plotting or printing."><!-- mathjax --><script 
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">jrrosell</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9000</span>
       </span>
     </div>
 
@@ -51,6 +51,10 @@ is used for its side-effect, say plotting or printing.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tee</span><span class="op">(</span><span class="va">x</span>, <span class="va">expr</span><span class="op">)</span></span></code></pre></div>
     </div>
 
+    <div id="source">
+    <h2>Source</h2>
+    <p><a href="https://mastodon.social/@multimeric@genomic.social/109555362766969210" class="external-link">https://mastodon.social/@multimeric@genomic.social/109555362766969210</a></p>
+    </div>
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
@@ -71,7 +75,7 @@ return value is <code>x</code> itself, and not the result of <code>expr</code> c
     
 
 
-<p>I want to give credit to Michael Milton and Matthew Kay for the idea and the code in <a href="https://mastodon.social/@multimeric@genomic.social/109555362766969210" class="external-link">Mastodon</a></p>
+<p>I want to give credit to Michael Milton and Matthew Kay for the idea and the code.</p>
     </div>
 
     <div id="ref-examples">
@@ -80,7 +84,7 @@ return value is <code>x</code> itself, and not the result of <code>expr</code> c
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>    <span class="fu">tee</span><span class="op">(</span><span class="va">plot</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># plot usually does not return anything.</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colSums</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1]  2.39161 15.23615</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -13.09933  17.49091</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

@@ -19,8 +19,9 @@
 #'
 #' @section Thanks:
 #'
-#' I want to give credit to Michael Milton and Matthew Kay for the idea and the code in [Mastodon](https://mastodon.social/@multimeric@genomic.social/109555362766969210)
+#' I want to give credit to Michael Milton and Matthew Kay for the idea and the code.
 #'
+#' @source <https://mastodon.social/@multimeric@genomic.social/109555362766969210>
 #' @export
 tee <- function(x, expr) {
     expr = substitute(expr)

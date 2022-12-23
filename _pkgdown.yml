@@ -1,0 +1,30 @@
+url: https://jrosell.github.io/jrrosell/
+
+home:
+  links:
+  - text: About me
+    href: https://elnostreraco.com/blog/quant-a/
+
+reference:
+- title: All functions
+  desc: >
+    Functions included in my personal R package.
+  contents:
+  - tee
+  - read_chr
+
+- title: Data
+  desc: >
+    Datasets and objects included in my personal R package.
+  contents:
+  - spain_provinces
+
+# news:
+#   releases:
+#   - text: "Version 1.0.0"
+#     href: https://www.tidyverse.org/blog/2020/06/dplyr-1-0-0/
+#   - text: "Version 0.8.3"
+#     href: https://www.tidyverse.org/articles/2019/07/dplyr-0-8-3/
+
+development:
+  mode: auto

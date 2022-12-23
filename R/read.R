@@ -1,0 +1,32 @@
+#' Read character columns with clean names
+#'
+#' It's useful for reading the most common types of flat file data,
+#' comma separated values and tab separated values.
+#'
+#' @rdname read_chr
+#' @param file Either a path to a file, a connection, or literal data (either a single string or a raw vector).
+#' @param delim Single character used to separate fields within a record.
+#' @param locale The locale controls defaults that vary from place to place. The default locale is US-centric (like R), but you can use locale() to create your own locale that controls things like the default time zone, encoding, decimal mark, big mark, and day/month names.
+#' @param ... Other parameters to readr::read_delim.
+#'
+#' @details The read_chr function works like \code{readr::read_delim}, except that
+#' column sreturned would be characters and with clean names. It requires readr and janitor packages installed.
+#'
+#' @examples
+#' es <- readr::locale("es", tz="Europe/Madrid", decimal_mark = ",", grouping_mark = ".")
+#' read_chr(readr::readr_example("mtcars.csv"), delim = ",", locale = es)
+#'
+#' @export
+read_chr <- function(file, delim = ",", locale, ...) {
+    if(!requireNamespace("readr", quietly = TRUE)) return(NULL)
+    if(!requireNamespace("janitor", quietly = TRUE)) return(NULL)
+    readr::read_delim(
+        file,
+        delim,
+        col_types = readr::cols(.default = "c"),
+        name_repair = ~ janitor::make_clean_names(.),
+        skip_empty_rows = FALSE,
+        locale = locale,
+        ...
+    )
+}

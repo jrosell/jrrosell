@@ -3,6 +3,9 @@
 \name{tee}
 \alias{tee}
 \title{Tee pipe}
+\source{
+\url{https://mastodon.social/@multimeric@genomic.social/109555362766969210}
+}
 \usage{
 tee(x, expr)
 }
@@ -23,7 +26,7 @@ return value is \code{x} itself, and not the result of \code{expr} call.
 \section{Thanks}{
 
 
-I want to give credit to Michael Milton and Matthew Kay for the idea and the code in \href{https://mastodon.social/@multimeric@genomic.social/109555362766969210}{Mastodon}
+I want to give credit to Michael Milton and Matthew Kay for the idea and the code.
 }
 
 \examples{
