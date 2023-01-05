@@ -12,6 +12,8 @@ reference:
   contents:
   - tee
   - read_chr
+  - startParallel
+  - stopParallel
 
 - title: Data
   desc: >
