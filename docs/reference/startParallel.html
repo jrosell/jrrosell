@@ -44,7 +44,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">startParallel</span><span class="op">(</span>msg <span class="op">=</span> <span class="cn">NULL</span>, max <span class="op">=</span> <span class="fl">10</span>, min <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">startParallel</span><span class="op">(</span>msg <span class="op">=</span> <span class="cn">NULL</span>, max <span class="op">=</span> <span class="fl">10</span>, min <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -67,14 +67,18 @@
 packages. It returns a parallel cluster to be passed as a stopParallel
 argument</p>
     </div>
+    <div id="see-also">
+    <h2>See also</h2>
+    <div class="dont-index"><p>https://github.com/jrosell/jrrosell/blob/main/R/parallel.R</p></div>
+    </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">cl</span> <span class="op">&lt;-</span> <span class="fu">startParallel</span><span class="op">(</span><span class="st">"parallel processing"</span>, max <span class="op">=</span> <span class="fl">10</span>, min <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">cl</span> <span class="op">&lt;-</span> <span class="fu">startParallel</span><span class="op">(</span><span class="st">"parallel processing"</span>, max <span class="op">=</span> <span class="fl">3</span>, min <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"parallel processing here"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "parallel processing here"</span>
 <span class="r-in"><span><span class="fu"><a href="stopParallel.html">stopParallel</a></span><span class="op">(</span><span class="va">cl</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> parallel processing: 0.002 sec elapsed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> parallel processing: 0.003 sec elapsed</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

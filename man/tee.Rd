@@ -36,3 +36,6 @@ rnorm(200) |>
     colSums()
 
 }
+\seealso{
+https://github.com/jrosell/jrrosell/blob/main/R/pipe.R
+}

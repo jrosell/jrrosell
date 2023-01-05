@@ -22,6 +22,7 @@
 #' I want to give credit to Michael Milton and Matthew Kay for the idea and the code.
 #'
 #' @source <https://mastodon.social/@multimeric@genomic.social/109555362766969210>
+#' @seealso https://github.com/jrosell/jrrosell/blob/main/R/pipe.R
 #' @export
 tee <- function(x, expr) {
     expr = substitute(expr)

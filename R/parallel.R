@@ -12,15 +12,16 @@
 #' argument
 #'
 #' @examples
-#' cl <- startParallel("parallel processing", max = 10, min = 2)
+#' cl <- startParallel("parallel processing", max = 3, min = 1)
 #' print("parallel processing here")
 #' stopParallel(cl)
 #'
+#' @seealso https://github.com/jrosell/jrrosell/blob/main/R/parallel.R
 #' @export
-startParallel <- function(msg = NULL, max = 10, min = 2) {
+startParallel <- function(msg = NULL, max = 10, min = 1) {
     available <- parallelly::availableCores()
     ask <- min(available, max)
-    if (ask <= min) stop("Not enough cores available")
+    if (ask <= min) stop(paste0("Not enough cores available:", available, " available, but min ", min, " required."))
     cl <- parallel::makeCluster(ask) # makeCluster, makePSOCKcluster, makeForkCluster
     doParallel::registerDoParallel(cl)
     tictoc::tic(msg)
@@ -42,8 +43,35 @@ startParallel <- function(msg = NULL, max = 10, min = 2) {
 #' print("parallel processing here")
 #' stopParallel(cl)
 #'
+#' @seealso https://github.com/jrosell/jrrosell/blob/main/R/parallel.R
 #' @export
 stopParallel <- function(cl) {
     tictoc::toc()
     parallel::stopCluster(cl)
+}
+
+#' Map parallel processing
+#'
+#' Map data over a function in one parallel core
+#'
+#' @rdname mapParallel
+#' @param x An object
+#' @param fun A function
+#'
+#' @details The mapParallel function uses parallel
+#' package. It returns the result of parallel::parLapply method.
+#'
+#' @examples
+#' data.frame(x = 2) |> mapParallel(list(function(x) print(x), function(x) print(x*2)))
+#'
+#' @seealso https://github.com/jrosell/jrrosell/blob/main/R/parallel.R
+#' @export
+mapParallel <- function(x, fun_list) {
+    for (fun in fun_list) {
+        tmp <-
+            x |>
+            list() |>
+            parallel::mclapply(fun, mc.cores = 1)
+        invisible(tmp[[1]])
+    }
 }

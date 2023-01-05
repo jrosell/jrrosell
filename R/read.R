@@ -16,6 +16,7 @@
 #' es <- readr::locale("es", tz="Europe/Madrid", decimal_mark = ",", grouping_mark = ".")
 #' read_chr(readr::readr_example("mtcars.csv"), delim = ",", locale = es)
 #'
+#' @seealso https://github.com/jrosell/jrrosell/blob/main/R/read.R
 #' @export
 read_chr <- function(file, delim = ",", locale, ...) {
     if(!requireNamespace("readr", quietly = TRUE)) return(NULL)

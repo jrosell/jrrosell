@@ -4,7 +4,7 @@
 \alias{startParallel}
 \title{Start parallel processing}
 \usage{
-startParallel(msg = NULL, max = 10, min = 2)
+startParallel(msg = NULL, max = 10, min = 1)
 }
 \arguments{
 \item{msg}{A character vector with the tictoc timer message.}
@@ -22,8 +22,11 @@ packages. It returns a parallel cluster to be passed as a stopParallel
 argument
 }
 \examples{
-cl <- startParallel("parallel processing", max = 10, min = 2)
+cl <- startParallel("parallel processing", max = 3, min = 1)
 print("parallel processing here")
 stopParallel(cl)
 
+}
+\seealso{
+https://github.com/jrosell/jrrosell/blob/main/R/parallel.R
 }
