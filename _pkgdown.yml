@@ -19,7 +19,6 @@ reference:
   - calc_split_prop
   - read_url
   - prep_juice
-  - kgl_competitions_data_download
 
 - title: Data
   desc: >
