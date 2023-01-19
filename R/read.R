@@ -16,11 +16,12 @@
 #' es <- readr::locale("es", tz="Europe/Madrid", decimal_mark = ",", grouping_mark = ".")
 #' read_chr(readr::readr_example("mtcars.csv"), delim = ",", locale = es)
 #'
-#' @seealso https://github.com/jrosell/jrrosell/blob/main/R/read.R
+#' @seealso <https://github.com/jrosell/jrrosell/blob/main/R/read.R>
 #' @export
 read_chr <- function(file, delim = ",", locale, ...) {
     if(!requireNamespace("readr", quietly = TRUE)) return(NULL)
     if(!requireNamespace("janitor", quietly = TRUE)) return(NULL)
+
     readr::read_delim(
         file,
         delim,
@@ -31,3 +32,33 @@ read_chr <- function(file, delim = ",", locale, ...) {
         ...
     )
 }
+
+#' Read the html text of an url
+#'
+#' It's useful for getting the text for webpages in a single character vector.
+#'
+#' @rdname read_url
+#' @param url Full url including http or https protocol and the page path.
+#' @param sleep Seconds to sleep after the request is done and before returning the result.
+#'
+#' @details The read_url function works uses rvest::read_html and purr::possibly
+#' and it's fault tolearnt.
+#'
+#' @examples
+#' read_url("https://www.google.es/search?q=jrosell", sleep = 1)
+#'
+#' @seealso <https://github.com/jrosell/jrrosell/blob/main/R/read.R>
+#' @export
+read_url <- function(url, sleep = 0) {
+    if(!requireNamespace("purrr", quietly = TRUE)) stop("purrr package is required")
+    if(!requireNamespace("httr", quietly = TRUE)) stop("httr package is required")
+
+    possibly_read_url <- purrr::possibly(httr::GET, '') |>
+        purrr::possibly(rawToChar, '')
+
+    result <- possibly_read_url(url)
+    Sys.sleep(sleep)
+
+    return(result)
+}
+

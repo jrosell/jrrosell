@@ -37,5 +37,5 @@ rnorm(200) |>
 
 }
 \seealso{
-https://github.com/jrosell/jrrosell/blob/main/R/pipe.R
+\url{https://github.com/jrosell/jrrosell/blob/main/R/pipe.R}
 }

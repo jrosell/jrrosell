@@ -29,5 +29,5 @@ read_chr(readr::readr_example("mtcars.csv"), delim = ",", locale = es)
 
 }
 \seealso{
-https://github.com/jrosell/jrrosell/blob/main/R/read.R
+\url{https://github.com/jrosell/jrrosell/blob/main/R/read.R}
 }

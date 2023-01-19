@@ -9,5 +9,5 @@
 #'   \item{geometry}{}
 #' }
 #' @source <https://github.com/koldLight/curso-r-dataviz/blob/master/dat/spain_provinces.geojson>
-#' @seealso https://github.com/jrosell/jrrosell/blob/main/data/spain_provinces.rda
+#' @seealso <https://github.com/jrosell/jrrosell/blob/main/data/spain_provinces.rda>
 "spain_provinces"

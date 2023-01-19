@@ -26,6 +26,6 @@ spain_provinces
 Provinces of Spain data
 }
 \seealso{
-https://github.com/jrosell/jrrosell/blob/main/data/spain_provinces.rda
+\url{https://github.com/jrosell/jrrosell/blob/main/data/spain_provinces.rda}
 }
 \keyword{datasets}

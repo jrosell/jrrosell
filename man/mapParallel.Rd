@@ -9,19 +9,19 @@ mapParallel(x, fun_list)
 \arguments{
 \item{x}{An object}
 
-\item{fun}{A function}
+\item{fun_list}{A list of functions to run in parallel over the object}
 }
 \description{
 Map data over a function in one parallel core
 }
 \details{
 The mapParallel function uses parallel
-package. It returns the result of parallel::parLapply method.
+package to run functions to run in parallel over the object. It doesn't returning anything.
 }
 \examples{
 data.frame(x = 2) |> mapParallel(list(function(x) print(x), function(x) print(x*2)))
 
 }
 \seealso{
-https://github.com/jrosell/jrrosell/blob/main/R/parallel.R
+\url{https://github.com/jrosell/jrrosell/blob/main/R/parallel.R}
 }
