@@ -6,9 +6,6 @@
 #' @rdname prep_juice
 #' @param object A recipe or a workflow object with a recipe
 #'
-#' @details The stopParallel function uses tictoc and  parallel
-#' packages. It returns the result of parallel::stopCluster(cl) method.
-#'
 #' @examples
 #' recipes::recipe(spray ~ ., data = InsectSprays) |>
 #'    prep_juice()
@@ -16,7 +13,7 @@
 #'    workflows::workflow(parsnip::linear_reg()) |>
 #'    prep_juice()
 #'
-#' @seealso https://github.com/jrosell/jrrosell/blob/main/R/parallel.R
+#' @seealso https://github.com/jrosell/jrrosell/blob/main/R/tidymodels.R
 #' @export
 prep_juice <- function(object) {
     if(!requireNamespace("recipes", quietly = TRUE)) stop("recipes package is required")
@@ -25,4 +22,31 @@ prep_juice <- function(object) {
         object <- object |>  workflows::extract_preprocessor()
     }
     object |> recipes::prep() |> recipes::juice() |> tibble::glimpse()
+}
+
+
+#' Update recipe step values by id
+#'
+#' Update the vaules of a specific recipe step located by id
+#'
+#' @rdname update_step
+#' @param object A recipe or a workflow object with a recipe
+#'
+#' @examples
+#' recipes::recipe(spray ~ ., data = InsectSprays) |>
+#'    step_ns(count, deg_free = tune(), id="ns")
+#'
+#' @seealso https://github.com/jrosell/jrrosell/blob/main/R/tidymodels.R
+#' @export
+update_step <- function(object, target_id, ...) {
+    if(!requireNamespace("recipes", quietly = TRUE)) stop("recipes package is required")
+    if (inherits(object, "workflow")) {
+        object <- object |>  workflows::extract_preprocessor()
+    }
+    matching_index <- which(sapply(object$steps, function(step) step$id == target_id))
+    if (length(matching_index) == 1) {
+        index_to_update <- matching_index[1]
+        object$steps[[index_to_update]] <- update(object$steps[[index_to_update]], ...)
+    }
+    return(object)
 }
