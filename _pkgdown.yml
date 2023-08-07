@@ -19,6 +19,8 @@ reference:
   - calc_split_prop
   - read_url
   - prep_juice
+  - update_step
+  - as.bitstring
 
 - title: Data
   desc: >

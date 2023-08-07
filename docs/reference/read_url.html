@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">jrrosell</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9000</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9001</span>
       </span>
     </div>
 
@@ -70,22 +70,7 @@ and it's fault tolearnt.</p>
     <div id="ref-examples">
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">read_url</span><span class="op">(</span><span class="st">"https://www.google.es/search?q=jrosell"</span>, sleep <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Response [https://consent.google.es/ml?continue=https://www.google.es/search%3Fq%3Djrosell&amp;gl=ES&amp;m=0&amp;pc=srp&amp;uxe=none&amp;hl=es&amp;src=1]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Date: 2023-01-19 10:19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Status: 200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Content-Type: text/html; charset=utf-8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Size: 13.8 kB</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;!DOCTYPE html&gt;&lt;html lang="es" dir="ltr"&gt;&lt;head&gt;&lt;style nonce="mdGDRmFKOyzO6GG5...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> a, a:link, a:visited, a:active, a:hover {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   color: #1a73e8;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   text-decoration: none;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> }</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> body {</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   font-family: Roboto,RobotoDraft,Helvetica,Arial,sans-serif;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   text-align: center;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   -ms-text-size-adjust: 100%;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   -moz-text-size-adjust: 100%;</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ...</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in purrr::possibly(purrr::possibly(httr::GET, ""), rawToChar, ""):</span> `quiet` must be `TRUE` or `FALSE`, not the empty string "".</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

@@ -13,6 +13,9 @@
     <loc>https://jrosell.github.io/jrrosell/index.html</loc>
   </url>
   <url>
+    <loc>https://jrosell.github.io/jrrosell/reference/as.bitstring.html</loc>
+  </url>
+  <url>
     <loc>https://jrosell.github.io/jrrosell/reference/calc_split_prop.html</loc>
   </url>
   <url>
@@ -50,5 +53,8 @@
   </url>
   <url>
     <loc>https://jrosell.github.io/jrrosell/reference/tee.html</loc>
+  </url>
+  <url>
+    <loc>https://jrosell.github.io/jrrosell/reference/update_step.html</loc>
   </url>
 </urlset>

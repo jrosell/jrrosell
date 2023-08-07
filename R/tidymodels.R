@@ -34,7 +34,8 @@ prep_juice <- function(object) {
 #'
 #' @examples
 #' recipes::recipe(spray ~ ., data = InsectSprays) |>
-#'    step_ns(count, deg_free = tune(), id="ns")
+#'    recipes::step_ns(count, deg_free = hardhat::tune(), id="ns") |>
+#'    update_step("ns", deg_free = 1)
 #'
 #' @seealso https://github.com/jrosell/jrrosell/blob/main/R/tidymodels.R
 #' @export

@@ -39,3 +39,4 @@ vignettes/*.pdf
 .Renviron
 
 notebook.qmd
+docs
