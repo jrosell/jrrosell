@@ -1,8 +1,6 @@
 
 #' Prep, juice and glimpse a recipe or workflow
 #'
-#' Stop started timer and parallel processing.
-#'
 #' @rdname prep_juice
 #' @param object A recipe or a workflow object with a recipe
 #'
@@ -22,6 +20,26 @@ prep_juice <- function(object) {
         object <- object |>  workflows::extract_preprocessor()
     }
     object |> recipes::prep() |> recipes::juice() |> tibble::glimpse()
+}
+
+#' Prep, juice and get cols from a recipe or workflow
+#'
+#' @rdname prep_juice_cols
+#' @param object A recipe or a workflow object with a recipe
+#'
+#' @examples
+#' recipes::recipe(spray ~ ., data = InsectSprays) |>
+#'    prep_juice_cols()
+#'
+#' @seealso https://github.com/jrosell/jrrosell/blob/main/R/tidymodels.R
+#' @export
+prep_juice_cols <- function(object) {
+    if(!requireNamespace("recipes", quietly = TRUE)) stop("recipes package is required")
+    if(!requireNamespace("tibble", quietly = TRUE)) stop("tibble package is required")
+    if (inherits(object, "workflow")) {
+        object <- object |>  workflows::extract_preprocessor()
+    }
+    object |> recipes::prep() |> recipes::juice() |>  dim() |> _[2]
 }
 
 
