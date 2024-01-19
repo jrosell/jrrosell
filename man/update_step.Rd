@@ -8,6 +8,10 @@ update_step(object, target_id, ...)
 }
 \arguments{
 \item{object}{A recipe or a workflow object with a recipe}
+
+\item{target_id}{The id name of the step}
+
+\item{...}{The arguments to update the step.}
 }
 \description{
 Update the vaules of a specific recipe step located by id

@@ -11,6 +11,7 @@
 #'    workflows::workflow(parsnip::linear_reg()) |>
 #'    prep_juice()
 #'
+#' @source <https://recipes.tidymodels.org/reference/update.step.html>
 #' @seealso https://github.com/jrosell/jrrosell/blob/main/R/tidymodels.R
 #' @export
 prep_juice <- function(object) {
@@ -47,8 +48,11 @@ prep_juice_cols <- function(object) {
 #'
 #' Update the vaules of a specific recipe step located by id
 #'
+#' @importFrom stats update
 #' @rdname update_step
 #' @param object A recipe or a workflow object with a recipe
+#' @param target_id The id name of the step
+#' @param ... The arguments to update the step.
 #'
 #' @examples
 #' recipes::recipe(spray ~ ., data = InsectSprays) |>

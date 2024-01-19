@@ -3,6 +3,9 @@
 \name{prep_juice}
 \alias{prep_juice}
 \title{Prep, juice and glimpse a recipe or workflow}
+\source{
+\url{https://recipes.tidymodels.org/reference/update.step.html}
+}
 \usage{
 prep_juice(object)
 }

@@ -12,12 +12,13 @@ reference:
   contents:
   - tee
   - read_chr
+  - read_url
+  - write_xlsx
   - startParallel
   - stopParallel
   - mapParallel
   - calc_validation_size
   - calc_split_prop
-  - read_url
   - prep_juice
   - prep_juice_cols
   - update_step

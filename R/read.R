@@ -45,7 +45,7 @@ read_chr <- function(file, delim = ",", locale, ...) {
 #' and it's fault tolearnt.
 #'
 #' @examples
-#' read_url("https://www.google.es/search?q=jrosell", sleep = 1)
+#' read_url("https://www.google.cat/", sleep = 1)
 #'
 #' @seealso <https://github.com/jrosell/jrrosell/blob/main/R/read.R>
 #' @export
@@ -53,8 +53,8 @@ read_url <- function(url, sleep = 0) {
     if(!requireNamespace("purrr", quietly = TRUE)) stop("purrr package is required")
     if(!requireNamespace("httr", quietly = TRUE)) stop("httr package is required")
 
-    possibly_read_url <- purrr::possibly(httr::GET, '') |>
-        purrr::possibly(rawToChar, '')
+    possibly_read_url <- purrr::possibly(httr::GET, quiet = TRUE) |>
+        purrr::possibly(rawToChar, quiet = TRUE)
 
     result <- possibly_read_url(url)
     Sys.sleep(sleep)

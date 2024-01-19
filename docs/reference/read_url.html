@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">jrrosell</a>
-        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9001</span>
+        <span class="version label label-danger" data-toggle="tooltip" data-placement="bottom" title="Unreleased version">0.0.0.9002</span>
       </span>
     </div>
 
@@ -69,8 +69,23 @@ and it's fault tolearnt.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">read_url</span><span class="op">(</span><span class="st">"https://www.google.es/search?q=jrosell"</span>, sleep <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in purrr::possibly(purrr::possibly(httr::GET, ""), rawToChar, ""):</span> `quiet` must be `TRUE` or `FALSE`, not the empty string "".</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">read_url</span><span class="op">(</span><span class="st">"https://www.google.cat/"</span>, sleep <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Response [https://www.google.cat/]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Date: 2024-01-19 11:56</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Status: 200</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Content-Type: text/html; charset=ISO-8859-1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   Size: 19.3 kB</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;!doctype html&gt;&lt;html itemscope="" itemtype="http://schema.org/WebPage" lang="...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> var h=this||self;function l(){return void 0!==window.google&amp;&amp;void 0!==window....</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> function t(a,b,c,d,k){var e="";-1===b.search("&amp;ei=")&amp;&amp;(e="&amp;ei="+p(d),-1===b.s...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> document.documentElement.addEventListener("submit",function(b){var a;if(a=b.t...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;/style&gt;&lt;style&gt;body,td,a,p,.h{font-family:arial,sans-serif}body{margin:0;over...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> var h=this||self;var k,l=null!=(k=h.mei)?k:1,n,p=null!=(n=h.sdo)?n:!0,q=0,r,t...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> b(t.bv);var f=a.lineNumber;void 0!==f&amp;&amp;(c+="&amp;line="+f);var g=a.fileName;g&amp;&amp;(0...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> if (!iesg){document.f&amp;&amp;document.f.q.focus();document.gbqf&amp;&amp;document.gbqf.q.fo...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> }</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> })();&lt;/script&gt;&lt;div id="mngb"&gt;&lt;div id=gbar&gt;&lt;nobr&gt;&lt;b class=gb1&gt;Búsqueda&lt;/b&gt; &lt;a ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ...</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

@@ -19,7 +19,7 @@ The read_url function works uses rvest::read_html and purr::possibly
 and it's fault tolearnt.
 }
 \examples{
-read_url("https://www.google.es/search?q=jrosell", sleep = 1)
+read_url("https://www.google.cat/", sleep = 1)
 
 }
 \seealso{

@@ -4,12 +4,12 @@ Version: 0.0.0.9002
 Authors@R: 
     person("Jordi", "Rosell", , "jroselln@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-4349-1458"))
-Description: What the package does (one paragraph).
-License: AGPL (>= 3)
+Description: Useful functions for personal usage.
+License: CC0
 Encoding: UTF-8
 Language: en
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.0
 Suggests: 
     doParallel,
     httr,
@@ -22,7 +22,9 @@ Suggests:
     recipes,
     tibble,
     tictoc,
-    workflows
+    workflows,
+    openxlsx,
+    hardhat
 Depends: 
-    R (>= 2.10)
+    R (>= 4.2)
 LazyData: true
