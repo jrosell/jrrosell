@@ -22,6 +22,7 @@ startParallel <- function(msg = NULL, max = 10, min = 1) {
     if(!requireNamespace("parallel", quietly = TRUE)) stop("parallel package is required")
     if(!requireNamespace("parallelly", quietly = TRUE)) stop("parallelly package is required")
     if(!requireNamespace("doParallel", quietly = TRUE)) stop("doParallel package is required")
+    if(!requireNamespace("doFuture", quietly = TRUE)) stop("doFuture package is required")
     if(!requireNamespace("tictoc", quietly = TRUE)) stop("doParallel package is required")
 
     available <- parallelly::availableCores()

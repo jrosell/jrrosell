@@ -3,7 +3,7 @@
 \docType{data}
 \name{spain_provinces}
 \alias{spain_provinces}
-\title{Provinces of Spain data}
+\title{spain_provinces}
 \format{
 \subsection{\code{spain_provinces}}{
 
@@ -23,7 +23,12 @@ A sf object with 60 rows and 4 columns:
 spain_provinces
 }
 \description{
-Provinces of Spain data
+spain_provinces
+}
+\examples{
+library(sf)
+data(spain_provinces)
+head(spain_provinces)
 }
 \seealso{
 \url{https://github.com/jrosell/jrrosell/blob/main/data/spain_provinces.rda}

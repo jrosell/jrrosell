@@ -19,16 +19,17 @@ reference:
   - mapParallel
   - calc_validation_size
   - calc_split_prop
-  - prep_juice
-  - prep_juice_cols
-  - update_step
   - as.bitstring
+  - has_keyword("tidymodels")
+  - theme_roboto
+  - theme_set_roboto_darkblue
 
 - title: Data
   desc: >
     Datasets and objects included in my personal R package.
   contents:
   - spain_provinces
+  - spain_ccaas
 
 # news:
 #   releases:

@@ -25,10 +25,16 @@
     <loc>https://jrosell.github.io/jrrosell/reference/data.html</loc>
   </url>
   <url>
+    <loc>https://jrosell.github.io/jrrosell/reference/dot-get_recipe_mode.html</loc>
+  </url>
+  <url>
     <loc>https://jrosell.github.io/jrrosell/reference/index.html</loc>
   </url>
   <url>
     <loc>https://jrosell.github.io/jrrosell/reference/kgl_competitions_data_download.html</loc>
+  </url>
+  <url>
+    <loc>https://jrosell.github.io/jrrosell/reference/last_metrics.html</loc>
   </url>
   <url>
     <loc>https://jrosell.github.io/jrrosell/reference/mapParallel.html</loc>
@@ -46,7 +52,28 @@
     <loc>https://jrosell.github.io/jrrosell/reference/read_url.html</loc>
   </url>
   <url>
+    <loc>https://jrosell.github.io/jrrosell/reference/rebuild_docs_and_check.html</loc>
+  </url>
+  <url>
+    <loc>https://jrosell.github.io/jrrosell/reference/spain_ccaas.html</loc>
+  </url>
+  <url>
     <loc>https://jrosell.github.io/jrrosell/reference/spain_provinces.html</loc>
+  </url>
+  <url>
+    <loc>https://jrosell.github.io/jrrosell/reference/spec_class_glmnet_logistic_reg.html</loc>
+  </url>
+  <url>
+    <loc>https://jrosell.github.io/jrrosell/reference/spec_class_glmnet_multinom_reg.html</loc>
+  </url>
+  <url>
+    <loc>https://jrosell.github.io/jrrosell/reference/spec_class_xgboost.html</loc>
+  </url>
+  <url>
+    <loc>https://jrosell.github.io/jrrosell/reference/spec_reg_glmnet.html</loc>
+  </url>
+  <url>
+    <loc>https://jrosell.github.io/jrrosell/reference/spec_reg_xgboost.html</loc>
   </url>
   <url>
     <loc>https://jrosell.github.io/jrrosell/reference/startParallel.html</loc>
@@ -58,7 +85,22 @@
     <loc>https://jrosell.github.io/jrrosell/reference/tee.html</loc>
   </url>
   <url>
+    <loc>https://jrosell.github.io/jrrosell/reference/theme_roboto.html</loc>
+  </url>
+  <url>
+    <loc>https://jrosell.github.io/jrrosell/reference/theme_set_roboto_darkblue.html</loc>
+  </url>
+  <url>
     <loc>https://jrosell.github.io/jrrosell/reference/update_step.html</loc>
+  </url>
+  <url>
+    <loc>https://jrosell.github.io/jrrosell/reference/workflow_boost_tree.html</loc>
+  </url>
+  <url>
+    <loc>https://jrosell.github.io/jrrosell/reference/workflow_elasticnet.html</loc>
+  </url>
+  <url>
+    <loc>https://jrosell.github.io/jrrosell/reference/workflow_glmnet.html</loc>
   </url>
   <url>
     <loc>https://jrosell.github.io/jrrosell/reference/write_xlsx.html</loc>

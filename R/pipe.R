@@ -1,6 +1,6 @@
-#' Tee pipe
+#' Tee pipe that return the original value instead of the result
 #'
-#' Pipe a value forward into a function- or call expression and return the
+#' Pipe a value forward into a functio or call expression and return the
 #' original value instead of the result. This is useful when an expression
 #' is used for its side-effect, say plotting or printing.
 #'

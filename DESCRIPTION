@@ -9,22 +9,40 @@ License: CC0
 Encoding: UTF-8
 Language: en
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.0
+RoxygenNote: 7.3.1
 Suggests: 
+    devtools,
+    doFuture,
     doParallel,
+    dplyr,
+    future,
+    glmnet,
+    hardhat,
     httr,
+    httr2,
     janitor,
+    modeldata,
+    openxlsx,
     parallel,
     parallelly,
     parsnip,
+    pkgdown,
     purrr,
     readr,
     recipes,
+    sf,
+    testthat,
     tibble,
     tictoc,
+    tidymodels,
+    tune,
+    usethis,
     workflows,
-    openxlsx,
-    hardhat
+    xgboost
+Imports: 
+    ggplot2,
+    extrafont,
+    rlang
 Depends: 
-    R (>= 4.2)
+    R (>= 4.3)
 LazyData: true

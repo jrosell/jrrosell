@@ -2,7 +2,7 @@
 % Please edit documentation in R/pipe.R
 \name{tee}
 \alias{tee}
-\title{Tee pipe}
+\title{Tee pipe that return the original value instead of the result}
 \source{
 \url{https://mastodon.social/@multimeric@genomic.social/109555362766969210}
 }
@@ -15,7 +15,7 @@ tee(x, expr)
 \item{expr}{An expresion}
 }
 \description{
-Pipe a value forward into a function- or call expression and return the
+Pipe a value forward into a functio or call expression and return the
 original value instead of the result. This is useful when an expression
 is used for its side-effect, say plotting or printing.
 }
