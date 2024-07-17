@@ -23,6 +23,7 @@ reference:
   - has_keyword("tidymodels")
   - theme_roboto
   - theme_set_roboto_darkblue
+  - notify_finished
 
 - title: Data
   desc: >

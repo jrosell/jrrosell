@@ -9,14 +9,17 @@ License: CC0
 Encoding: UTF-8
 Language: en
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.1.9000
 Suggests: 
+    beepr,
+    blastula,
     devtools,
     doFuture,
     doParallel,
     dplyr,
     future,
     glmnet,
+    glue,
     hardhat,
     httr,
     httr2,

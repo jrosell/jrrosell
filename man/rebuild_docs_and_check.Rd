@@ -9,4 +9,10 @@ rebuild_docs_and_check()
 \description{
 Internal helper function for package development
 }
+\examples{
+if (exists("not_run")) {
+  devtools::load_all(); rebuild_docs_and_check()
+}
+
+}
 \keyword{internal}

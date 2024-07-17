@@ -1,5 +1,10 @@
 
 #' Internal helper function for package development
+#' @examples
+#' if (exists("not_run")) {
+#'   devtools::load_all(); rebuild_docs_and_check()
+#' }
+#' 
 #' @keywords internal
 rebuild_docs_and_check <- function() {
     # usethis::use_description(list(
@@ -42,7 +47,10 @@ rebuild_docs_and_check <- function() {
         "future",
         "doFuture",
         "dplyr",
-        "tune"
+        "tune",
+        "blastula",
+        "beepr",
+        "glue"
     )
     packages |> purrr::map(
         \(x){usethis::use_package(x, type = "Suggests"); x}
