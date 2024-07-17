@@ -2,7 +2,7 @@
 % Please edit documentation in R/notify_finished.R
 \name{notify_finished}
 \alias{notify_finished}
-\title{Notify finished}
+\title{Make a sound and send an email when a process finished}
 \usage{
 notify_finished(name, body = "", ..., sound = 1, tictoc_result = NULL)
 }
@@ -18,10 +18,9 @@ notify_finished(name, body = "", ..., sound = 1, tictoc_result = NULL)
 \item{tictoc_result}{the result from tictoc::toc (Default NULL)}
 }
 \description{
-Make a sound and send an email when a process finished.
+The notify_finished make a sound using beepr::beep, compose and email and send it returing   the blastula::smtp_send call results.
 }
 \details{
-The notify_finished make a sound using beepr::beep, compose and email and send it returing   the blastula::smtp_send call results.
 The following environment variables should be set:
 \itemize{
 \item MY_SMTP_USER from
@@ -34,7 +33,7 @@ The following environment variables should be set:
 if (exists("not_run")) {
   tictoc::tic()
   Sys.sleep(1) 
-  notify_finished("job", "Well done", sound = "fanfare", tictoc_result = tictoc::toc())
+  jrrosell::notify_finished("job", "Well done", sound = "fanfare", tictoc_result = tictoc::toc())
 }
 
 }

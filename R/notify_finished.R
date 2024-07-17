@@ -1,7 +1,7 @@
-#' Notify finished
-#'
-#' Make a sound and send an email when a process finished.
-
+#' Make a sound and send an email when a process finished
+#' 
+#' The notify_finished make a sound using beepr::beep, compose and email and send it returing   the blastula::smtp_send call results.
+#' 
 #' @rdname notify_finished
 #' @param name The process name (Required)
 #' @param body The contents of the email (Default "")
@@ -9,8 +9,7 @@
 #' @param sound The sound for beepr::beep call (Default 1)
 #' @param tictoc_result the result from tictoc::toc (Default NULL)
 #'
-#' @details The notify_finished make a sound using beepr::beep, compose and email and send it returing   the blastula::smtp_send call results.
-#'  The following environment variables should be set:
+#' @details The following environment variables should be set:
 #' * MY_SMTP_USER from
 #' * MY_SMTP_RECIPIENT to
 #' * MY_SMTP_PASSWORD service password (for gmail you can use https://myaccount.google.com/apppasswords)
@@ -20,7 +19,7 @@
 #' if (exists("not_run")) {
 #'   tictoc::tic()
 #'   Sys.sleep(1) 
-#'   notify_finished("job", "Well done", sound = "fanfare", tictoc_result = tictoc::toc())
+#'   jrrosell::notify_finished("job", "Well done", sound = "fanfare", tictoc_result = tictoc::toc())
 #' }
 #'
 #' @seealso <https://github.com/jrosell/jrrosell/blob/main/R/notify_finished.R>
