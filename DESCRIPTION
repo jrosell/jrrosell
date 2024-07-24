@@ -1,6 +1,6 @@
 Package: jrrosell
 Title: Personal R package for Jordi Rosell
-Version: 0.0.0.9003
+Version: 0.0.0.9004
 Authors@R: 
     person("Jordi", "Rosell", , "jroselln@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-4349-1458"))
@@ -10,6 +10,8 @@ Encoding: UTF-8
 Language: en
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1.9000
+Depends: 
+    R (>= 4.3.0)
 Suggests: 
     beepr,
     blastula,
@@ -43,9 +45,7 @@ Suggests:
     workflows,
     xgboost
 Imports: 
-    ggplot2,
     extrafont,
+    ggplot2,
     rlang
-Depends: 
-    R (>= 4.3)
 LazyData: true
