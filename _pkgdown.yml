@@ -27,6 +27,12 @@ reference:
   contents:
   - has_keyword("graphing")
 
+- title: packages
+  desc: >
+    Some functions to help managing packages and package versions.
+  contents:
+  - has_keyword("packages")
+
 - title: processing
   desc: >
     Some functions to help processing R scripts.
@@ -38,7 +44,6 @@ reference:
     Some miscellany functions included in my personal R package.
   contents:
   - tee
-  - package_github_version
   - as.bitstring
 
 - title: data

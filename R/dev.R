@@ -22,7 +22,7 @@ rebuild_docs_and_check <- function() {
     ))
     usethis::use_package("R", type = "Depends", min_version = "4.3.0")
     usethis::use_cc0_license()
-    packages <- c(
+    suggests_packages <- c(
         "sf",
         "doParallel",
         "httr",
@@ -55,15 +55,15 @@ rebuild_docs_and_check <- function() {
         "beepr",
         "glue"
     )
-    packages |> purrr::map(
+    suggests_packages |> purrr::map(
         \(x){usethis::use_package(x, type = "Suggests"); x}
     )
-    import_packages <- c(
+    imports_packages <- c(
         "ggplot2",
         "extrafont",
         "rlang"
     )
-    import_packages |> purrr::map(
+    imports_packages |> purrr::map(
         \(x){usethis::use_package(x, type = "Imports"); x}
     )
     spain_ccaas <- readr::read_rds("inst/extdata/spain_ccaas.rds")

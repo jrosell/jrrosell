@@ -3,6 +3,7 @@
 export(as.bitstring)
 export(calc_split_prop)
 export(calc_validation_size)
+export(check_installed_gihub)
 export(last_metrics)
 export(mapParallel)
 export(notify_finished)

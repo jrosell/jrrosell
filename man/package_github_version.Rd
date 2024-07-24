@@ -7,7 +7,7 @@
 package_github_version(x)
 }
 \arguments{
-\item{x}{a single package}
+\item{x}{a single repo/package to check Ex: package_github_version("tidyverse/dplyr")}
 }
 \description{
 Get the version from the DESCRIPTION file of the master branch in the github package
@@ -15,4 +15,4 @@ Get the version from the DESCRIPTION file of the master branch in the github pac
 \seealso{
 https://github.com/jrosell/jrrosell/blob/main/R/packages.R
 }
-\keyword{processing}
+\keyword{packages}
