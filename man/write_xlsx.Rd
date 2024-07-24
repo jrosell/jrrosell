@@ -21,8 +21,8 @@ The write_xlsx it's a wroapper for \code{openxls::write.xlsx}.
 }
 \examples{
 l <- list("IRIS" = iris, "MTCATS" = mtcars, matrix(runif(1000), ncol = 5))
-write_xlsx(l, "writeList1.xlsx", colWidths = c(NA, "auto", "auto"))
-file.remove("writeList1.xlsx")
+write_xlsx(l, "/tmp/writeList1.xlsx", colWidths = c(NA, "auto", "auto"))
+file.remove("/tmp/writeList1.xlsx")
 
 }
 \seealso{

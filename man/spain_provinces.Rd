@@ -31,6 +31,6 @@ data(spain_provinces)
 head(spain_provinces)
 }
 \seealso{
-\url{https://github.com/jrosell/jrrosell/blob/main/data/spain_provinces.rda}
+\url{https://github.com/jrosell/jrrosell/blob/main/data/spain_provinces.rds}
 }
 \keyword{datasets}

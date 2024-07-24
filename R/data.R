@@ -9,7 +9,7 @@
 #'   \item{geometry}{}
 #' }
 #' @source <https://github.com/koldLight/curso-r-dataviz/blob/master/dat/spain_ccaas.geojson>
-#' @seealso <https://github.com/jrosell/jrrosell/blob/main/data/spain_ccaas.rda>
+#' @seealso <https://github.com/jrosell/jrrosell/blob/main/data/spain_ccaas.rds>
 #' @examples
 #' library(sf)
 #' data(spain_ccaas)
@@ -27,7 +27,7 @@
 #'   \item{geometry}{}
 #' }
 #' @source <https://github.com/koldLight/curso-r-dataviz/blob/master/dat/spain_provinces.geojson>
-#' @seealso <https://github.com/jrosell/jrrosell/blob/main/data/spain_provinces.rda>
+#' @seealso <https://github.com/jrosell/jrrosell/blob/main/data/spain_provinces.rds>
 #' @examples
 #' library(sf)
 #' data(spain_provinces)

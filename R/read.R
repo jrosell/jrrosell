@@ -81,9 +81,9 @@ read_url <- function(url, sleep = 0) {
 #'
 #' @examples
 #' l <- list("IRIS" = iris, "MTCATS" = mtcars, matrix(runif(1000), ncol = 5))
-#' write_xlsx(l, "writeList1.xlsx", colWidths = c(NA, "auto", "auto"))
-#' read_xlsx("writeList1.xlsx")
-#' file.remove("writeList1.xlsx")
+#' write_xlsx(l, "/tmp/writeList1.xlsx", colWidths = c(NA, "auto", "auto"))
+#' read_xlsx("/tmp/writeList1.xlsx")
+#' file.remove("/tmp/writeList1.xlsx")
 #'
 #' @seealso <https://github.com/jrosell/jrrosell/blob/main/R/read.R>
 #' @export
