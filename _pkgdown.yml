@@ -13,6 +13,7 @@ reference:
   - tee
   - read_chr
   - read_url
+  - read_xlsx
   - write_xlsx
   - startParallel
   - stopParallel

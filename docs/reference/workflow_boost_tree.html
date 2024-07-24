@@ -101,23 +101,23 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 13</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    mtry trees min_n tree_depth learn_rate loss_reduction sample_size .metric</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>    23   942    32         15    0.036<span style="text-decoration: underline;">8</span>        4.78<span style="color: #949494;">e</span><span style="color: #BB0000;">-10</span>       0.626 roc_auc</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>    49  <span style="text-decoration: underline;">1</span>675     2          5    0.004<span style="text-decoration: underline;">97</span>       1.58<span style="color: #949494;">e</span>+ 1       0.116 roc_auc</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span>     3  <span style="text-decoration: underline;">1</span>855     9          1    0.127       0.000<span style="text-decoration: underline;">003</span>68       0.264 roc_auc</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span>    37   920    32         12    0.001<span style="text-decoration: underline;">36</span>     2.13             0.951 roc_auc</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 5 more variables: .estimator &lt;chr&gt;, mean &lt;dbl&gt;, n &lt;int&gt;, std_err &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   .config &lt;chr&gt;</span></span>
 <span class="r-in"><span><span class="va">res</span> <span class="op">|&gt;</span> <span class="fu"><a href="last_metrics.html">last_metrics</a></span><span class="op">(</span><span class="va">split</span>, <span class="st">"roc_auc"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .metric     .estimator .estimate .config             </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> accuracy    binary         0.476 Preprocessor1_Model1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> roc_auc     binary         0.530 Preprocessor1_Model1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> brier_class binary         0.250 Preprocessor1_Model1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> accuracy    binary         0.444 Preprocessor1_Model1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> roc_auc     binary         0.446 Preprocessor1_Model1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> brier_class binary         0.252 Preprocessor1_Model1</span>
 <span class="r-in"><span><span class="va">best</span> <span class="op">&lt;-</span> <span class="va">res</span> <span class="op">|&gt;</span> <span class="fu">fit_best</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">best</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">augment</span><span class="op">(</span><span class="fu">testing</span><span class="op">(</span><span class="va">split</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">roc_auc</span><span class="op">(</span><span class="va">case</span>, <span class="va">.pred_Test</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">pull</span><span class="op">(</span><span class="va">.estimate</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5017677</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.4461946</span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>

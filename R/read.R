@@ -62,3 +62,34 @@ read_url <- function(url, sleep = 0) {
     return(result)
 }
 
+
+
+#' Read a xlsx file into a a list of tibbles
+#'
+#' It's useful for saving multiple data to a multiple sheets of a single Excel/Openoffice file.
+#'
+#' @rdname read_xlsx
+#' @param xlsxFile The name of the file.
+#' @param ... Other parameters to openxls::read.xlsx function
+#' @param sheet The name or index of the sheet (default 1)
+#' @param startRow The number of the starting reading row (default 1)
+#' 
+#' @details The write_xlsx it's a wroapper for \code{openxls::write.xlsx}.
+#'
+#' @examples
+#' l <- list("IRIS" = iris, "MTCATS" = mtcars, matrix(runif(1000), ncol = 5))
+#' write_xlsx(l, "writeList1.xlsx", colWidths = c(NA, "auto", "auto"))
+#' read_xlsx("writeList1.xlsx")
+#' file.remove("writeList1.xlsx")
+#'
+#' @seealso <https://github.com/jrosell/jrrosell/blob/main/R/read.R>
+#' @export
+read_xlsx <- function(xlsxFile, ..., sheet = 1, startRow = 1) {
+    if(!requireNamespace("openxlsx", quietly = TRUE)) return(NULL)
+    openxlsx::read.xlsx(
+        xlsxFile = xlsxFile,
+        sheet = sheet,
+        startRow = startRow,
+        ...
+    )
+}
