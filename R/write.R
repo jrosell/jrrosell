@@ -1,6 +1,6 @@
 #' Write a list of tibbles to a xlsx file
 #'
-#' It's useful for saving multiple data to a multiple sheets of a single Excel/Openoffice file.
+#' It's useful for saving multiple data to a multiple sheets of a single Excel/Openoffice/libreoffice file.
 #'
 #' @rdname write_xlsx
 #' @param data A named list of tibbles

@@ -64,9 +64,9 @@ read_url <- function(url, sleep = 0) {
 
 
 
-#' Read a xlsx file into a a list of tibbles
+#' Read a sheet from a xlsx file into a tibbles
 #'
-#' It's useful for saving multiple data to a multiple sheets of a single Excel/Openoffice file.
+#' It's useful for reading a single sheets from a Excel/Openoffice file.
 #'
 #' @rdname read_xlsx
 #' @param xlsxFile The name of the file.
