@@ -3,6 +3,7 @@
 #' The notify_finished make a sound using beepr::beep, compose and email and send it returing   the blastula::smtp_send call results.
 #' 
 #' @rdname notify_finished
+#' @keywords processing
 #' @param name The process name (Required)
 #' @param body The contents of the email (Default "")
 #' @param ...  Additional arguments to pass to the template function. If you're using the default template, you can use font_family to control the base font, and content_width to control the width of the main content; see blastula_template(). By default, the content_width is set to ⁠1000px⁠. Using widths less than ⁠600px⁠ is generally not advised but, if necessary, be sure to test such HTML emails with a wide range of email clients before sending to the intended recipients. The Outlook mail client (Windows, Desktop) does not respect content_width.

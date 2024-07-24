@@ -3,6 +3,7 @@
 #' Get the bit representation of a double number
 #'
 #' @rdname as.bitstring
+#' @keywords types
 #' @param x A numeric vetor.
 #'
 #' @details Get the bit representation of a double number

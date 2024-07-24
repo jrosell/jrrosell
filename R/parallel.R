@@ -2,6 +2,7 @@
 #'
 #' Start timer and parallel processing in max/min of the available cores.
 #'
+#' @keywords processing
 #' @rdname startParallel
 #' @param msg A character vector with the tictoc timer message.
 #' @param max An integer with the max desired cores.
@@ -38,6 +39,7 @@ startParallel <- function(msg = NULL, max = 10, min = 1) {
 #'
 #' Stop started timer and parallel processing.
 #'
+#' @keywords processing
 #' @rdname stopParallel
 #' @param cl A cluster object returned by startParallel or parallel::makeCluster, parallel::makePSOCKcluster, parallel::makeForkCluster
 #'
@@ -63,6 +65,7 @@ stopParallel <- function(cl) {
 #'
 #' Map data over a function in one parallel core
 #'
+#' @keywords processing
 #' @rdname mapParallel
 #' @param x An object
 #' @param fun_list A list of functions to run in parallel over the object

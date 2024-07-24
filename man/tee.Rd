@@ -39,3 +39,4 @@ rnorm(200) |>
 \seealso{
 \url{https://github.com/jrosell/jrrosell/blob/main/R/pipe.R}
 }
+\keyword{processing}

@@ -26,3 +26,4 @@ calc_split_prop(data.frame(row = 1:891))
 \seealso{
 \url{https://github.com/jrosell/jrrosell/blob/main/R/calc.R}
 }
+\keyword{tidymodels}

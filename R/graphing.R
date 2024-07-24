@@ -1,7 +1,7 @@
 #' Sets a dark blue colored dark minimal theme using the Roboto font family
 #'
-#' @keywords graphing
 #' @rdname theme_set_roboto_darkblue
+#' @keywords graphing
 #' @param ... Other parameters passed to theme_set
 #' @examples
 #' library(ggplot2)
@@ -20,8 +20,8 @@ theme_set_roboto_darkblue <- function(...) {
 #'
 #' It requires roboto fonts installed in your O.S. and run z
 #'
-#' @keywords graphing
 #' @rdname theme_roboto
+#' @keywords graphing
 #' @param base_size = 11
 #' @param strip_text_size = 12
 #' @param strip_text_margin = 5

@@ -25,3 +25,4 @@ data.frame(x = 2) |> mapParallel(list(function(x) print(x), function(x) print(x*
 \seealso{
 \url{https://github.com/jrosell/jrrosell/blob/main/R/parallel.R}
 }
+\keyword{processing}

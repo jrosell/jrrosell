@@ -38,14 +38,10 @@
     </div>
 
     <table class="ref-index"><colgroup><col class="alias"><col class="title"></colgroup><tbody><tr><th colspan="2">
-          <h2 id="all-functions">All functions <a href="#all-functions" class="anchor" aria-hidden="true"></a></h2>
-          <p class="section-desc"></p><p>Functions included in my personal R package.</p>
+          <h2 id="read-and-write">read and write <a href="#read-and-write" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Some functions to help readinf and writing files.</p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="tee.html">tee()</a></code> </p>
-        </td>
-        <td><p>Tee pipe that return the original value instead of the result</p></td>
-      </tr><tr><td>
           <p><code><a href="read_chr.html">read_chr()</a></code> </p>
         </td>
         <td><p>Read character columns with clean names</p></td>
@@ -56,35 +52,23 @@
       </tr><tr><td>
           <p><code><a href="read_xlsx.html">read_xlsx()</a></code> </p>
         </td>
-        <td><p>Read a xlsx file into a a list of tibbles</p></td>
+        <td><p>Read a sheet from a xlsx file into a tibbles</p></td>
       </tr><tr><td>
           <p><code><a href="write_xlsx.html">write_xlsx()</a></code> </p>
         </td>
         <td><p>Write a list of tibbles to a xlsx file</p></td>
-      </tr><tr><td>
-          <p><code><a href="startParallel.html">startParallel()</a></code> </p>
-        </td>
-        <td><p>Start parallel processing</p></td>
-      </tr><tr><td>
-          <p><code><a href="stopParallel.html">stopParallel()</a></code> </p>
-        </td>
-        <td><p>Stop parallel processing</p></td>
-      </tr><tr><td>
-          <p><code><a href="mapParallel.html">mapParallel()</a></code> </p>
-        </td>
-        <td><p>Map parallel processing</p></td>
-      </tr><tr><td>
-          <p><code><a href="calc_validation_size.html">calc_validation_size()</a></code> </p>
-        </td>
-        <td><p>Calculate validation size</p></td>
-      </tr><tr><td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="tidymodels">tidymodels <a href="#tidymodels" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Some functions to help using tidymodels.</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
           <p><code><a href="calc_split_prop.html">calc_split_prop()</a></code> </p>
         </td>
         <td><p>Calculate split proportion</p></td>
       </tr><tr><td>
-          <p><code><a href="as.bitstring.html">as.bitstring()</a></code> </p>
+          <p><code><a href="calc_validation_size.html">calc_validation_size()</a></code> </p>
         </td>
-        <td><p>Data type utilities</p></td>
+        <td><p>Calculate validation size</p></td>
       </tr><tr><td>
           <p><code><a href="last_metrics.html">last_metrics()</a></code> </p>
         </td>
@@ -109,7 +93,11 @@
           <p><code><a href="workflow_elasticnet.html">workflow_elasticnet()</a></code> </p>
         </td>
         <td><p>Create a tuneable glmnet worfklow for regression and classification</p></td>
-      </tr><tr><td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="graphing">graphing <a href="#graphing" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Some functions to help ploting and customize look and feel.</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
           <p><code><a href="theme_roboto.html">theme_roboto()</a></code> </p>
         </td>
         <td><p>Sets a minimal theme using the Roboto font family</p></td>
@@ -117,12 +105,52 @@
           <p><code><a href="theme_set_roboto_darkblue.html">theme_set_roboto_darkblue()</a></code> </p>
         </td>
         <td><p>Sets a dark blue colored dark minimal theme using the Roboto font family</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="processing">processing <a href="#processing" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Some functions to help processing R scripts.</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="mapParallel.html">mapParallel()</a></code> </p>
+        </td>
+        <td><p>Map parallel processing</p></td>
       </tr><tr><td>
           <p><code><a href="notify_finished.html">notify_finished()</a></code> </p>
         </td>
         <td><p>Make a sound and send an email when a process finished</p></td>
+      </tr><tr><td>
+          <p><code><a href="package_github_version.html">package_github_version()</a></code> </p>
+        </td>
+        <td><p>Github version of the package</p></td>
+      </tr><tr><td>
+          <p><code><a href="startParallel.html">startParallel()</a></code> </p>
+        </td>
+        <td><p>Start parallel processing</p></td>
+      </tr><tr><td>
+          <p><code><a href="stopParallel.html">stopParallel()</a></code> </p>
+        </td>
+        <td><p>Stop parallel processing</p></td>
+      </tr><tr><td>
+          <p><code><a href="tee.html">tee()</a></code> </p>
+        </td>
+        <td><p>Tee pipe that return the original value instead of the result</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
-          <h2 id="data">Data <a href="#data" class="anchor" aria-hidden="true"></a></h2>
+          <h2 id="miscellany">miscellany <a href="#miscellany" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Some miscellany functions included in my personal R package.</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="tee.html">tee()</a></code> </p>
+        </td>
+        <td><p>Tee pipe that return the original value instead of the result</p></td>
+      </tr><tr><td>
+          <p><code><a href="package_github_version.html">package_github_version()</a></code> </p>
+        </td>
+        <td><p>Github version of the package</p></td>
+      </tr><tr><td>
+          <p><code><a href="as.bitstring.html">as.bitstring()</a></code> </p>
+        </td>
+        <td><p>Data type utilities</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="data">data <a href="#data" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>Datasets and objects included in my personal R package.</p>
         </th>
       </tr></tbody><tbody><tr><td>

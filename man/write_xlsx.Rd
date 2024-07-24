@@ -14,7 +14,7 @@ write_xlsx(data, distfile, ...)
 \item{...}{Other parameters to openxls::write.xlsx function}
 }
 \description{
-It's useful for saving multiple data to a multiple sheets of a single Excel/Openoffice file.
+It's useful for saving multiple data to a multiple sheets of a single Excel/Openoffice/libreoffice file.
 }
 \details{
 The write_xlsx it's a wroapper for \code{openxls::write.xlsx}.
@@ -28,3 +28,4 @@ file.remove("writeList1.xlsx")
 \seealso{
 \url{https://github.com/jrosell/jrrosell/blob/main/R/write.R}
 }
+\keyword{write}

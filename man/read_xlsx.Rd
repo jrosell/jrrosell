@@ -2,7 +2,7 @@
 % Please edit documentation in R/read.R
 \name{read_xlsx}
 \alias{read_xlsx}
-\title{Read a xlsx file into a a list of tibbles}
+\title{Read a sheet from a xlsx file into a tibbles}
 \usage{
 read_xlsx(xlsxFile, ..., sheet = 1, startRow = 1)
 }
@@ -16,7 +16,7 @@ read_xlsx(xlsxFile, ..., sheet = 1, startRow = 1)
 \item{startRow}{The number of the starting reading row (default 1)}
 }
 \description{
-It's useful for saving multiple data to a multiple sheets of a single Excel/Openoffice file.
+It's useful for reading a single sheets from a Excel/Openoffice file.
 }
 \details{
 The write_xlsx it's a wroapper for \code{openxls::write.xlsx}.
@@ -31,3 +31,4 @@ file.remove("writeList1.xlsx")
 \seealso{
 \url{https://github.com/jrosell/jrrosell/blob/main/R/read.R}
 }
+\keyword{read}

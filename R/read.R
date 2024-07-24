@@ -4,6 +4,7 @@
 #' comma separated values and tab separated values.
 #'
 #' @rdname read_chr
+#' @keywords read
 #' @param file Either a path to a file, a connection, or literal data (either a single string or a raw vector).
 #' @param delim Single character used to separate fields within a record.
 #' @param locale The locale controls defaults that vary from place to place. The default locale is US-centric (like R), but you can use locale() to create your own locale that controls things like the default time zone, encoding, decimal mark, big mark, and day/month names.
@@ -38,6 +39,7 @@ read_chr <- function(file, delim = ",", locale, ...) {
 #' It's useful for getting the text for webpages in a single character vector.
 #'
 #' @rdname read_url
+#' @keywords read
 #' @param url Full url including http or https protocol and the page path.
 #' @param sleep Seconds to sleep after the request is done and before returning the result.
 #'
@@ -69,6 +71,7 @@ read_url <- function(url, sleep = 0) {
 #' It's useful for reading a single sheets from a Excel/Openoffice file.
 #'
 #' @rdname read_xlsx
+#' @keywords read
 #' @param xlsxFile The name of the file.
 #' @param ... Other parameters to openxls::read.xlsx function
 #' @param sheet The name or index of the sheet (default 1)

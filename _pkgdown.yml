@@ -5,28 +5,43 @@ home:
   - text: About me
     href: https://elnostreraco.com/blog/quant-a/
 
+
 reference:
-- title: All functions
+
+- title: read and write
   desc: >
-    Functions included in my personal R package.
+    Some functions to help readinf and writing files.
+  contents:
+  - has_keyword("read")
+  - has_keyword("write")
+
+- title: tidymodels
+  desc: >
+    Some functions to help using tidymodels.
+  contents:
+  - has_keyword("tidymodels")
+
+- title: graphing
+  desc: >
+    Some functions to help ploting and customize look and feel.
+  contents:
+  - has_keyword("graphing")
+
+- title: processing
+  desc: >
+    Some functions to help processing R scripts.
+  contents:
+  - has_keyword("processing")
+
+- title: miscellany
+  desc: >
+    Some miscellany functions included in my personal R package.
   contents:
   - tee
-  - read_chr
-  - read_url
-  - read_xlsx
-  - write_xlsx
-  - startParallel
-  - stopParallel
-  - mapParallel
-  - calc_validation_size
-  - calc_split_prop
+  - package_github_version
   - as.bitstring
-  - has_keyword("tidymodels")
-  - theme_roboto
-  - theme_set_roboto_darkblue
-  - notify_finished
 
-- title: Data
+- title: data
   desc: >
     Datasets and objects included in my personal R package.
   contents:

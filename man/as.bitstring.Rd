@@ -29,3 +29,4 @@ as.bitstring(0.3)
 \seealso{
 https://github.com/jrosell/jrrosell/blob/main/R/types.R
 }
+\keyword{types}

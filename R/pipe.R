@@ -5,6 +5,7 @@
 #' is used for its side-effect, say plotting or printing.
 #'
 #' @rdname tee
+#' @keywords processing
 #' @param x An object
 #' @param expr An expresion
 #'

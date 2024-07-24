@@ -3,6 +3,7 @@
 #' It's useful for saving multiple data to a multiple sheets of a single Excel/Openoffice/libreoffice file.
 #'
 #' @rdname write_xlsx
+#' @keywords write
 #' @param data A named list of tibbles
 #' @param distfile The name of the destination file.
 #' @param ... Other parameters to openxls::write.xlsx function

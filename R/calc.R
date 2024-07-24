@@ -3,6 +3,7 @@
 #' From and expected p and desired std_err, it returns the
 #' minimal validation size for your assesment sets or validation sets.
 #'
+#' @keywords tidymodels
 #' @rdname calc_validation_size
 #' @param expected_p An object
 #' @param desired_std_err An expresion
@@ -23,6 +24,7 @@ calc_validation_size <- function(expected_p, desired_std_err) {
 #'
 #' From a data frame, it returns the split proportion.
 #'
+#' @keywords tidymodels
 #' @rdname calc_split_prop
 #' @param df A data frame
 #'

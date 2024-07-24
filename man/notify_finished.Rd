@@ -40,3 +40,4 @@ if (exists("not_run")) {
 \seealso{
 \url{https://github.com/jrosell/jrrosell/blob/main/R/notify_finished.R}
 }
+\keyword{processing}
