@@ -4,13 +4,15 @@
 \alias{package_github_version}
 \title{Github version of the package}
 \usage{
-package_github_version(x)
+package_github_version(x, file_lines = NULL)
 }
 \arguments{
 \item{x}{a single repo/package to check Ex: package_github_version("tidyverse/dplyr")}
+
+\item{file_lines}{(default = NULL, internal)}
 }
 \description{
-Get the version from the DESCRIPTION file of the master branch in the github package
+Get the version from the DESCRIPTION file of the master branch in the github repo
 }
 \seealso{
 https://github.com/jrosell/jrrosell/blob/main/R/packages.R

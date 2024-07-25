@@ -53,7 +53,8 @@ rebuild_docs_and_check <- function() {
         "tune",
         "blastula",
         "beepr",
-        "glue"
+        "glue",
+        "pak"
     )
     suggests_packages |> purrr::map(
         \(x){usethis::use_package(x, type = "Suggests"); x}
