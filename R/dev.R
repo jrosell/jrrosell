@@ -89,7 +89,7 @@ rebuild_package_and_check <- function() {
   # usethis::use_namespace()
   # devtools::document()
   devtools::check(document = TRUE) #  devtools::check(document = FALSE)
-  # pkgdown::build_site(preview = FALSE) # # usethis::use_pkgdown_github_pages()
-  # utils::browseURL(here::here("docs", "index.html"), browser = getOption("browser"))
+  pkgdown::build_site(preview = FALSE) # # usethis::use_pkgdown_github_pages()
+  utils::browseURL(here::here("docs", "index.html"), browser = getOption("browser"))
   # usethis::use_version(which = "dev", push = FALSE)
 }
