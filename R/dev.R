@@ -1,88 +1,95 @@
-
 #' Internal helper function for package development
 #' @examples
 #' if (FALSE) {
-#'   devtools::load_all(); rebuild_package_and_check()
+#'   devtools::load_all()
+#'   rebuild_package_and_check()
 #' }
 #'
 #' @keywords internal
 rebuild_package_and_check <- function() {
-    previous_version <- package_github_version("jrosell/jrrosell")
-    usethis::use_description(list(
-        "Title" = "Personal R package for Jordi Rosell",
-        "Description" = "Useful functions for personal usage.",
-        "Version" = previous_version,
-        "Authors@R" = utils::person(
-            "Jordi", "Rosell",
-            email = "jroselln@gmail.com",
-            role = c("aut", "cre"),
-            comment = c(ORCID = "0000-0002-4349-1458")
-        ),
-        Language =  "en"
-    ))
-    # usethis::use_pkgdown_github_pages()
-    usethis::use_package("R", type = "Depends", min_version = "4.3.0")
-    write(
-        "URL: https://jrosell.github.io/jrrosell, https://github.com/jrosell/jrrosell",
-        here::here("DESCRIPTION"),
-        append = TRUE
-    )
-    usethis::use_cc0_license()
-    suggests_packages <- c(
-        "sf",
-        "doParallel",
-        "httr",
-        "httr2",
-        "janitor",
-        "parallel",
-        "parallelly",
-        "parsnip",
-        "purrr",
-        "readr",
-        "tidymodels",
-        "recipes",
-        "tibble",
-        "tictoc",
-        "workflows",
-        "openxlsx",
-        "hardhat",
-        "glmnet",
-        "xgboost",
-        "devtools",
-        "pkgdown",
-        "testthat",
-        "modeldata",
-        "usethis",
-        "future",
-        "doFuture",
-        "dplyr",
-        "tune",
-        "blastula",
-        "beepr",
-        "glue",
-        "here",
-        "pak"
-    )
-    suggests_packages |> purrr::map(
-        \(x){usethis::use_package(x, type = "Suggests"); x}
-    )
-    imports_packages <- c(
-        "ggplot2",
-        "extrafont",
-        "rlang"
-    )
-    imports_packages |> purrr::map(
-        \(x){usethis::use_package(x, type = "Imports"); x}
-    )
-    spain_ccaas <- readr::read_rds("inst/extdata/spain_ccaas.rds")
-    spain_provinces <- readr::read_rds("inst/extdata/spain_provinces.rds")
-    usethis::use_data(spain_ccaas, spain_provinces, overwrite = TRUE)
-    devtools::load_all()
-    # usethis::use_namespace()
-    # devtools::document()
-    devtools::check(document = TRUE)
-    # usethis::use_pkgdown_github_pages()
-    pkgdown::build_site(preview = FALSE)
-    utils::browseURL(here::here("docs", "index.html"), browser = getOption("browser"))
-    # usethis::use_version(which = "dev", push = FALSE)
+  previous_version <- package_github_version("jrosell/jrrosell")
+  usethis::use_description(list(
+    "Title" = "Personal R package for Jordi Rosell",
+    "Description" = "Useful functions for personal usage.",
+    "Version" = previous_version,
+    "Authors@R" = utils::person(
+      "Jordi", "Rosell",
+      email = "jroselln@gmail.com",
+      role = c("aut", "cre"),
+      comment = c(ORCID = "0000-0002-4349-1458")
+    ),
+    Language = "en"
+  ))
+  # usethis::use_pkgdown_github_pages()
+  usethis::use_package("R", type = "Depends", min_version = "4.3.0")
+  write(
+    "URL: https://jrosell.github.io/jrrosell, https://github.com/jrosell/jrrosell",
+    here::here("DESCRIPTION"),
+    append = TRUE
+  )
+  usethis::use_cc0_license()
+  suggests_packages <- c(
+    "styler",
+    "sf",
+    "doParallel",
+    "httr",
+    "httr2",
+    "janitor",
+    "parallel",
+    "parallelly",
+    "parsnip",
+    "purrr",
+    "readr",
+    "tidymodels",
+    "recipes",
+    "tibble",
+    "tictoc",
+    "workflows",
+    "openxlsx",
+    "hardhat",
+    "glmnet",
+    "xgboost",
+    "devtools",
+    "pkgdown",
+    "testthat",
+    "modeldata",
+    "usethis",
+    "future",
+    "doFuture",
+    "dplyr",
+    "tune",
+    "blastula",
+    "beepr",
+    "glue",
+    "here",
+    "ggplot2",
+    "extrafont",
+    "pak"
+  )
+  suggests_packages |> purrr::map(
+    \(x){
+      usethis::use_package(x, type = "Suggests")
+      x
+    }
+  )
+  imports_packages <- c(
+    "rlang"
+  )
+  imports_packages |> purrr::map(
+    \(x){
+      usethis::use_package(x, type = "Imports")
+      x
+    }
+  )
+  spain_ccaas <- readr::read_rds("inst/extdata/spain_ccaas.rds")
+  spain_provinces <- readr::read_rds("inst/extdata/spain_provinces.rds")
+  usethis::use_data(spain_ccaas, spain_provinces, overwrite = TRUE)
+  styler::style_pkg()
+  devtools::load_all()
+  # usethis::use_namespace()
+  # devtools::document()
+  devtools::check(document = TRUE) #  devtools::check(document = FALSE)
+  # pkgdown::build_site(preview = FALSE) # # usethis::use_pkgdown_github_pages()
+  # utils::browseURL(here::here("docs", "index.html"), browser = getOption("browser"))
+  # usethis::use_version(which = "dev", push = FALSE)
 }

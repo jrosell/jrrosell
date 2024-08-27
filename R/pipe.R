@@ -14,19 +14,43 @@
 #'
 #' @examples
 #' rnorm(200) |>
-#'     matrix(ncol = 2) |>
-#'     tee(plot) |> # plot usually does not return anything.
-#'     colSums()
+#'   matrix(ncol = 2) |>
+#'   as.data.frame() |>
+#'   tee(\(x) {
+#'     ggplot(x, aes(V1, V2)) +
+#'       geom_point()
+#'   }) |>
+#'   colSums()
 #'
 #' @section Thanks:
-#'
 #' I want to give credit to Michael Milton and Matthew Kay for the idea and the code.
 #'
 #' @source <https://mastodon.social/@multimeric@genomic.social/109555362766969210>
 #' @seealso <https://github.com/jrosell/jrrosell/blob/main/R/pipe.R>
 #' @export
 tee <- function(x, expr) {
-    expr = substitute(expr)
-    eval(expr, list(x = x), parent.frame())
-    x
+  expr <- substitute(expr)
+  eval(expr, list(x = x), parent.frame())
+  x
+}
+
+#' Multiple aside functions with base R pipe
+#' @rdname aside
+#' @export
+#' @keywords processing
+#' @param x An object
+#' @param ... functions to run aside
+#' @examples
+#' n_try <- 1
+#' rnorm(200) |>
+#'   matrix(ncol = 2) |>
+#'   aside(
+#'     print("Matrix prepared"),
+#'     print(n_try)
+#'   ) |>
+#'   colSums()
+#'
+aside <- function(x, ...) {
+  list(...)
+  x
 }

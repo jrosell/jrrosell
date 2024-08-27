@@ -18,10 +18,12 @@
 #' @seealso <https://github.com/jrosell/jrrosell/blob/main/R/write.R>
 #' @export
 write_xlsx <- function(data, distfile, ...) {
-    if(!requireNamespace("openxlsx", quietly = TRUE)) return(NULL)
-    openxlsx::write.xlsx(
-        x = data,
-        file = distfile,
-        ...
-    )
+  if (!requireNamespace("openxlsx", quietly = TRUE)) {
+    return(NULL)
+  }
+  openxlsx::write.xlsx(
+    x = data,
+    file = distfile,
+    ...
+  )
 }

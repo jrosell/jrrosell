@@ -84,7 +84,7 @@
 <span class="r-in"><span><span class="va">folds</span> <span class="op">&lt;-</span> <span class="fu">vfold_cv</span><span class="op">(</span><span class="va">train</span>, v <span class="op">=</span> <span class="fl">2</span>, strata <span class="op">=</span> <span class="va">class</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">wf</span> <span class="op">&lt;-</span> <span class="va">train</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">recipe</span><span class="op">(</span><span class="va">case</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">step_integer</span><span class="op">(</span><span class="fu">all_nominal_predictors</span><span class="op">(</span><span class="op">)</span><span class="op">)</span>  <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">step_integer</span><span class="op">(</span><span class="fu">all_nominal_predictors</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">workflow_elasticnet</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "logistic_reg binary clssification"</span>
 <span class="r-in"><span><span class="fu">doFuture</span><span class="fu">::</span><span class="fu"><a href="https://doFuture.futureverse.org/reference/registerDoFuture.html" class="external-link">registerDoFuture</a></span><span class="op">(</span><span class="op">)</span></span></span>
@@ -92,10 +92,10 @@
 <span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="va">wf</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">tune_grid</span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="va">folds</span>,</span></span>
-<span class="r-in"><span>   grid <span class="op">=</span> <span class="fl">2</span>,</span></span>
-<span class="r-in"><span>   metrics <span class="op">=</span> <span class="fu">metric_set</span><span class="op">(</span><span class="va">roc_auc</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>   control <span class="op">=</span> <span class="fu">control_grid</span><span class="op">(</span>save_workflow <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-in"><span> <span class="op">)</span></span></span>
+<span class="r-in"><span>    grid <span class="op">=</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span>    metrics <span class="op">=</span> <span class="fu">metric_set</span><span class="op">(</span><span class="va">roc_auc</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    control <span class="op">=</span> <span class="fu">control_grid</span><span class="op">(</span>save_workflow <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">res</span> <span class="op">|&gt;</span> <span class="fu">collect_metrics</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    penalty mixture .metric .estimator  mean     n std_err .config             </span>

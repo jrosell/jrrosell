@@ -20,19 +20,19 @@
 #' @seealso https://github.com/jrosell/jrrosell/blob/main/R/parallel.R
 #' @export
 startParallel <- function(msg = NULL, max = 10, min = 1) {
-    if(!requireNamespace("parallel", quietly = TRUE)) stop("parallel package is required")
-    if(!requireNamespace("parallelly", quietly = TRUE)) stop("parallelly package is required")
-    if(!requireNamespace("doParallel", quietly = TRUE)) stop("doParallel package is required")
-    if(!requireNamespace("doFuture", quietly = TRUE)) stop("doFuture package is required")
-    if(!requireNamespace("tictoc", quietly = TRUE)) stop("doParallel package is required")
+  if (!requireNamespace("parallel", quietly = TRUE)) stop("parallel package is required")
+  if (!requireNamespace("parallelly", quietly = TRUE)) stop("parallelly package is required")
+  if (!requireNamespace("doParallel", quietly = TRUE)) stop("doParallel package is required")
+  if (!requireNamespace("doFuture", quietly = TRUE)) stop("doFuture package is required")
+  if (!requireNamespace("tictoc", quietly = TRUE)) stop("doParallel package is required")
 
-    available <- parallelly::availableCores()
-    ask <- min(available, max)
-    if (ask <= min) stop(paste0("Not enough cores available:", available, " available, but min ", min, " required."))
-    cl <- parallel::makeCluster(ask) # makeCluster, makePSOCKcluster, makeForkCluster
-    doParallel::registerDoParallel(cl)
-    tictoc::tic(msg)
-    cl
+  available <- parallelly::availableCores()
+  ask <- min(available, max)
+  if (ask <= min) stop(paste0("Not enough cores available:", available, " available, but min ", min, " required."))
+  cl <- parallel::makeCluster(ask) # makeCluster, makePSOCKcluster, makeForkCluster
+  doParallel::registerDoParallel(cl)
+  tictoc::tic(msg)
+  cl
 }
 
 #' Stop parallel processing
@@ -54,11 +54,11 @@ startParallel <- function(msg = NULL, max = 10, min = 1) {
 #' @seealso https://github.com/jrosell/jrrosell/blob/main/R/parallel.R
 #' @export
 stopParallel <- function(cl) {
-    if(!requireNamespace("tictoc", quietly = TRUE)) stop("tictoc package is required")
-    if(!requireNamespace("parallel", quietly = TRUE)) stop("parallel package is required")
+  if (!requireNamespace("tictoc", quietly = TRUE)) stop("tictoc package is required")
+  if (!requireNamespace("parallel", quietly = TRUE)) stop("parallel package is required")
 
-    tictoc::toc()
-    parallel::stopCluster(cl)
+  tictoc::toc()
+  parallel::stopCluster(cl)
 }
 
 #' Map parallel processing
@@ -74,16 +74,16 @@ stopParallel <- function(cl) {
 #' package to run functions to run in parallel over the object. It doesn't returning anything.
 #'
 #' @examples
-#' data.frame(x = 2) |> mapParallel(list(function(x) print(x), function(x) print(x*2)))
+#' data.frame(x = 2) |> mapParallel(list(function(x) print(x), function(x) print(x * 2)))
 #'
 #' @seealso <https://github.com/jrosell/jrrosell/blob/main/R/parallel.R>
 #' @export
 mapParallel <- function(x, fun_list) {
-    if(!requireNamespace("parallel", quietly = TRUE)) stop("parallel package is required")
+  if (!requireNamespace("parallel", quietly = TRUE)) stop("parallel package is required")
 
-    for (fun in fun_list) {
-        x |>
-            list() |>
-            parallel::mclapply(fun, mc.cores = 1)
-    }
+  for (fun in fun_list) {
+    x |>
+      list() |>
+      parallel::mclapply(fun, mc.cores = 1)
+  }
 }

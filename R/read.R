@@ -14,24 +14,28 @@
 #' column sreturned would be characters and with clean names. It requires readr and janitor packages installed.
 #'
 #' @examples
-#' es <- readr::locale("es", tz="Europe/Madrid", decimal_mark = ",", grouping_mark = ".")
+#' es <- readr::locale("es", tz = "Europe/Madrid", decimal_mark = ",", grouping_mark = ".")
 #' read_chr(readr::readr_example("mtcars.csv"), delim = ",", locale = es)
 #'
 #' @seealso <https://github.com/jrosell/jrrosell/blob/main/R/read.R>
 #' @export
 read_chr <- function(file, delim = ",", locale, ...) {
-    if(!requireNamespace("readr", quietly = TRUE)) return(NULL)
-    if(!requireNamespace("janitor", quietly = TRUE)) return(NULL)
+  if (!requireNamespace("readr", quietly = TRUE)) {
+    return(NULL)
+  }
+  if (!requireNamespace("janitor", quietly = TRUE)) {
+    return(NULL)
+  }
 
-    readr::read_delim(
-        file,
-        delim,
-        col_types = readr::cols(.default = "c"),
-        name_repair = ~ janitor::make_clean_names(.),
-        skip_empty_rows = FALSE,
-        locale = locale,
-        ...
-    )
+  readr::read_delim(
+    file,
+    delim,
+    col_types = readr::cols(.default = "c"),
+    name_repair = ~ janitor::make_clean_names(.),
+    skip_empty_rows = FALSE,
+    locale = locale,
+    ...
+  )
 }
 
 #' Read the html text of an url
@@ -52,16 +56,16 @@ read_chr <- function(file, delim = ",", locale, ...) {
 #' @seealso <https://github.com/jrosell/jrrosell/blob/main/R/read.R>
 #' @export
 read_url <- function(url, sleep = 0) {
-    if(!requireNamespace("purrr", quietly = TRUE)) stop("purrr package is required")
-    if(!requireNamespace("httr", quietly = TRUE)) stop("httr package is required")
+  if (!requireNamespace("purrr", quietly = TRUE)) stop("purrr package is required")
+  if (!requireNamespace("httr", quietly = TRUE)) stop("httr package is required")
 
-    possibly_read_url <- purrr::possibly(httr::GET, quiet = TRUE) |>
-        purrr::possibly(rawToChar, quiet = TRUE)
+  possibly_read_url <- purrr::possibly(httr::GET, quiet = TRUE) |>
+    purrr::possibly(rawToChar, quiet = TRUE)
 
-    result <- possibly_read_url(url)
-    Sys.sleep(sleep)
+  result <- possibly_read_url(url)
+  Sys.sleep(sleep)
 
-    return(result)
+  return(result)
 }
 
 
@@ -76,7 +80,7 @@ read_url <- function(url, sleep = 0) {
 #' @param ... Other parameters to openxls::read.xlsx function
 #' @param sheet The name or index of the sheet (default 1)
 #' @param startRow The number of the starting reading row (default 1)
-#' 
+#'
 #' @details The write_xlsx it's a wroapper for \code{openxls::write.xlsx}.
 #'
 #' @examples
@@ -88,11 +92,13 @@ read_url <- function(url, sleep = 0) {
 #' @seealso <https://github.com/jrosell/jrrosell/blob/main/R/read.R>
 #' @export
 read_xlsx <- function(xlsxFile, ..., sheet = 1, startRow = 1) {
-    if(!requireNamespace("openxlsx", quietly = TRUE)) return(NULL)
-    openxlsx::read.xlsx(
-        xlsxFile = xlsxFile,
-        sheet = sheet,
-        startRow = startRow,
-        ...
-    )
+  if (!requireNamespace("openxlsx", quietly = TRUE)) {
+    return(NULL)
+  }
+  openxlsx::read.xlsx(
+    xlsxFile = xlsxFile,
+    sheet = sheet,
+    startRow = startRow,
+    ...
+  )
 }

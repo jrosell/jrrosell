@@ -32,7 +32,7 @@ The following environment variables should be set:
 \examples{
 if (exists("not_run")) {
   tictoc::tic()
-  Sys.sleep(1) 
+  Sys.sleep(1)
   jrrosell::notify_finished("job", "Well done", sound = "fanfare", tictoc_result = tictoc::toc())
 }
 

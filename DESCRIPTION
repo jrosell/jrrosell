@@ -20,7 +20,9 @@ Suggests:
     doFuture,
     doParallel,
     dplyr,
+    extrafont,
     future,
+    ggplot2,
     glmnet,
     glue,
     hardhat,
@@ -39,6 +41,7 @@ Suggests:
     readr,
     recipes,
     sf,
+    styler,
     testthat,
     tibble,
     tictoc,
@@ -48,7 +51,5 @@ Suggests:
     workflows,
     xgboost
 Imports: 
-    extrafont,
-    ggplot2,
     rlang
 LazyData: true

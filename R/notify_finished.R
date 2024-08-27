@@ -1,7 +1,7 @@
 #' Make a sound and send an email when a process finished
-#' 
+#'
 #' The notify_finished make a sound using beepr::beep, compose and email and send it returing   the blastula::smtp_send call results.
-#' 
+#'
 #' @rdname notify_finished
 #' @keywords processing
 #' @param name The process name (Required)
@@ -15,39 +15,45 @@
 #' * MY_SMTP_RECIPIENT to
 #' * MY_SMTP_PASSWORD service password (for gmail you can use https://myaccount.google.com/apppasswords)
 #' * MY_SMTP_PROVIDER blastula provider (gmail if not set)
-#' 
+#'
 #' @examples
 #' if (exists("not_run")) {
 #'   tictoc::tic()
-#'   Sys.sleep(1) 
+#'   Sys.sleep(1)
 #'   jrrosell::notify_finished("job", "Well done", sound = "fanfare", tictoc_result = tictoc::toc())
 #' }
 #'
 #' @seealso <https://github.com/jrosell/jrrosell/blob/main/R/notify_finished.R>
 #' @export
-notify_finished <- \(name, body = "", ..., sound = 1, tictoc_result = NULL) {    
-  if(!requireNamespace("beepr", quietly = TRUE)) return(NULL)
-  if(!requireNamespace("blastula", quietly = TRUE)) return(NULL)
-  if(!requireNamespace("glue", quietly = TRUE)) return(NULL)
+notify_finished <- \(name, body = "", ..., sound = 1, tictoc_result = NULL) {
+  if (!requireNamespace("beepr", quietly = TRUE)) {
+    return(NULL)
+  }
+  if (!requireNamespace("blastula", quietly = TRUE)) {
+    return(NULL)
+  }
+  if (!requireNamespace("glue", quietly = TRUE)) {
+    return(NULL)
+  }
   beepr::beep(sound)
   elapsed <- ""
   if (length(tictoc_result) > 0) {
-      elapsed <- round(tictoc_result$toc - tictoc_result$tic)
-      body <- blastula::md(glue::glue("{elapsed}s elapsed.
+    elapsed <- round(tictoc_result$toc - tictoc_result$tic)
+    body <- blastula::md(glue::glue("{elapsed}s elapsed.
 {body}"))
   }
   provider <- ifelse(!is.null(Sys.getenv("MY_SMTP_PROVIDER")), Sys.getenv("MY_SMTP_PROVIDER"), "gmail")
   blastula::compose_email(blastula::md(glue::glue("{body}
 
 Sent from R at {Sys.time()}")), ...) |>
-      blastula::smtp_send(
-          subject = glue::glue("Finished {name}"),
-          from = Sys.getenv("MY_SMTP_USER"),
-          to = Sys.getenv("MY_SMTP_RECIPIENT"),
-          credentials = blastula::creds_envvar(
-              user = Sys.getenv("MY_SMTP_USER"),
-              pass_envvar = "MY_SMTP_PASSWORD",
-              provider = provider
-          )
+    blastula::smtp_send(
+      subject = glue::glue("Finished {name}"),
+      from = Sys.getenv("MY_SMTP_USER"),
+      to = Sys.getenv("MY_SMTP_RECIPIENT"),
+      credentials = blastula::creds_envvar(
+        user = Sys.getenv("MY_SMTP_USER"),
+        pass_envvar = "MY_SMTP_PASSWORD",
+        provider = provider
       )
+    )
 }

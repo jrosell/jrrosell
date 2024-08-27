@@ -30,17 +30,17 @@ train <- training(split)
 folds <- vfold_cv(train, v = 2, strata = class)
 wf <- train |>
   recipe(case ~ .) |>
-  step_integer(all_nominal_predictors())  |>
+  step_integer(all_nominal_predictors()) |>
   workflow_elasticnet()
 doFuture::registerDoFuture()
 plan(sequential)
 res <- wf |>
   tune_grid(
     folds,
-   grid = 2,
-   metrics = metric_set(roc_auc),
-   control = control_grid(save_workflow = TRUE, verbose = FALSE)
- )
+    grid = 2,
+    metrics = metric_set(roc_auc),
+    control = control_grid(save_workflow = TRUE, verbose = FALSE)
+  )
 res |> collect_metrics()
 res |> last_metrics(split, "roc_auc")
 best <- res |> fit_best()

@@ -6,7 +6,7 @@
 #' @keywords packages
 #' @param x a single repo/package to check Ex: package_github_version("tidyverse/dplyr")
 #' @param file_lines (default = NULL, internal)
-#' 
+#'
 #' @seealso https://github.com/jrosell/jrrosell/blob/main/R/packages.R
 #' @export
 package_github_version <- function(x, file_lines = NULL) {
@@ -26,12 +26,12 @@ package_github_version <- function(x, file_lines = NULL) {
 #' @keywords packages
 #' @param x a single repo/package to check Ex: package_github_name("tidyverse/dplyr")
 #' @param file_lines (default = NULL, internal)
-#' 
+#'
 #' @seealso https://github.com/jrosell/jrrosell/blob/main/R/packages.R
 #' @export
 package_github_name <- function(x, file_lines = NULL) {
   i <- grepl("Package: ", file_lines)
-  if (length(i) == 0) {    
+  if (length(i) == 0) {
     file_lines <- package_github_read(x)
   }
   name <- substring(file_lines[grepl("Package: ", file_lines)], 10)
@@ -45,23 +45,24 @@ package_github_name <- function(x, file_lines = NULL) {
 #' @rdname check_installed_gihub
 #' @keywords packages
 #' @param repo a github repo/package. Ex: check_installed_gihub("tidyverse/dplyr")
-#' 
+#'
 #' @seealso https://github.com/jrosell/jrrosell/blob/main/R/packages.R
 #' @export
-check_installed_gihub <- function(repo) {  
+check_installed_gihub <- function(repo) {
   # options("rlib_restart_package_not_found" = TRUE)
   file_lines <- package_github_read(repo)
   name <- package_github_name(repo, file_lines = file_lines)
   version <- jrrosell::package_github_version(repo, file_lines = file_lines)
-  pkg <- paste0(name, " (>= ", version,")")  
-  rlang::check_installed(pkg, action = \(pkg, ...) pak::pak(repo)) 
+  pkg <- paste0(name, " (>= ", version, ")")
+  rlang::check_installed(pkg, action = \(pkg, ...) pak::pak(repo))
 }
 
 
 #' @noRd
 #' @keywords internal
 package_github_read <- function(x) {
-  cat(glue::glue("package_github_read(\"{x}\")")); cat("\n")
-  glue::glue("https://raw.githubusercontent.com/{x}/master/DESCRIPTION") |> 
+  cat(glue::glue("package_github_read(\"{x}\")"))
+  cat("\n")
+  glue::glue("https://raw.githubusercontent.com/{x}/master/DESCRIPTION") |>
     readLines()
 }

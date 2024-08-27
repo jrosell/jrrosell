@@ -15,7 +15,8 @@ Sets a dark blue colored dark minimal theme using the Roboto font family
 \examples{
 library(ggplot2)
 theme_set_roboto_darkblue()
-ggplot(iris, aes(Species)) + geom_bar()
+ggplot(iris, aes(Species)) +
+  geom_bar()
 
 }
 \seealso{

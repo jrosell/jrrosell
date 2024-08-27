@@ -14,7 +14,7 @@ Prep, juice and get cols from a recipe or workflow
 }
 \examples{
 recipes::recipe(spray ~ ., data = InsectSprays) |>
-   prep_juice_cols()
+  prep_juice_cols()
 
 }
 \seealso{

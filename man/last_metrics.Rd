@@ -29,7 +29,7 @@ train <- training(split)
 folds <- vfold_cv(train, v = 2, strata = class)
 wf <- train |>
   recipe(case ~ .) |>
-  step_integer(all_nominal_predictors())  |>
+  step_integer(all_nominal_predictors()) |>
   workflow_boost_tree()
 res <- wf |>
   tune_grid(

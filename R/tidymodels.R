@@ -1,4 +1,3 @@
-
 #' Do the last fit and get the metrics
 #'
 #' @keywords tidymodels
@@ -20,7 +19,7 @@
 #' folds <- vfold_cv(train, v = 2, strata = class)
 #' wf <- train |>
 #'   recipe(case ~ .) |>
-#'   step_integer(all_nominal_predictors())  |>
+#'   step_integer(all_nominal_predictors()) |>
 #'   workflow_boost_tree()
 #' res <- wf |>
 #'   tune_grid(
@@ -40,11 +39,11 @@
 #' @seealso https://github.com/jrosell/jrrosell/blob/main/R/tidymodels.R
 #' @export
 last_metrics <- function(res, split, metric) {
-    wf <- res |> tune::extract_workflow()
-    wf |>
-        tune::finalize_workflow(tune::select_best(res, metric = metric)) |>
-        tune::last_fit(split) |>
-        tune::collect_metrics()
+  wf <- res |> tune::extract_workflow()
+  wf |>
+    tune::finalize_workflow(tune::select_best(res, metric = metric)) |>
+    tune::last_fit(split) |>
+    tune::collect_metrics()
 }
 
 #' Prep, juice and glimpse a recipe or workflow
@@ -55,21 +54,24 @@ last_metrics <- function(res, split, metric) {
 #'
 #' @examples
 #' recipes::recipe(spray ~ ., data = InsectSprays) |>
-#'    prep_juice()
-#' recipes::recipe(spray ~ ., data = InsectSprays)  |>
-#'    workflows::workflow(parsnip::linear_reg()) |>
-#'    prep_juice()
+#'   prep_juice()
+#' recipes::recipe(spray ~ ., data = InsectSprays) |>
+#'   workflows::workflow(parsnip::linear_reg()) |>
+#'   prep_juice()
 #'
 #' @source <https://recipes.tidymodels.org/reference/update.step.html>
 #' @seealso https://github.com/jrosell/jrrosell/blob/main/R/tidymodels.R
 #' @export
 prep_juice <- function(object) {
-    if(!requireNamespace("recipes", quietly = TRUE)) stop("recipes package is required")
-    if(!requireNamespace("tibble", quietly = TRUE)) stop("tibble package is required")
-    if (inherits(object, "workflow")) {
-        object <- object |>  workflows::extract_preprocessor()
-    }
-    object |> recipes::prep() |> recipes::juice() |> tibble::glimpse()
+  if (!requireNamespace("recipes", quietly = TRUE)) stop("recipes package is required")
+  if (!requireNamespace("tibble", quietly = TRUE)) stop("tibble package is required")
+  if (inherits(object, "workflow")) {
+    object <- object |> workflows::extract_preprocessor()
+  }
+  object |>
+    recipes::prep() |>
+    recipes::juice() |>
+    tibble::glimpse()
 }
 
 #' Prep, juice and get cols from a recipe or workflow
@@ -80,17 +82,21 @@ prep_juice <- function(object) {
 #'
 #' @examples
 #' recipes::recipe(spray ~ ., data = InsectSprays) |>
-#'    prep_juice_cols()
+#'   prep_juice_cols()
 #'
 #' @seealso https://github.com/jrosell/jrrosell/blob/main/R/tidymodels.R
 #' @export
 prep_juice_cols <- function(object) {
-    if(!requireNamespace("recipes", quietly = TRUE)) stop("recipes package is required")
-    if(!requireNamespace("tibble", quietly = TRUE)) stop("tibble package is required")
-    if (inherits(object, "workflow")) {
-        object <- object |>  workflows::extract_preprocessor()
-    }
-    object |> recipes::prep() |> recipes::juice() |>  dim() |> _[2]
+  if (!requireNamespace("recipes", quietly = TRUE)) stop("recipes package is required")
+  if (!requireNamespace("tibble", quietly = TRUE)) stop("tibble package is required")
+  if (inherits(object, "workflow")) {
+    object <- object |> workflows::extract_preprocessor()
+  }
+  object |>
+    recipes::prep() |>
+    recipes::juice() |>
+    dim() |>
+    _[2]
 }
 
 
@@ -107,22 +113,22 @@ prep_juice_cols <- function(object) {
 #'
 #' @examples
 #' recipes::recipe(spray ~ ., data = InsectSprays) |>
-#'    recipes::step_ns(count, deg_free = hardhat::tune(), id="ns") |>
-#'    update_step("ns", deg_free = 1)
+#'   recipes::step_ns(count, deg_free = hardhat::tune(), id = "ns") |>
+#'   update_step("ns", deg_free = 1)
 #'
 #' @seealso https://github.com/jrosell/jrrosell/blob/main/R/tidymodels.R
 #' @export
 update_step <- function(object, target_id, ...) {
-    if(!requireNamespace("recipes", quietly = TRUE)) stop("recipes package is required")
-    if (inherits(object, "workflow")) {
-        object <- object |>  workflows::extract_preprocessor()
-    }
-    matching_index <- which(sapply(object$steps, function(step) step$id == target_id))
-    if (length(matching_index) == 1) {
-        index_to_update <- matching_index[1]
-        object$steps[[index_to_update]] <- update(object$steps[[index_to_update]], ...)
-    }
-    return(object)
+  if (!requireNamespace("recipes", quietly = TRUE)) stop("recipes package is required")
+  if (inherits(object, "workflow")) {
+    object <- object |> workflows::extract_preprocessor()
+  }
+  matching_index <- which(sapply(object$steps, function(step) step$id == target_id))
+  if (length(matching_index) == 1) {
+    index_to_update <- matching_index[1]
+    object$steps[[index_to_update]] <- update(object$steps[[index_to_update]], ...)
+  }
+  return(object)
 }
 
 
@@ -150,7 +156,7 @@ update_step <- function(object, target_id, ...) {
 #' folds <- vfold_cv(train, v = 2, strata = class)
 #' wf <- train |>
 #'   recipe(case ~ .) |>
-#'   step_integer(all_nominal_predictors())  |>
+#'   step_integer(all_nominal_predictors()) |>
 #'   workflow_boost_tree()
 #' doFuture::registerDoFuture()
 #' plan(sequential)
@@ -172,19 +178,19 @@ update_step <- function(object, target_id, ...) {
 #' @seealso https://github.com/jrosell/jrrosell/blob/main/R/tidymodels.R
 #' @export
 workflow_boost_tree <- function(rec, engine = "xgboost", counts = TRUE, ...) {
-    recipe_mode <- .get_recipe_mode(rec)
-    mode <- recipe_mode$mode
-    rec |>
-        workflows::workflow(
-            parsnip::boost_tree(mode, engine) |>
-                parsnip::set_args(
-                trees = parsnip::tune(), learn_rate = parsnip::tune(), # steps and step size
-                tree_depth = parsnip::tune(), min_n = parsnip::tune(), loss_reduction = parsnip::tune(), # complexity
-                sample_size = parsnip::tune(), mtry = parsnip::tune(), # randomness
-                counts = !!counts, # engine specific
-                ...
-            )
+  recipe_mode <- .get_recipe_mode(rec)
+  mode <- recipe_mode$mode
+  rec |>
+    workflows::workflow(
+      parsnip::boost_tree(mode, engine) |>
+        parsnip::set_args(
+          trees = parsnip::tune(), learn_rate = parsnip::tune(), # steps and step size
+          tree_depth = parsnip::tune(), min_n = parsnip::tune(), loss_reduction = parsnip::tune(), # complexity
+          sample_size = parsnip::tune(), mtry = parsnip::tune(), # randomness
+          counts = !!counts, # engine specific
+          ...
         )
+    )
 }
 
 
@@ -210,17 +216,17 @@ workflow_boost_tree <- function(rec, engine = "xgboost", counts = TRUE, ...) {
 #' folds <- vfold_cv(train, v = 2, strata = class)
 #' wf <- train |>
 #'   recipe(case ~ .) |>
-#'   step_integer(all_nominal_predictors())  |>
+#'   step_integer(all_nominal_predictors()) |>
 #'   workflow_elasticnet()
 #' doFuture::registerDoFuture()
 #' plan(sequential)
 #' res <- wf |>
 #'   tune_grid(
 #'     folds,
-#'    grid = 2,
-#'    metrics = metric_set(roc_auc),
-#'    control = control_grid(save_workflow = TRUE, verbose = FALSE)
-#'  )
+#'     grid = 2,
+#'     metrics = metric_set(roc_auc),
+#'     control = control_grid(save_workflow = TRUE, verbose = FALSE)
+#'   )
 #' res |> collect_metrics()
 #' res |> last_metrics(split, "roc_auc")
 #' best <- res |> fit_best()
@@ -232,52 +238,55 @@ workflow_boost_tree <- function(rec, engine = "xgboost", counts = TRUE, ...) {
 #' @seealso https://github.com/jrosell/jrrosell/blob/main/R/tidymodels.R
 #' @export
 #'
-workflow_elasticnet  <- function(rec, engine = "glmnet", ...) {
-    recipe_mode <- .get_recipe_mode(rec)
-    if (recipe_mode$is_reg) {
-        print("regression")
-        model <- parsnip::linear_reg("regression", engine) |>
-            parsnip::set_args(
-                penalty = parsnip::tune(),
-                mixture = parsnip::tune(),
-                ...
-            )
-    }
-    if (recipe_mode$is_binary) {
-        print("logistic_reg binary clssification")
-        model <- parsnip::logistic_reg("classification", engine) |>
-            parsnip::set_args(
-                penalty = parsnip::tune(),
-                mixture = parsnip::tune(),
-                ...
-            )
-    }
-    if(recipe_mode$is_multinom) {
-        print("multinom_reg clssification")
-        model <- parsnip::multinom_reg("classification", engine) |>
-            parsnip::set_args(
-                penalty = parsnip::tune(),
-                mixture = parsnip::tune(),
-                ...
-            )
-    }
-    return(workflows::workflow(rec, model))
+workflow_elasticnet <- function(rec, engine = "glmnet", ...) {
+  recipe_mode <- .get_recipe_mode(rec)
+  if (recipe_mode$is_reg) {
+    print("regression")
+    model <- parsnip::linear_reg("regression", engine) |>
+      parsnip::set_args(
+        penalty = parsnip::tune(),
+        mixture = parsnip::tune(),
+        ...
+      )
+  }
+  if (recipe_mode$is_binary) {
+    print("logistic_reg binary clssification")
+    model <- parsnip::logistic_reg("classification", engine) |>
+      parsnip::set_args(
+        penalty = parsnip::tune(),
+        mixture = parsnip::tune(),
+        ...
+      )
+  }
+  if (recipe_mode$is_multinom) {
+    print("multinom_reg clssification")
+    model <- parsnip::multinom_reg("classification", engine) |>
+      parsnip::set_args(
+        penalty = parsnip::tune(),
+        mixture = parsnip::tune(),
+        ...
+      )
+  }
+  return(workflows::workflow(rec, model))
 }
 
 #' Help infer things about the mode and the model to fit
 #' @keywords internal
 #' @importFrom rlang .data
 .get_recipe_mode <- function(rec) {
-    outcome <- rec |> summary() |> dplyr::filter(.data$role == "outcome")|> dplyr::pull(.data$variable)
-    outcome_vec <- rec$template[[outcome]]
-    n_outcome <- dplyr::n_distinct(outcome_vec)
-    is_reg <- class(outcome_vec) == "integer" | class(outcome_vec)  == "double"
-    is_multinom <- class(outcome_vec) == "factor" && n_outcome > 2
-    is_binary <- class(outcome_vec) == "factor" && n_outcome == 2
-    list(
-        mode = dplyr::if_else(is_reg, "regression",  "classification"),
-        is_reg = is_reg,
-        is_multinom = is_multinom,
-        is_binary = is_binary
-    )
+  outcome <- rec |>
+    summary() |>
+    dplyr::filter(.data$role == "outcome") |>
+    dplyr::pull(.data$variable)
+  outcome_vec <- rec$template[[outcome]]
+  n_outcome <- dplyr::n_distinct(outcome_vec)
+  is_reg <- class(outcome_vec) == "integer" | class(outcome_vec) == "double"
+  is_multinom <- class(outcome_vec) == "factor" && n_outcome > 2
+  is_binary <- class(outcome_vec) == "factor" && n_outcome == 2
+  list(
+    mode = dplyr::if_else(is_reg, "regression", "classification"),
+    is_reg = is_reg,
+    is_multinom = is_multinom,
+    is_binary = is_binary
+  )
 }

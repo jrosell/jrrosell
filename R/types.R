@@ -19,7 +19,7 @@
 #' @seealso https://github.com/jrosell/jrrosell/blob/main/R/types.R
 #' @export
 as.bitstring <- function(x) {
-    bits <- numToBits(as.double(x))
-    bitstring <- paste(rev(bits), collapse = "")
-    return(bitstring)
+  bits <- numToBits(as.double(x))
+  bitstring <- paste(rev(bits), collapse = "")
+  return(bitstring)
 }

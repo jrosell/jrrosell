@@ -19,7 +19,7 @@ The mapParallel function uses parallel
 package to run functions to run in parallel over the object. It doesn't returning anything.
 }
 \examples{
-data.frame(x = 2) |> mapParallel(list(function(x) print(x), function(x) print(x*2)))
+data.frame(x = 2) |> mapParallel(list(function(x) print(x), function(x) print(x * 2)))
 
 }
 \seealso{

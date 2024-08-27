@@ -24,7 +24,7 @@ The read_chr function works like \code{readr::read_delim}, except that
 column sreturned would be characters and with clean names. It requires readr and janitor packages installed.
 }
 \examples{
-es <- readr::locale("es", tz="Europe/Madrid", decimal_mark = ",", grouping_mark = ".")
+es <- readr::locale("es", tz = "Europe/Madrid", decimal_mark = ",", grouping_mark = ".")
 read_chr(readr::readr_example("mtcars.csv"), delim = ",", locale = es)
 
 }

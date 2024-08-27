@@ -25,15 +25,18 @@ return value is \code{x} itself, and not the result of \code{expr} call.
 }
 \section{Thanks}{
 
-
 I want to give credit to Michael Milton and Matthew Kay for the idea and the code.
 }
 
 \examples{
 rnorm(200) |>
-    matrix(ncol = 2) |>
-    tee(plot) |> # plot usually does not return anything.
-    colSums()
+  matrix(ncol = 2) |>
+  as.data.frame() |>
+  tee(\(x) {
+    ggplot(x, aes(V1, V2)) +
+      geom_point()
+  }) |>
+  colSums()
 
 }
 \seealso{

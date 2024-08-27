@@ -17,7 +17,7 @@
 #' @seealso <https://github.com/jrosell/jrrosell/blob/main/R/calc.R>
 #' @export
 calc_validation_size <- function(expected_p, desired_std_err) {
-    (expected_p-expected_p^2)/(desired_std_err^2)
+  (expected_p - expected_p^2) / (desired_std_err^2)
 }
 
 #' Calculate split proportion
@@ -38,6 +38,6 @@ calc_validation_size <- function(expected_p, desired_std_err) {
 #' @seealso <https://github.com/jrosell/jrrosell/blob/main/R/calc.R>
 #' @export
 calc_split_prop <- function(df) {
-    n = nrow(df)
-    return(1/sqrt(2*n))
+  n <- nrow(df)
+  return(1 / sqrt(2 * n))
 }
