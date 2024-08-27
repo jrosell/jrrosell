@@ -72,7 +72,6 @@ return value is <code>x</code> itself, and not the result of <code>expr</code> c
     <h2 id="thanks">Thanks<a class="anchor" aria-label="anchor" href="#thanks"></a></h2>
 
 
-
 <p>I want to give credit to Michael Milton and Matthew Kay for the idea and the code.</p>
     </div>
     <div class="section level2">
@@ -83,10 +82,15 @@ return value is <code>x</code> itself, and not the result of <code>expr</code> c
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">200</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>    <span class="fu">tee</span><span class="op">(</span><span class="va">plot</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="co"># plot usually does not return anything.</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colSums</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 12.51583  5.99876</span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span>ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">tee</span><span class="op">(</span>\<span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="fu">ggplot</span><span class="op">(</span><span class="va">x</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">V1</span>, <span class="va">V2</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>      <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colSums</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        V1        V2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -14.24841  12.03776 </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
