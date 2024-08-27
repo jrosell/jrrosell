@@ -14,7 +14,4 @@ package_github_name(x, file_lines = NULL)
 \description{
 Get the name of the package from the DESCRIPTION file of the master branch in the github repo
 }
-\seealso{
-https://github.com/jrosell/jrrosell/blob/main/R/packages.R
-}
 \keyword{packages}

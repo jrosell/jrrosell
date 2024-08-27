@@ -39,7 +39,4 @@ rnorm(200) |>
   colSums()
 
 }
-\seealso{
-\url{https://github.com/jrosell/jrrosell/blob/main/R/pipe.R}
-}
-\keyword{processing}
+\keyword{pipe}

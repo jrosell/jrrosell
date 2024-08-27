@@ -12,7 +12,4 @@ check_installed_gihub(repo)
 \description{
 Get the version from the DESCRIPTION file of the master branch in the github package.
 }
-\seealso{
-https://github.com/jrosell/jrrosell/blob/main/R/packages.R
-}
 \keyword{packages}

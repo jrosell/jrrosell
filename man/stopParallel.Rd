@@ -25,4 +25,4 @@ stopParallel(cl)
 \seealso{
 https://github.com/jrosell/jrrosell/blob/main/R/parallel.R
 }
-\keyword{processing}
+\keyword{parallel}

@@ -17,7 +17,4 @@ recipes::recipe(spray ~ ., data = InsectSprays) |>
   prep_juice_cols()
 
 }
-\seealso{
-https://github.com/jrosell/jrrosell/blob/main/R/tidymodels.R
-}
 \keyword{tidymodels}

@@ -28,7 +28,4 @@ read_xlsx("/tmp/writeList1.xlsx")
 file.remove("/tmp/writeList1.xlsx")
 
 }
-\seealso{
-\url{https://github.com/jrosell/jrrosell/blob/main/R/read.R}
-}
 \keyword{read}

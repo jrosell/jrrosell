@@ -25,7 +25,4 @@ write_xlsx(l, "/tmp/writeList1.xlsx", colWidths = c(NA, "auto", "auto"))
 file.remove("/tmp/writeList1.xlsx")
 
 }
-\seealso{
-\url{https://github.com/jrosell/jrrosell/blob/main/R/write.R}
-}
 \keyword{write}

@@ -30,7 +30,4 @@ library(sf)
 data(spain_ccaas)
 head(spain_ccaas)
 }
-\seealso{
-\url{https://github.com/jrosell/jrrosell/blob/main/data/spain_ccaas.rds}
-}
 \keyword{datasets}

@@ -28,7 +28,4 @@ es <- readr::locale("es", tz = "Europe/Madrid", decimal_mark = ",", grouping_mar
 read_chr(readr::readr_example("mtcars.csv"), delim = ",", locale = es)
 
 }
-\seealso{
-\url{https://github.com/jrosell/jrrosell/blob/main/R/read.R}
-}
 \keyword{read}

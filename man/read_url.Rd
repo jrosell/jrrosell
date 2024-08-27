@@ -22,7 +22,4 @@ and it's fault tolearnt.
 read_url("https://www.google.cat/", sleep = 1)
 
 }
-\seealso{
-\url{https://github.com/jrosell/jrrosell/blob/main/R/read.R}
-}
 \keyword{read}

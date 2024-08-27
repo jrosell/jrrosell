@@ -22,7 +22,4 @@ recipes::recipe(spray ~ ., data = InsectSprays) |>
   update_step("ns", deg_free = 1)
 
 }
-\seealso{
-https://github.com/jrosell/jrrosell/blob/main/R/tidymodels.R
-}
 \keyword{tidymodels}

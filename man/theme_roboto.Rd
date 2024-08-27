@@ -35,7 +35,4 @@ theme_roboto(
 \description{
 It requires roboto fonts installed in your O.S. and run z
 }
-\seealso{
-\url{https://github.com/jrosell/jrrosell/blob/main/R/graphing.R}
-}
 \keyword{graphing}

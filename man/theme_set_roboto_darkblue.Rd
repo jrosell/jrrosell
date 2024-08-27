@@ -19,7 +19,4 @@ ggplot(iris, aes(Species)) +
   geom_bar()
 
 }
-\seealso{
-\url{https://github.com/jrosell/jrrosell/blob/main/R/graphing.R}
-}
 \keyword{graphing}

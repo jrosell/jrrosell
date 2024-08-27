@@ -25,7 +25,4 @@ The calc_validation_size function returns the minimal validation size for expect
 calc_validation_size(expected_p = 0.8, desired_std_err = 0.02)
 
 }
-\seealso{
-\url{https://github.com/jrosell/jrrosell/blob/main/R/calc.R}
-}
 \keyword{tidymodels}

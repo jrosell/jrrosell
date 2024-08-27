@@ -47,7 +47,4 @@ best |>
   pull(.estimate)
 
 }
-\seealso{
-https://github.com/jrosell/jrrosell/blob/main/R/tidymodels.R
-}
 \keyword{tidymodels}

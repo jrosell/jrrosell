@@ -25,4 +25,4 @@ rnorm(200) |>
   colSums()
 
 }
-\keyword{processing}
+\keyword{pipe}
