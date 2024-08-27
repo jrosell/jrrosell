@@ -38,15 +38,26 @@ reference:
 
 - title: processing
   desc: >
-    Some functions to help processing R scripts.
+    Some functions to help processing in R.
   contents:
   - has_keyword("processing")
 
-- title: miscellany
+- title: processing
   desc: >
-    Some miscellany functions included in my personal R package.
+    Some functions to help piping.
   contents:
-  - tee
+  - has_keyword("pipe")
+
+- title: parallel
+  desc: >
+    Some functions to help with parallel computing in R .
+  contents:
+  - has_keyword("parallel")
+
+- title: types
+  desc: >
+    Some functions to help with types in R .
+  contents:
   - as.bitstring
 
 - title: data

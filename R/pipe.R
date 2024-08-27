@@ -5,7 +5,7 @@
 #' is used for its side-effect, say plotting or printing.
 #'
 #' @rdname tee
-#' @keywords processing
+#' @keywords pipe
 #' @param x An object
 #' @param expr An expresion
 #'
@@ -26,7 +26,6 @@
 #' I want to give credit to Michael Milton and Matthew Kay for the idea and the code.
 #'
 #' @source <https://mastodon.social/@multimeric@genomic.social/109555362766969210>
-#' @seealso <https://github.com/jrosell/jrrosell/blob/main/R/pipe.R>
 #' @export
 tee <- function(x, expr) {
   expr <- substitute(expr)
@@ -37,7 +36,7 @@ tee <- function(x, expr) {
 #' Multiple aside functions with base R pipe
 #' @rdname aside
 #' @export
-#' @keywords processing
+#' @keywords pipe
 #' @param x An object
 #' @param ... functions to run aside
 #' @examples

@@ -16,7 +16,6 @@
 #' as.bitstring(0.3)
 #'
 #' @source https://youtu.be/J4DnzjIFj8w
-#' @seealso https://github.com/jrosell/jrrosell/blob/main/R/types.R
 #' @export
 as.bitstring <- function(x) {
   bits <- numToBits(as.double(x))

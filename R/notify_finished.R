@@ -23,7 +23,6 @@
 #'   jrrosell::notify_finished("job", "Well done", sound = "fanfare", tictoc_result = tictoc::toc())
 #' }
 #'
-#' @seealso <https://github.com/jrosell/jrrosell/blob/main/R/notify_finished.R>
 #' @export
 notify_finished <- \(name, body = "", ..., sound = 1, tictoc_result = NULL) {
   if (!requireNamespace("beepr", quietly = TRUE)) {

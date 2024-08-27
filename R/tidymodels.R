@@ -36,7 +36,6 @@
 #'   roc_auc(case, .pred_Test) |>
 #'   pull(.estimate)
 #'
-#' @seealso https://github.com/jrosell/jrrosell/blob/main/R/tidymodels.R
 #' @export
 last_metrics <- function(res, split, metric) {
   wf <- res |> tune::extract_workflow()
@@ -60,7 +59,6 @@ last_metrics <- function(res, split, metric) {
 #'   prep_juice()
 #'
 #' @source <https://recipes.tidymodels.org/reference/update.step.html>
-#' @seealso https://github.com/jrosell/jrrosell/blob/main/R/tidymodels.R
 #' @export
 prep_juice <- function(object) {
   if (!requireNamespace("recipes", quietly = TRUE)) stop("recipes package is required")
@@ -84,7 +82,6 @@ prep_juice <- function(object) {
 #' recipes::recipe(spray ~ ., data = InsectSprays) |>
 #'   prep_juice_cols()
 #'
-#' @seealso https://github.com/jrosell/jrrosell/blob/main/R/tidymodels.R
 #' @export
 prep_juice_cols <- function(object) {
   if (!requireNamespace("recipes", quietly = TRUE)) stop("recipes package is required")
@@ -116,7 +113,6 @@ prep_juice_cols <- function(object) {
 #'   recipes::step_ns(count, deg_free = hardhat::tune(), id = "ns") |>
 #'   update_step("ns", deg_free = 1)
 #'
-#' @seealso https://github.com/jrosell/jrrosell/blob/main/R/tidymodels.R
 #' @export
 update_step <- function(object, target_id, ...) {
   if (!requireNamespace("recipes", quietly = TRUE)) stop("recipes package is required")
@@ -175,7 +171,6 @@ update_step <- function(object, target_id, ...) {
 #'   roc_auc(case, .pred_Test) |>
 #'   pull(.estimate)
 #'
-#' @seealso https://github.com/jrosell/jrrosell/blob/main/R/tidymodels.R
 #' @export
 workflow_boost_tree <- function(rec, engine = "xgboost", counts = TRUE, ...) {
   recipe_mode <- .get_recipe_mode(rec)
@@ -235,7 +230,6 @@ workflow_boost_tree <- function(rec, engine = "xgboost", counts = TRUE, ...) {
 #'   roc_auc(case, .pred_Test) |>
 #'   pull(.estimate)
 #'
-#' @seealso https://github.com/jrosell/jrrosell/blob/main/R/tidymodels.R
 #' @export
 #'
 workflow_elasticnet <- function(rec, engine = "glmnet", ...) {

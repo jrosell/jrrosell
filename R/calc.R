@@ -14,7 +14,6 @@
 #' calc_validation_size(expected_p = 0.8, desired_std_err = 0.02)
 #'
 #' @source <https://stats.stackexchange.com/a/304996/7387>
-#' @seealso <https://github.com/jrosell/jrrosell/blob/main/R/calc.R>
 #' @export
 calc_validation_size <- function(expected_p, desired_std_err) {
   (expected_p - expected_p^2) / (desired_std_err^2)
@@ -35,7 +34,6 @@ calc_validation_size <- function(expected_p, desired_std_err) {
 #' calc_split_prop(data.frame(row = 1:891))
 #'
 #' @source <https://stats.stackexchange.com/a/305063/7387>
-#' @seealso <https://github.com/jrosell/jrrosell/blob/main/R/calc.R>
 #' @export
 calc_split_prop <- function(df) {
   n <- nrow(df)

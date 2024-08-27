@@ -7,7 +7,6 @@
 #' @param x a single repo/package to check Ex: package_github_version("tidyverse/dplyr")
 #' @param file_lines (default = NULL, internal)
 #'
-#' @seealso https://github.com/jrosell/jrrosell/blob/main/R/packages.R
 #' @export
 package_github_version <- function(x, file_lines = NULL) {
   i <- grepl("Version: ", file_lines)
@@ -27,7 +26,6 @@ package_github_version <- function(x, file_lines = NULL) {
 #' @param x a single repo/package to check Ex: package_github_name("tidyverse/dplyr")
 #' @param file_lines (default = NULL, internal)
 #'
-#' @seealso https://github.com/jrosell/jrrosell/blob/main/R/packages.R
 #' @export
 package_github_name <- function(x, file_lines = NULL) {
   i <- grepl("Package: ", file_lines)
@@ -46,7 +44,6 @@ package_github_name <- function(x, file_lines = NULL) {
 #' @keywords packages
 #' @param repo a github repo/package. Ex: check_installed_gihub("tidyverse/dplyr")
 #'
-#' @seealso https://github.com/jrosell/jrrosell/blob/main/R/packages.R
 #' @export
 check_installed_gihub <- function(repo) {
   # options("rlib_restart_package_not_found" = TRUE)

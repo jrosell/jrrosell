@@ -15,7 +15,6 @@
 #' write_xlsx(l, "/tmp/writeList1.xlsx", colWidths = c(NA, "auto", "auto"))
 #' file.remove("/tmp/writeList1.xlsx")
 #'
-#' @seealso <https://github.com/jrosell/jrrosell/blob/main/R/write.R>
 #' @export
 write_xlsx <- function(data, distfile, ...) {
   if (!requireNamespace("openxlsx", quietly = TRUE)) {

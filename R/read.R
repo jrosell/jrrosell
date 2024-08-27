@@ -17,7 +17,6 @@
 #' es <- readr::locale("es", tz = "Europe/Madrid", decimal_mark = ",", grouping_mark = ".")
 #' read_chr(readr::readr_example("mtcars.csv"), delim = ",", locale = es)
 #'
-#' @seealso <https://github.com/jrosell/jrrosell/blob/main/R/read.R>
 #' @export
 read_chr <- function(file, delim = ",", locale, ...) {
   if (!requireNamespace("readr", quietly = TRUE)) {
@@ -53,7 +52,6 @@ read_chr <- function(file, delim = ",", locale, ...) {
 #' @examples
 #' read_url("https://www.google.cat/", sleep = 1)
 #'
-#' @seealso <https://github.com/jrosell/jrrosell/blob/main/R/read.R>
 #' @export
 read_url <- function(url, sleep = 0) {
   if (!requireNamespace("purrr", quietly = TRUE)) stop("purrr package is required")
@@ -89,7 +87,6 @@ read_url <- function(url, sleep = 0) {
 #' read_xlsx("/tmp/writeList1.xlsx")
 #' file.remove("/tmp/writeList1.xlsx")
 #'
-#' @seealso <https://github.com/jrosell/jrrosell/blob/main/R/read.R>
 #' @export
 read_xlsx <- function(xlsxFile, ..., sheet = 1, startRow = 1) {
   if (!requireNamespace("openxlsx", quietly = TRUE)) {
