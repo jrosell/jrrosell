@@ -1,1 +1,0 @@
-options(browser = "firefox")
