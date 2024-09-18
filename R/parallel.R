@@ -12,7 +12,7 @@
 #' min cores are available.
 #'
 #' @examples
-#' cores <- detect_cores(max = 5, min = 2)
+#' cores <- detect_cores(max = 5, min = 1)
 #' print(cores)
 #'
 #' @export
