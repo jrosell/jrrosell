@@ -39,4 +39,4 @@ vignettes/*.pdf
 .Renviron
 
 # Docs
-/docs/
+docs/
