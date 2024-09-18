@@ -41,23 +41,23 @@ theme_roboto <- function(base_size = 11,
                          plot_title_margin = 10,
                          ...) {
   ret <- ggplot2::theme_minimal(
-    base_family = ROBOTO_CONDENSED,
+    base_family = jrrosell_ROBOTO_CONDENSED,
     base_size = base_size, ...
   )
   ret$strip.text <- ggplot2::element_text(
     hjust = 0, size = strip_text_size,
     margin = ggplot2::margin(b = strip_text_margin),
-    family = ROBOTO_CONDENSED
+    family = jrrosell_ROBOTO_CONDENSED
   )
   ret$plot.subtitle <- ggplot2::element_text(
     hjust = 0, size = subtitle_size,
     margin = ggplot2::margin(b = subtitle_margin),
-    family = ROBOTO_CONDENSED
+    family = jrrosell_ROBOTO_CONDENSED
   )
   ret$plot.title <- ggplot2::element_text(
     hjust = 0, size = plot_title_size,
     margin = ggplot2::margin(b = plot_title_margin),
-    family = ROBOTO_BLACK
+    family = jrrosell_ROBOTO_BLACK
   )
   ret
 }

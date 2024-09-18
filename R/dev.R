@@ -2,10 +2,11 @@
 #' @examples
 #' if (FALSE) {
 #'   devtools::load_all(); rebuild_package_and_check()
+#'   devtools::load_all(); rebuild_package_and_check(build_site = TRUE)
 #' }
 #'
-#' @keywords internal
-rebuild_package_and_check <- function() {
+#' @noRd
+rebuild_package_and_check <- function(build_site = FALSE) {
   previous_version <- package_github_version("jrosell/jrrosell")
   usethis::use_description(list(
     "Title" = "Personal R package for Jordi Rosell",
@@ -37,7 +38,6 @@ rebuild_package_and_check <- function() {
     "parallel",
     "parallelly",
     "parsnip",
-    "purrr",
     "readr",
     "tidymodels",
     "recipes",
@@ -72,7 +72,7 @@ rebuild_package_and_check <- function() {
     }
   )
   imports_packages <- c(
-    "rlang"
+    "rlang", "extrafont", "purrr", "stringi"
   )
   imports_packages |> purrr::map(
     \(x){
@@ -85,8 +85,11 @@ rebuild_package_and_check <- function() {
   usethis::use_data(spain_ccaas, spain_provinces, overwrite = TRUE)
   styler::style_pkg(exclude_files = c("R/RcppExports\\.R", "R/cpp11\\.R", "R/import-standalone.*\\.R", "R/dev\\.R"))
   devtools::load_all()
-  devtools::check(document = TRUE) #  devtools::check(document = FALSE); devtools::document()
-  pkgdown::build_site(preview = FALSE) # # usethis::use_pkgdown_github_pages()
-  utils::browseURL(here::here("docs", "index.html"), browser = getOption("browser")) 
+  devtools::document()
+  devtools::check(document = FALSE)  
+  if(build_site == TRUE) {    
+    pkgdown::build_site(preview = FALSE) # # usethis::use_pkgdown_github_pages()
+    utils::browseURL(here::here("docs", "index.html"), browser = getOption("browser")) 
+  }  
   # usethis::use_version(which = "dev", push = FALSE)
 }

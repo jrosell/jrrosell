@@ -1,21 +1,14 @@
-utils::globalVariables(c(
-  "ROBOTO_CONDENSED", "ROBOTO_BLACK"
-))
-
 .onLoad <- function(libname, pkgname) {
-  # extrafont::font_import()
-  if (!rlang::is_installed("extrafont")) stop("extrafont package is required")
-
-  ROBOTO_CONDENSED <<- "Roboto Condensed"
-  ROBOTO_BLACK <<- "Roboto Black"
+  assign("jrrosell_ROBOTO_CONDENSED", "Roboto Condensed", envir = topenv())
+  assign("jrrosell_ROBOTO_BLACK", "Roboto Black", envir = topenv())
   if (.Platform$OS.type == "windows" && tools::find_gs_cmd() != "") {
     warning("'ghostscript' is required but not found")
-     ROBOTO_CONDENSED <<- "Arial"
-     ROBOTO_BLACK <<- "Arial Black"
-  }    
+    assign("jrrosell_ROBOTO_CONDENSED", "Arial", envir = topenv())
+    assign("jrrosell_ROBOTO_BLACK", "Arial Black", envir = topenv())
+  }
   n_roboto <-
     extrafont::fonts() |>
-    purrr::keep(\(x) stringr::str_detect(x, "Roboto")) |>
+    purrr::keep(\(x) stringi::stri_detect(x, regex = "Roboto")) |>
     length()
   if (n_roboto == 0) {
     extrafont::font_import(prompt = FALSE, pattern = "Roboto")

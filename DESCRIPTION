@@ -20,7 +20,6 @@ Suggests:
     doFuture,
     doParallel,
     dplyr,
-    extrafont,
     future,
     ggplot2,
     glmnet,
@@ -37,7 +36,6 @@ Suggests:
     parallelly,
     parsnip,
     pkgdown,
-    purrr,
     readr,
     recipes,
     sf,
@@ -51,5 +49,8 @@ Suggests:
     workflows,
     xgboost
 Imports: 
-    rlang
+    extrafont,
+    purrr,
+    rlang,
+    stringi
 LazyData: true
