@@ -1,8 +1,7 @@
 #' Internal helper function for package development
 #' @examples
 #' if (FALSE) {
-#'   devtools::load_all()
-#'   rebuild_package_and_check()
+#'   devtools::load_all(); rebuild_package_and_check()
 #' }
 #'
 #' @keywords internal
@@ -84,11 +83,9 @@ rebuild_package_and_check <- function() {
   spain_ccaas <- readr::read_rds("inst/extdata/spain_ccaas.rds")
   spain_provinces <- readr::read_rds("inst/extdata/spain_provinces.rds")
   usethis::use_data(spain_ccaas, spain_provinces, overwrite = TRUE)
-  styler::style_pkg()
+  styler::style_pkg(exclude_files = c("R/RcppExports\\.R", "R/cpp11\\.R", "R/import-standalone.*\\.R", "R/dev\\.R"))
   devtools::load_all()
-  # usethis::use_namespace()
-  # devtools::document()
-  devtools::check(document = TRUE) #  devtools::check(document = FALSE)
+  devtools::check(document = TRUE) #  devtools::check(document = FALSE); devtools::document()
   pkgdown::build_site(preview = FALSE) # # usethis::use_pkgdown_github_pages()
   utils::browseURL(here::here("docs", "index.html"), browser = getOption("browser")) 
   # usethis::use_version(which = "dev", push = FALSE)

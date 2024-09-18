@@ -13,7 +13,7 @@ reference:
 
 - title: read and write
   desc: >
-    Some functions to help readinf and writing files.
+    Some functions to help reading and writing files.
   contents:
   - has_keyword("read")
   - has_keyword("write")
@@ -58,7 +58,7 @@ reference:
   desc: >
     Some functions to help with types in R .
   contents:
-  - as.bitstring
+  - has_keyword("types")
 
 - title: data
   desc: >

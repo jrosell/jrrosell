@@ -8,7 +8,7 @@
 #' @param min An integer with the min desired cores (default 2)
 #'
 #' @details The detect_cores function uses parallelly
-#' package. It returns the desired max cores if available or it fails if not 
+#' package. It returns the desired max cores if available or it fails if not
 #' min cores are available.
 #'
 #' @examples
@@ -49,7 +49,7 @@ startParallel <- function(msg = NULL, max = 10, min = 1) {
   if (!requireNamespace("parallelly", quietly = TRUE)) stop("parallelly package is required")
   if (!requireNamespace("doParallel", quietly = TRUE)) stop("doParallel package is required")
   if (!requireNamespace("doFuture", quietly = TRUE)) stop("doFuture package is required")
-  if (!requireNamespace("tictoc", quietly = TRUE)) stop("doParallel package is required")  
+  if (!requireNamespace("tictoc", quietly = TRUE)) stop("doParallel package is required")
   ask <- detect_cores(max, min)
   cl <- parallel::makeCluster(ask) # makeCluster, makePSOCKcluster, makeForkCluster
   doParallel::registerDoParallel(cl)

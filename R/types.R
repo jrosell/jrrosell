@@ -27,6 +27,8 @@ as.bitstring <- function(x) {
 
 #' Create a vector of characters from a string
 #'
+#' @rdname chars
+#' @keywords types
 #' @param x a vector of characters of length 1.
 #' @param ... unused
 #' @details

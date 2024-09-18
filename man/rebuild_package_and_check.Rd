@@ -11,8 +11,7 @@ Internal helper function for package development
 }
 \examples{
 if (FALSE) {
-  devtools::load_all()
-  rebuild_package_and_check()
+  devtools::load_all(); rebuild_package_and_check()
 }
 
 }
