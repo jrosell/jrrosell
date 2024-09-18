@@ -11,7 +11,7 @@
     purrr::keep(\(x) stringi::stri_detect(x, regex = "Roboto")) |>
     length()
   if (n_roboto == 0) {
-    extrafont::font_import(prompt = FALSE, pattern = "Roboto")
+    extrafont::font_import(prompt = FALSE)
   }
   extrafont::loadfonts(device = "all", quiet = TRUE)
 }
