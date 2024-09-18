@@ -4,6 +4,7 @@
 #' @keywords graphing
 #' @param ... Other parameters passed to theme_set
 #' @examples
+#' library(jrrosell)
 #' library(ggplot2)
 #' theme_set_roboto_darkblue()
 #' ggplot(iris, aes(Species)) +
