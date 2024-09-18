@@ -12,7 +12,7 @@
 #'
 #' @examples
 #' l <- list("IRIS" = iris, "MTCATS" = mtcars, matrix(runif(1000), ncol = 5))
-#' tmp_file <- tempfile(fileext = "xlsx")
+#' tmp_file <- tempfile(fileext = ".xlsx")
 #' write_xlsx(l, tmp_file, colWidths = c(NA, "auto", "auto"))
 #' file.remove(tmp_file)
 #'

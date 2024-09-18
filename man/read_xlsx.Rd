@@ -23,7 +23,7 @@ The write_xlsx it's a wroapper for \code{openxls::write.xlsx}.
 }
 \examples{
 l <- list("IRIS" = iris, "MTCATS" = mtcars, matrix(runif(1000), ncol = 5))
-tmp_file <- tempfile(fileext = "xlsx")
+tmp_file <- tempfile(fileext = ".xlsx")
 write_xlsx(l, tmp_file, colWidths = c(NA, "auto", "auto"))
 read_xlsx(tmp_file)
 file.remove(tmp_file)
