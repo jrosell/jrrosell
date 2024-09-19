@@ -52,5 +52,7 @@ Imports:
     extrafont,
     purrr,
     rlang,
-    stringi
+    showtext,
+    stringi,
+    sysfonts
 LazyData: true
