@@ -1,6 +1,6 @@
 .onLoad <- function(libname, pkgname) {
-  sysfonts::font_add("Roboto Condensed", regular = "RobotoCondensed-Regular.ttf")
-  sysfonts::font_add("Roboto Black", regular = "Roboto-Black.ttf")
+  sysfonts::font_add_google("Roboto")
+  sysfonts::font_add_google("Roboto Condensed")
   showtext::showtext_auto()
   n_roboto <-
     extrafont::fonts() |>
