@@ -49,10 +49,14 @@ Suggests:
     workflows,
     xgboost
 Imports: 
+    curl,
     extrafont,
+    jsonlite,
     purrr,
     rlang,
+    scales,
     showtext,
     stringi,
-    sysfonts
+    sysfonts,
+    tidyr
 LazyData: true

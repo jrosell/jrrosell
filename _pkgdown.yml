@@ -42,7 +42,7 @@ reference:
   contents:
   - has_keyword("processing")
 
-- title: processing
+- title: pipe
   desc: >
     Some functions to help piping.
   contents:

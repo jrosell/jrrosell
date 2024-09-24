@@ -9,7 +9,7 @@ workflow_elasticnet(rec, engine = "glmnet", ...)
 \arguments{
 \item{rec}{prerocessing recipe to build the workflow}
 
-\item{engine}{optional, glmnet by default}
+\item{engine}{glmnet, spark, brulee (glmnet by default)}
 
 \item{...}{Optional engine arguments}
 }

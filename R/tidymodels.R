@@ -134,7 +134,7 @@ update_step <- function(object, target_id, ...) {
 #' @keywords tidymodels
 #' @rdname workflow_boost_tree
 #' @param rec prerocessing recipe to build the workflow
-#' @param engine optional, xgboost by default
+#' @param engine xgboost, lightgbm (xgboost by default)
 #' @param counts Optional logic argument wether mtry use counts or not
 #' @param ... optional engine arguments
 #'
@@ -194,9 +194,8 @@ workflow_boost_tree <- function(rec, engine = "xgboost", counts = TRUE, ...) {
 #' @keywords tidymodels
 #' @rdname workflow_elasticnet
 #' @param rec prerocessing recipe to build the workflow
-#' @param engine optional, glmnet by default
+#' @param engine glmnet, spark, brulee (glmnet by default)
 #' @param ... Optional engine arguments
-#'
 #' @examples
 #' library(tidymodels)
 #' library(glmnet)

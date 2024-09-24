@@ -72,7 +72,7 @@ rebuild_package_and_check <- function(build_site = FALSE) {
     }
   )
   imports_packages <- c(
-    "rlang", "showtext", "sysfonts", "extrafont", "purrr", "stringi"
+    "rlang", "showtext", "sysfonts", "extrafont", "purrr", "stringi", "jsonlite", "curl", "scales", "tidyr"
   )
   imports_packages |> purrr::map(
     \(x){

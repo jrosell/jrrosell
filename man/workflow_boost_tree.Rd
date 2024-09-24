@@ -9,7 +9,7 @@ workflow_boost_tree(rec, engine = "xgboost", counts = TRUE, ...)
 \arguments{
 \item{rec}{prerocessing recipe to build the workflow}
 
-\item{engine}{optional, xgboost by default}
+\item{engine}{xgboost, lightgbm (xgboost by default)}
 
 \item{counts}{Optional logic argument wether mtry use counts or not}
 
