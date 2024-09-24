@@ -3,6 +3,7 @@
 #' if (FALSE) {
 #'   devtools::load_all(); rebuild_package_and_check()
 #'   devtools::load_all(); rebuild_package_and_check(build_site = TRUE)
+#'   rhub::rhub_check(platforms = "windows", r_versions = "4.4")
 #' }
 #'
 #' @noRd
