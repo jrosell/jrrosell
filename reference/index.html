@@ -84,13 +84,19 @@
         <dd>Calculate split proportion</dd>
       </dl><dl><dt>
 
-          <code><a href="calc_validation_size.html">calc_validation_size()</a></code>
+          <code><a href="calc_split_size.html">calc_split_size()</a></code>
 
         </dt>
-        <dd>Calculate validation size</dd>
+        <dd>Calculate split size</dd>
       </dl><dl><dt>
 
-          <code><a href="last_metrics.html">last_metrics()</a></code>
+          <code><a href="fit_params.html">fit_results()</a></code>
+
+        </dt>
+        <dd>Fit a workflow with specific parameters</dd>
+      </dl><dl><dt>
+
+          <code><a href="last_fit_metrics.html">last_fit_metrics()</a></code>
 
         </dt>
         <dd>Do the last fit and get the metrics</dd>
@@ -102,10 +108,16 @@
         <dd>Prep, juice and glimpse a recipe or workflow</dd>
       </dl><dl><dt>
 
-          <code><a href="prep_juice_cols.html">prep_juice_cols()</a></code>
+          <code><a href="prep_juice_ncol.html">prep_juice_ncol()</a></code>
 
         </dt>
         <dd>Prep, juice and get cols from a recipe or workflow</dd>
+      </dl><dl><dt>
+
+          <code><a href="score_recipe.html">score_recipe()</a></code>
+
+        </dt>
+        <dd>Tune a recipe using glmnet and lightgbm and stacks</dd>
       </dl><dl><dt>
 
           <code><a href="update_step.html">update_step()</a></code>
@@ -177,9 +189,9 @@
         </dt>
         <dd>Github version of the package</dd>
       </dl></div><div class="section level2">
-      <h2 id="processing">processing<a class="anchor" aria-label="anchor" href="#processing"></a></h2>
+      <h2 id="data-wrangling">Data wrangling<a class="anchor" aria-label="anchor" href="#data-wrangling"></a></h2>
 
-      <div class="section-desc"><p>Some functions to help processing in R.</p></div>
+      <div class="section-desc"><p>Some functions to help data wrangling in R.</p></div>
 
 
     </div><div class="section level2">
@@ -189,28 +201,22 @@
 
       <dl><dt>
 
-          <code><a href="duplicated_rows.html">count_duplicated_rows()</a></code>
+          <code><a href="count_duplicated_rows.html">count_duplicated_rows()</a></code>
 
         </dt>
-        <dd>Find the number of duplicated rows</dd>
+        <dd>Count the number of duplicated rows</dd>
       </dl><dl><dt>
 
-          <code><a href="glimpse_variable.html">glimpse_variable()</a></code>
+          <code><a href="count_sorted.html">count_sorted()</a></code>
 
         </dt>
-        <dd>Glimpse a variable</dd>
+        <dd>Count a variable or variables sorted</dd>
       </dl><dl><dt>
 
           <code><a href="glimpses.html">glimpses()</a></code>
 
         </dt>
         <dd>Glimpse multiple datasets</dd>
-      </dl><dl><dt>
-
-          <code><a href="notify_finished.html">notify_finished()</a></code>
-
-        </dt>
-        <dd>Make a sound and send an email when a process finished</dd>
       </dl><dl><dt>
 
           <code><a href="plot_bars.html">plot_bars()</a></code>
@@ -237,16 +243,39 @@
         <dd>Plot a variable</dd>
       </dl><dl><dt>
 
-          <code><a href="select_constant_columns.html">select_constant_columns()</a></code>
-
-        </dt>
-        <dd>Select constant columns from a data.frame</dd>
-      </dl><dl><dt>
-
           <code><a href="sum_missing.html">sum_missing()</a></code>
 
         </dt>
         <dd>Sum the missing values from a data.frame</dd>
+      </dl><dl><dt>
+
+          <code><a href="summarize_n_distinct.html">summarize_n_distinct()</a></code>
+
+        </dt>
+        <dd>Select constant columns from a data.frame</dd>
+      </dl></div><div class="section level2">
+      <h2 id="processing">processing<a class="anchor" aria-label="anchor" href="#processing"></a></h2>
+
+      <div class="section-desc"><p>Some functions to help processing in R.</p></div>
+
+
+    </div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="name_unnamed_chunks.html">name_unnamed_chunks()</a></code>
+
+        </dt>
+        <dd>Name unnamed chunks in .Rmd or .qmd files Use with caution.</dd>
+      </dl><dl><dt>
+
+          <code><a href="notify_finished.html">notify_finished()</a></code>
+
+        </dt>
+        <dd>Make a sound and send an email when a process finished</dd>
       </dl></div><div class="section level2">
       <h2 id="pipe">pipe<a class="anchor" aria-label="anchor" href="#pipe"></a></h2>
 
@@ -287,24 +316,6 @@
 
         </dt>
         <dd>Detect cores that could be used</dd>
-      </dl><dl><dt>
-
-          <code><a href="mapParallel.html">mapParallel()</a></code>
-
-        </dt>
-        <dd>Map parallel processing</dd>
-      </dl><dl><dt>
-
-          <code><a href="startParallel.html">startParallel()</a></code>
-
-        </dt>
-        <dd>Start parallel processing</dd>
-      </dl><dl><dt>
-
-          <code><a href="stopParallel.html">stopParallel()</a></code>
-
-        </dt>
-        <dd>Stop parallel processing</dd>
       </dl></div><div class="section level2">
       <h2 id="types">types<a class="anchor" aria-label="anchor" href="#types"></a></h2>
 

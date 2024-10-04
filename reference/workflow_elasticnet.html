@@ -82,36 +82,35 @@
 <span class="r-in"><span>  <span class="fu">recipe</span><span class="op">(</span><span class="va">case</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">step_integer</span><span class="op">(</span><span class="fu">all_nominal_predictors</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">workflow_elasticnet</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "logistic_reg binary clssification"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "logistic_reg binary classification"</span>
 <span class="r-in"><span><span class="fu">doFuture</span><span class="fu">::</span><span class="fu"><a href="https://doFuture.futureverse.org/reference/registerDoFuture.html" class="external-link">registerDoFuture</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://future.futureverse.org/reference/plan.html" class="external-link">plan</a></span><span class="op">(</span><span class="va">sequential</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="va">wf</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">tune_grid</span><span class="op">(</span></span></span>
+<span class="r-in"><span>  <span class="fu">tune</span><span class="fu">::</span><span class="fu"><a href="https://tune.tidymodels.org/reference/tune_grid.html" class="external-link">tune_grid</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>    <span class="va">folds</span>,</span></span>
 <span class="r-in"><span>    grid <span class="op">=</span> <span class="fl">2</span>,</span></span>
 <span class="r-in"><span>    metrics <span class="op">=</span> <span class="fu">metric_set</span><span class="op">(</span><span class="va">roc_auc</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    control <span class="op">=</span> <span class="fu">control_grid</span><span class="op">(</span>save_workflow <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    control <span class="op">=</span> <span class="fu">tune</span><span class="fu">::</span><span class="fu"><a href="https://tune.tidymodels.org/reference/control_grid.html" class="external-link">control_grid</a></span><span class="op">(</span>save_workflow <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">res</span> <span class="op">|&gt;</span> <span class="fu">collect_metrics</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      penalty mixture .metric .estimator  mean     n std_err .config             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 0.000<span style="text-decoration: underline;">130</span>     0.469 roc_auc binary     0.487     2  0.025<span style="text-decoration: underline;">7</span> Preprocessor1_Model1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 0.000<span style="text-decoration: underline;">004</span>90   0.814 roc_auc binary     0.487     2  0.026<span style="text-decoration: underline;">5</span> Preprocessor1_Model2</span>
-<span class="r-in"><span><span class="va">res</span> <span class="op">|&gt;</span> <span class="fu"><a href="last_metrics.html">last_metrics</a></span><span class="op">(</span><span class="va">split</span>, <span class="st">"roc_auc"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    penalty mixture .metric .estimator  mean     n std_err .config             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 1.10<span style="color: #949494;">e</span><span style="color: #BB0000;">- 4</span>   0.136 roc_auc binary     0.549     2 0.005<span style="text-decoration: underline;">34</span> Preprocessor1_Model1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 2.28<span style="color: #949494;">e</span><span style="color: #BB0000;">-10</span>   0.946 roc_auc binary     0.546     2 0.004<span style="text-decoration: underline;">22</span> Preprocessor1_Model2</span>
+<span class="r-in"><span><span class="va">res</span> <span class="op">|&gt;</span> <span class="fu"><a href="last_fit_metrics.html">last_fit_metrics</a></span><span class="op">(</span><span class="va">split</span>, <span class="st">"roc_auc"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 4</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   .metric     .estimator .estimate .config             </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> accuracy    binary         0.492 Preprocessor1_Model1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> roc_auc     binary         0.514 Preprocessor1_Model1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> brier_class binary         0.285 Preprocessor1_Model1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> accuracy    binary         0.484 Preprocessor1_Model1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> roc_auc     binary         0.508 Preprocessor1_Model1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> brier_class binary         0.287 Preprocessor1_Model1</span>
 <span class="r-in"><span><span class="va">best</span> <span class="op">&lt;-</span> <span class="va">res</span> <span class="op">|&gt;</span> <span class="fu">fit_best</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">best</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">augment</span><span class="op">(</span><span class="fu">testing</span><span class="op">(</span><span class="va">split</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">roc_auc</span><span class="op">(</span><span class="va">case</span>, <span class="va">.pred_Test</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">pull</span><span class="op">(</span><span class="va">.estimate</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5138889</span>
-<span class="r-in"><span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5083165</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
