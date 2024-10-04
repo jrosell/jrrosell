@@ -9,7 +9,6 @@
 #' theme_set_roboto_darkblue()
 #' ggplot(iris, aes(Species)) +
 #'   geom_bar()
-#'
 #' @export
 theme_set_roboto_darkblue <- function(...) {
   ggplot2::update_geom_defaults("rect", list(fill = "darkblue", alpha = 0.8))
@@ -31,6 +30,12 @@ theme_set_roboto_darkblue <- function(...) {
 #' @param plot_title_size = 16
 #' @param plot_title_margin = 10
 #' @param ... Other parameters passed to theme_set
+#' @examples
+#' library(jrrosell)
+#' library(ggplot2)
+#' theme_set(theme_roboto())
+#' ggplot(iris, aes(Species)) +
+#'   geom_bar()
 #' @export
 theme_roboto <- function(base_size = 11,
                          strip_text_size = 12,

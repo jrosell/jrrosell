@@ -21,6 +21,5 @@ recipes::recipe(spray ~ ., data = InsectSprays) |>
 recipes::recipe(spray ~ ., data = InsectSprays) |>
   workflows::workflow(parsnip::linear_reg()) |>
   prep_juice()
-
 }
 \keyword{tidymodels}

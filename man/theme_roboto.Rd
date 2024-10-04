@@ -35,4 +35,11 @@ theme_roboto(
 \description{
 It requires roboto fonts installed in your O.S. and run z
 }
+\examples{
+library(jrrosell)
+library(ggplot2)
+theme_set(theme_roboto())
+ggplot(iris, aes(Species)) +
+  geom_bar()
+}
 \keyword{graphing}

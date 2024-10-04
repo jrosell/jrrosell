@@ -10,6 +10,11 @@ check_installed_gihub(repo)
 \item{repo}{a github repo/package. Ex: check_installed_gihub("tidyverse/dplyr")}
 }
 \description{
-Get the version from the DESCRIPTION file of the master branch in the github package.
+Check if the last main github version is installed.
+}
+\examples{
+if (FALSE) {
+  check_installed_gihub("jrosell/jrrosell")
+}
 }
 \keyword{packages}

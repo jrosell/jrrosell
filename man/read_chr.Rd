@@ -4,7 +4,7 @@
 \alias{read_chr}
 \title{Read character columns with clean names}
 \usage{
-read_chr(file, delim = ",", locale, ...)
+read_chr(file, delim = ",", locale = NULL, ...)
 }
 \arguments{
 \item{file}{Either a path to a file, a connection, or literal data (either a single string or a raw vector).}

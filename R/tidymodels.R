@@ -1,11 +1,10 @@
 #' Do the last fit and get the metrics
 #'
 #' @keywords tidymodels
-#' @rdname last_metrics
+#' @rdname last_fit_metrics
 #' @param res Tune results
 #' @param split The initial split object
 #' @param metric What metric to use to select the best workflow
-#'
 #' @examples
 #' library(tidymodels)
 #' library(xgboost)
@@ -22,14 +21,14 @@
 #'   step_integer(all_nominal_predictors()) |>
 #'   workflow_boost_tree()
 #' res <- wf |>
-#'   tune_grid(
-#'     folds,
+#'   tune::tune_grid(
+#'     resamples = folds,
 #'     grid = 2,
 #'     metrics = metric_set(roc_auc),
-#'     control = control_grid(save_workflow = TRUE, verbose = FALSE)
+#'     control = tune::control_grid(save_workflow = TRUE, verbose = FALSE)
 #'   )
 #' res |> collect_metrics()
-#' res |> last_metrics(split, "roc_auc")
+#' res |> last_fit_metrics(split, "roc_auc")
 #' best <- res |> fit_best()
 #' best |>
 #'   augment(testing(split)) |>
@@ -37,7 +36,7 @@
 #'   pull(.estimate)
 #'
 #' @export
-last_metrics <- function(res, split, metric) {
+last_fit_metrics <- function(res, split, metric) {
   wf <- res |> tune::extract_workflow()
   wf |>
     tune::finalize_workflow(tune::select_best(res, metric = metric)) |>
@@ -50,14 +49,12 @@ last_metrics <- function(res, split, metric) {
 #' @keywords tidymodels
 #' @rdname prep_juice
 #' @param object A recipe or a workflow object with a recipe
-#'
 #' @examples
 #' recipes::recipe(spray ~ ., data = InsectSprays) |>
 #'   prep_juice()
 #' recipes::recipe(spray ~ ., data = InsectSprays) |>
 #'   workflows::workflow(parsnip::linear_reg()) |>
 #'   prep_juice()
-#'
 #' @source <https://recipes.tidymodels.org/reference/update.step.html>
 #' @export
 prep_juice <- function(object) {
@@ -75,15 +72,13 @@ prep_juice <- function(object) {
 #' Prep, juice and get cols from a recipe or workflow
 #'
 #' @keywords tidymodels
-#' @rdname prep_juice_cols
+#' @rdname prep_juice_ncol
 #' @param object A recipe or a workflow object with a recipe
-#'
 #' @examples
 #' recipes::recipe(spray ~ ., data = InsectSprays) |>
-#'   prep_juice_cols()
-#'
+#'   prep_juice_ncol()
 #' @export
-prep_juice_cols <- function(object) {
+prep_juice_ncol <- function(object) {
   if (!requireNamespace("recipes", quietly = TRUE)) stop("recipes package is required")
   if (!requireNamespace("tibble", quietly = TRUE)) stop("tibble package is required")
   if (inherits(object, "workflow")) {
@@ -92,8 +87,7 @@ prep_juice_cols <- function(object) {
   object |>
     recipes::prep() |>
     recipes::juice() |>
-    dim() |>
-    _[2]
+    ncol()
 }
 
 
@@ -107,12 +101,10 @@ prep_juice_cols <- function(object) {
 #' @param object A recipe or a workflow object with a recipe
 #' @param target_id The id name of the step
 #' @param ... The arguments to update the step.
-#'
 #' @examples
 #' recipes::recipe(spray ~ ., data = InsectSprays) |>
 #'   recipes::step_ns(count, deg_free = hardhat::tune(), id = "ns") |>
 #'   update_step("ns", deg_free = 1)
-#'
 #' @export
 update_step <- function(object, target_id, ...) {
   if (!requireNamespace("recipes", quietly = TRUE)) stop("recipes package is required")
@@ -137,7 +129,6 @@ update_step <- function(object, target_id, ...) {
 #' @param engine xgboost, lightgbm (xgboost by default)
 #' @param counts Optional logic argument wether mtry use counts or not
 #' @param ... optional engine arguments
-#'
 #' @examples
 #' library(tidymodels)
 #' library(xgboost)
@@ -157,33 +148,31 @@ update_step <- function(object, target_id, ...) {
 #' doFuture::registerDoFuture()
 #' plan(sequential)
 #' res <- wf |>
-#'   tune_grid(
+#'   tune::tune_grid(
 #'     folds,
 #'     grid = 2,
 #'     metrics = metric_set(roc_auc),
-#'     control = control_grid(save_workflow = TRUE, verbose = FALSE)
+#'     control = tune::control_grid(save_workflow = TRUE, verbose = FALSE)
 #'   )
 #' res |> collect_metrics()
-#' res |> last_metrics(split, "roc_auc")
+#' res |> last_fit_metrics(split, "roc_auc")
 #' best <- res |> fit_best()
 #' best |>
 #'   augment(testing(split)) |>
 #'   roc_auc(case, .pred_Test) |>
 #'   pull(.estimate)
-#'
 #' @export
 workflow_boost_tree <- function(rec, engine = "xgboost", counts = TRUE, ...) {
   recipe_mode <- .get_recipe_mode(rec)
   mode <- recipe_mode$mode
   rec |>
     workflows::workflow(
-      parsnip::boost_tree(mode, engine) |>
+      parsnip::boost_tree(mode = mode, engine = engine) |>
         parsnip::set_args(
           trees = parsnip::tune(), learn_rate = parsnip::tune(), # steps and step size
           tree_depth = parsnip::tune(), min_n = parsnip::tune(), loss_reduction = parsnip::tune(), # complexity
           sample_size = parsnip::tune(), mtry = parsnip::tune(), # randomness
-          counts = !!counts, # engine specific
-          ...
+          counts = !!counts # , ...
         )
     )
 }
@@ -215,22 +204,20 @@ workflow_boost_tree <- function(rec, engine = "xgboost", counts = TRUE, ...) {
 #' doFuture::registerDoFuture()
 #' plan(sequential)
 #' res <- wf |>
-#'   tune_grid(
+#'   tune::tune_grid(
 #'     folds,
 #'     grid = 2,
 #'     metrics = metric_set(roc_auc),
-#'     control = control_grid(save_workflow = TRUE, verbose = FALSE)
+#'     control = tune::control_grid(save_workflow = TRUE, verbose = FALSE)
 #'   )
 #' res |> collect_metrics()
-#' res |> last_metrics(split, "roc_auc")
+#' res |> last_fit_metrics(split, "roc_auc")
 #' best <- res |> fit_best()
 #' best |>
 #'   augment(testing(split)) |>
 #'   roc_auc(case, .pred_Test) |>
 #'   pull(.estimate)
-#'
 #' @export
-#'
 workflow_elasticnet <- function(rec, engine = "glmnet", ...) {
   recipe_mode <- .get_recipe_mode(rec)
   if (recipe_mode$is_reg) {
@@ -238,34 +225,30 @@ workflow_elasticnet <- function(rec, engine = "glmnet", ...) {
     model <- parsnip::linear_reg("regression", engine) |>
       parsnip::set_args(
         penalty = parsnip::tune(),
-        mixture = parsnip::tune(),
-        ...
+        mixture = parsnip::tune() # , ...
       )
   }
   if (recipe_mode$is_binary) {
-    print("logistic_reg binary clssification")
+    print("logistic_reg binary classification")
     model <- parsnip::logistic_reg("classification", engine) |>
       parsnip::set_args(
         penalty = parsnip::tune(),
-        mixture = parsnip::tune(),
-        ...
+        mixture = parsnip::tune() # , ...
       )
   }
   if (recipe_mode$is_multinom) {
-    print("multinom_reg clssification")
+    print("multinom_reg classification")
     model <- parsnip::multinom_reg("classification", engine) |>
       parsnip::set_args(
         penalty = parsnip::tune(),
-        mixture = parsnip::tune(),
-        ...
+        mixture = parsnip::tune() # , ...
       )
   }
   return(workflows::workflow(rec, model))
 }
 
 #' Help infer things about the mode and the model to fit
-#' @keywords internal
-#' @importFrom rlang .data
+#' @noRd
 .get_recipe_mode <- function(rec) {
   outcome <- rec |>
     summary() |>
@@ -281,5 +264,106 @@ workflow_elasticnet <- function(rec, engine = "glmnet", ...) {
     is_reg = is_reg,
     is_multinom = is_multinom,
     is_binary = is_binary
+  )
+}
+
+
+#' Fit a workflow with specific parameters
+#'
+#' @keywords tidymodels
+#' @rdname fit_params
+#' @param wf workflow
+#' @param resamples rset
+#' @param param_info for tune_* functions
+#' @param grid for tune_* functions
+#' @param fn the name of the function to run when tuning
+#' @param ... Optional engine arguments
+#' @examples
+#' library(tidymodels)
+#' library(xgboost)
+#' library(modeldata)
+#' data(cells)
+#' split <- cells |>
+#'   mutate(across(where(is.character), as.factor)) |>
+#'   sample_n(500) |>
+#'   initial_split(strata = case)
+#' train <- training(split)
+#' resamples <- vfold_cv(train, v = 2, strata = case)
+#' wf_spec <- train |>
+#'   recipe(case ~ .) |>
+#'   step_integer(all_nominal_predictors()) |>
+#'   workflow(boost_tree(mode = "classification"))
+#' res_spec <- wf_spec |> fit_results(resamples)
+#' res_spec |> collect_metrics()
+#' @export
+fit_results <- function(wf, resamples, param_info = NULL, grid = 10, fn = "tune_grid", ...) {
+  if (nrow(tune::tune_args(wf)) == 0) {
+    fn <- "fit_resamples"
+  }
+  wfset <- workflowsets::as_workflow_set(wf = wf) |>
+    workflowsets::workflow_map(
+      resamples = resamples, param_info = param_info, grid = grid, fn = fn, ...
+    )
+  wfset$result[[1]]
+}
+
+
+
+
+#' Tune a recipe using glmnet and lightgbm and stacks
+#'
+#' @keywords tidymodels
+#' @rdname score_recipe
+#' @param rec recipe
+#' @param resamples rset
+#' @param grids for glmnet and lightgbm tuning
+#' @param metric to be compared
+
+score_recipe <- function(rec,
+                         resamples,
+                         grids = list(10, 10),
+                         metric = "accuracy") {
+  glmnet_res <-
+    rec |>
+    workflow_elasticnet() |>
+    tune::tune_grid(
+      resamples = resamples,
+      grid = grids[[1]],
+      control = tune::control_grid(save_pred = TRUE, save_workflow = TRUE)
+    )
+
+  lgbm_res <-
+    rec |>
+    workflow_boost_tree() |>
+    tune::tune_grid(
+      resamples = resamples,
+      grid = grids[[2]],
+      control = tune::control_grid(save_pred = TRUE, save_workflow = TRUE)
+    )
+
+  data_stack <- stacks::stacks() |>
+    stacks::add_candidates(glmnet_res) |>
+    stacks::add_candidates(lgbm_res)
+
+  model_stack <- data_stack |>
+    stacks::blend_predictions() |>
+    stacks::fit_members()
+
+  glmnet_metrics <- glmnet_res |>
+    tune::collect_metrics() |>
+    dplyr::filter(.data$.metric == metric)
+  lgbm_metrics <- lgbm_res |>
+    tune::collect_metrics() |>
+    dplyr::filter(.data$.metric == metric)
+  stack_metrics <- model_stack$metrics |>
+    dplyr::filter(.data$.metric == metric)
+
+  list(
+    glmnet_res = glmnet_res,
+    glmnet_metrics = glmnet_metrics,
+    lgbm_res = lgbm_res,
+    lgbm_metrics = lgbm_metrics,
+    stack = model_stack,
+    stack_metrics = stack_metrics
   )
 }

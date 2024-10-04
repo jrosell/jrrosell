@@ -21,6 +21,9 @@ Create a vector of characters from a string
 \code{chars} expects a single string as input. To create a list of these,
 consider \code{lapply(strings, chars)}.
 }
+\examples{
+chars("hola")
+}
 \seealso{
 \url{https://github.com/jonocarroll/charcuterie}
 }

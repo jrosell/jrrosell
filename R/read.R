@@ -18,14 +18,19 @@
 #' read_chr(readr::readr_example("mtcars.csv"), delim = ",", locale = es)
 #'
 #' @export
-read_chr <- function(file, delim = ",", locale, ...) {
+read_chr <- function(file, delim = ",", locale = NULL, ...) {
   if (!requireNamespace("readr", quietly = TRUE)) {
     return(NULL)
   }
   if (!requireNamespace("janitor", quietly = TRUE)) {
     return(NULL)
   }
-
+  if (is.null(locale)) {
+    locale <- readr::locale(
+      "en",
+      tz = "EST", decimal_mark = ".", grouping_mark = ""
+    )
+  }
   readr::read_delim(
     file,
     delim,
@@ -50,7 +55,7 @@ read_chr <- function(file, delim = ",", locale, ...) {
 #' and it's fault tolearnt.
 #'
 #' @examples
-#' read_url("https://www.google.cat/", sleep = 1)
+#' if (FALSE) read_url("https://www.google.cat/", sleep = 1)
 #'
 #' @export
 read_url <- function(url, sleep = 0) {

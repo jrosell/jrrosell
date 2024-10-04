@@ -35,19 +35,18 @@ wf <- train |>
 doFuture::registerDoFuture()
 plan(sequential)
 res <- wf |>
-  tune_grid(
+  tune::tune_grid(
     folds,
     grid = 2,
     metrics = metric_set(roc_auc),
-    control = control_grid(save_workflow = TRUE, verbose = FALSE)
+    control = tune::control_grid(save_workflow = TRUE, verbose = FALSE)
   )
 res |> collect_metrics()
-res |> last_metrics(split, "roc_auc")
+res |> last_fit_metrics(split, "roc_auc")
 best <- res |> fit_best()
 best |>
   augment(testing(split)) |>
   roc_auc(case, .pred_Test) |>
   pull(.estimate)
-
 }
 \keyword{tidymodels}

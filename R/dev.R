@@ -32,6 +32,8 @@ rebuild_package_and_check <- function(build_site = FALSE) {
   suggests_packages <- c(
     "styler",
     "sf",
+    "stacks",
+    "workflowsets",
     "doParallel",
     "httr",
     "httr2",
@@ -84,6 +86,8 @@ rebuild_package_and_check <- function(build_site = FALSE) {
   spain_ccaas <- readr::read_rds("inst/extdata/spain_ccaas.rds")
   spain_provinces <- readr::read_rds("inst/extdata/spain_provinces.rds")
   usethis::use_data(spain_ccaas, spain_provinces, overwrite = TRUE)
+  # usethis::use_package_doc()
+  usethis::use_import_from("rlang", c(".data", ".env"))
   styler::style_pkg(exclude_files = c("R/RcppExports\\.R", "R/cpp11\\.R", "R/import-standalone.*\\.R", "R/dev\\.R"))
   devtools::load_all()
   devtools::document()

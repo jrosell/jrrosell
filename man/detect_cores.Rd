@@ -22,6 +22,11 @@ min cores are available.
 \examples{
 cores <- detect_cores(max = 5, min = 1)
 print(cores)
-
+if (FALSE) {
+  library(jrrosell)
+  library(future)
+  plan(multisession, workers = detect_cores(max = 10, min = 2))
+  plan(sequential)
+}
 }
 \keyword{parallel}

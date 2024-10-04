@@ -39,6 +39,7 @@ Suggests:
     readr,
     recipes,
     sf,
+    stacks,
     styler,
     testthat,
     tibble,
@@ -47,6 +48,7 @@ Suggests:
     tune,
     usethis,
     workflows,
+    workflowsets,
     xgboost
 Imports: 
     curl,

@@ -13,7 +13,7 @@ calc_split_prop(df)
 \item{df}{A data frame}
 }
 \description{
-From a data frame, it returns the split proportion.
+From a data frame, it returns the minimal split proportion for validation.
 }
 \details{
 The calc_validation_size function returns the optimal split

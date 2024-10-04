@@ -6,7 +6,10 @@
 #' @keywords packages
 #' @param x a single repo/package to check Ex: package_github_version("tidyverse/dplyr")
 #' @param file_lines (default = NULL, internal)
-#'
+#' @examples
+#' if (FALSE) {
+#'   package_github_version("jrosell/jrrosell")
+#' }
 #' @export
 package_github_version <- function(x, file_lines = NULL) {
   i <- grepl("Version: ", file_lines)
@@ -25,7 +28,10 @@ package_github_version <- function(x, file_lines = NULL) {
 #' @keywords packages
 #' @param x a single repo/package to check Ex: package_github_name("tidyverse/dplyr")
 #' @param file_lines (default = NULL, internal)
-#'
+#' @examples
+#' if (FALSE) {
+#'   package_github_name("jrosell/jrrosell")
+#' }
 #' @export
 package_github_name <- function(x, file_lines = NULL) {
   i <- grepl("Package: ", file_lines)
@@ -38,12 +44,15 @@ package_github_name <- function(x, file_lines = NULL) {
 
 #' Check if the last github version is installed
 #'
-#' Get the version from the DESCRIPTION file of the master branch in the github package.
+#' Check if the last main github version is installed.
 #'
 #' @rdname check_installed_gihub
 #' @keywords packages
 #' @param repo a github repo/package. Ex: check_installed_gihub("tidyverse/dplyr")
-#'
+#' @examples
+#' if (FALSE) {
+#'   check_installed_gihub("jrosell/jrrosell")
+#' }
 #' @export
 check_installed_gihub <- function(repo) {
   # options("rlib_restart_package_not_found" = TRUE)

@@ -24,6 +24,5 @@ This is because numToBits() returns the bits in the reverse order, and without r
 0.1 + 0.2 == 0.3
 as.bitstring(0.1 + 0.2)
 as.bitstring(0.3)
-
 }
 \keyword{types}

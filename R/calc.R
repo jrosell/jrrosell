@@ -1,27 +1,28 @@
-#' Calculate validation size
+#' Calculate split size
 #'
-#' From and expected p and desired std_err, it returns the
-#' minimal validation size for your assesment sets or validation sets.
+#' From binary classification problems, with the desired std_err it returns the
+#' minimal assesment/validation set size.
 #'
 #' @keywords tidymodels
-#' @rdname calc_validation_size
-#' @param expected_p An object
-#' @param desired_std_err An expresion
+#' @rdname calc_split_size
+#' @param std_err The desired std_err numeric (default 0.001)
 #'
 #' @details The calc_validation_size function returns the minimal validation size for expected probabilities and desired error.
-#'
+#' s
 #' @examples
-#' calc_validation_size(expected_p = 0.8, desired_std_err = 0.02)
+#' calc_split_size()
+#' calc_split_size(std_err = 0.02)
 #'
 #' @source <https://stats.stackexchange.com/a/304996/7387>
 #' @export
-calc_validation_size <- function(expected_p, desired_std_err) {
-  (expected_p - expected_p^2) / (desired_std_err^2)
+calc_split_size <- function(std_err = 0.001) {
+  expected_p <- 0.5
+  (expected_p - expected_p^2) / (std_err^2)
 }
 
 #' Calculate split proportion
 #'
-#' From a data frame, it returns the split proportion.
+#' From a data frame, it returns the minimal split proportion for validation.
 #'
 #' @keywords tidymodels
 #' @rdname calc_split_prop

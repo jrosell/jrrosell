@@ -1,4 +1,4 @@
-test_that("select_constant_columns works", {
+test_that("summarize_n_distinct works", {
   library(jrrosell)
   library(tibble)
   library(dplyr)
@@ -10,10 +10,12 @@ test_that("select_constant_columns works", {
   )
 
   # Find constant columns
-  constant_columns <- df |>
-    select(where(\(x) n_distinct(x) == 1))
+  result <- df |>
+    dplyr::summarise(
+      dplyr::across(dplyr::everything(), dplyr::n_distinct)
+    )
 
-  expect_equal(constant_columns, select_constant_columns(df))
+  expect_equal(result, summarize_n_distinct(df))
 })
 
 # test_that("sum_missing works", {
@@ -116,7 +118,7 @@ test_that("duplicate_rows works", {
 # })
 
 
-test_that("glimpse_variable works", {
+test_that("count_sorted works", {
   library(jrrosell)
   library(tibble)
   library(dplyr)
@@ -126,7 +128,7 @@ test_that("glimpse_variable works", {
     c = c(10, 20, 20, 40, 50),
     d = c("a", "b", "b", "b", "b")
   )
-  result <- glimpse_variable(df, d)
+  result <- count_sorted(df, d)
   expect_true(inherits(result, "data.frame"))
   expect_true(nrow(result) == 2)
   expect_true(sum(result$n) == 5)

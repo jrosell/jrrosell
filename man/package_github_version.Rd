@@ -14,4 +14,9 @@ package_github_version(x, file_lines = NULL)
 \description{
 Get the version from the DESCRIPTION file of the master branch in the github repo
 }
+\examples{
+if (FALSE) {
+  package_github_version("jrosell/jrrosell")
+}
+}
 \keyword{packages}

@@ -14,4 +14,9 @@ package_github_name(x, file_lines = NULL)
 \description{
 Get the name of the package from the DESCRIPTION file of the master branch in the github repo
 }
+\examples{
+if (FALSE) {
+  package_github_name("jrosell/jrrosell")
+}
+}
 \keyword{packages}
