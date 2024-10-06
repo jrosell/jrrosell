@@ -1,6 +1,6 @@
 Package: jrrosell
 Title: Personal R package for Jordi Rosell
-Version: 0.0.0.9008
+Version: 0.0.0.9009
 Authors@R: 
     person("Jordi", "Rosell", , "jroselln@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-4349-1458"))
@@ -20,6 +20,7 @@ Suggests:
     doFuture,
     doParallel,
     dplyr,
+    forcats,
     future,
     ggplot2,
     glmnet,
