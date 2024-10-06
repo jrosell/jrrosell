@@ -4,12 +4,14 @@
 \alias{plot_variable}
 \title{Plot a variable}
 \usage{
-plot_variable(df, variable, type = "numeric")
+plot_variable(df, variable, ..., type = "numeric")
 }
 \arguments{
 \item{df}{a data.frame}
 
 \item{variable}{the variable to use.}
+
+\item{...}{params passed to geom_*}
 
 \item{type}{numeric (default) or nominal.}
 }
@@ -17,7 +19,6 @@ plot_variable(df, variable, type = "numeric")
 It returns a bar or a histogram of the variable
 }
 \examples{
-data.frame(a = c("x", "y"), b = c("z", "z")) |>
-  plot_variable(a)
+data.frame(a = c("x", "y", "y"), b = c("z", "z", "x")) |> plot_variable(a)
 }
 \keyword{wrangling}

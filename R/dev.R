@@ -42,6 +42,7 @@ rebuild_package_and_check <- function(build_site = FALSE) {
     "parallelly",
     "parsnip",
     "readr",
+    "forcats",
     "tidymodels",
     "recipes",
     "tibble",
@@ -96,5 +97,5 @@ rebuild_package_and_check <- function(build_site = FALSE) {
     pkgdown::build_site(preview = FALSE) # # usethis::use_pkgdown_github_pages()
     utils::browseURL(here::here("docs", "index.html"), browser = getOption("browser")) 
   }  
-  # usethis::use_version(which = "dev", push = FALSE)
+  usethis::use_version(which = "dev", push = FALSE)
 }
