@@ -110,7 +110,6 @@ plot_missing <- function(df) {
   ggplot2::ggplot(missing_data, ggplot2::aes(x = stats::reorder(.data$column, .data$missing_pct), y = .data$missing_pct)) +
     ggplot2::geom_bar(stat = "identity", fill = "steelblue") +
     ggplot2::labs(x = "", y = "Percentage Missing") +
-    ggplot2::theme_minimal() +
     ggplot2::coord_flip() +
     ggplot2::theme(
       axis.text.y = ggplot2::element_text(size = 8)
@@ -140,7 +139,6 @@ plot_histograms <- function(df, ...) {
     ggplot2::ggplot(ggplot2::aes(.data$value)) +
     ggplot2::facet_wrap(~name, scales = "free") +
     ggplot2::geom_histogram(...) +
-    ggplot2::theme_minimal() +
     ggplot2::labs(x = "", y = "") +
     ggplot2::guides(fill = ggplot2::guide_legend(title = "Histogram")) +
     ggplot2::theme(
@@ -174,7 +172,6 @@ plot_bars <- function(df, ..., top_values = 50) {
     ggplot2::ggplot(ggplot2::aes(.data$value)) +
     ggplot2::facet_wrap(~name, scales = "free") +
     ggplot2::geom_bar(...) +
-    ggplot2::theme_minimal() +
     ggplot2::labs(x = "", y = "") +
     ggplot2::guides(fill = ggplot2::guide_legend(title = "Bar")) +
     ggplot2::theme(
@@ -222,15 +219,11 @@ plot_variable <- function(df, variable, ..., type = "numeric") {
     ggplot2::ggplot(df, ggplot2::aes(!!variable_quo)) +
       ggplot2::geom_histogram(binwidth = 1, fill = "steelblue", color = "white", ...) +
       ggplot2::labs(x = rlang::quo_name(variable_quo), y = "Frequency", title = paste("Histogram of", rlang::quo_name(variable_quo))) +
-      ggplot2::theme_minimal()
+      NULL
   } else if (is.factor(variable_data) || is.character(variable_data) || type == "nominal") {
     ggplot2::ggplot(df, ggplot2::aes(x = forcats::fct_rev(forcats::fct_infreq(!!variable_quo)))) +
       ggplot2::geom_bar(fill = "steelblue", ...) +
       ggplot2::labs(x = rlang::quo_name(variable_quo), y = "Count", title = paste("Bar Plot of", rlang::quo_name(variable_quo))) +
-      ggplot2::theme_minimal() +
-      ggplot2::theme(
-        axis.text.x = ggplot2::element_text(angle = 45, hjust = 1)
-      ) +
       ggplot2::coord_flip() +
       NULL
   } else {
