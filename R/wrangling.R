@@ -207,22 +207,23 @@ count_sorted <- function(df, ...) {
 #' @keywords wrangling
 #' @param df a data.frame
 #' @param variable the variable to use.
+#' @param type numeric (default) or nominal.
 #' @examples
 #' data.frame(a = c("x", "y"), b = c("z", "z")) |>
 #'   plot_variable(a)
 #' @export
-plot_variable <- function(df, variable) {
+plot_variable <- function(df, variable, type = "numeric") {
   variable_quo <- rlang::enquo(variable)
   if (!rlang::quo_name(variable_quo) %in% colnames(df)) {
     stop("The outcome variable does not exist in the dataframe.")
   }
   variable_data <- df |> dplyr::pull(!!variable_quo)
-  if (is.double(variable_data)) {
+  if (is.numeric(variable_data) && type == "numeric") {
     ggplot2::ggplot(df, ggplot2::aes(!!variable_quo)) +
       ggplot2::geom_histogram(binwidth = 1, fill = "steelblue", color = "white") +
       ggplot2::labs(x = rlang::quo_name(variable_quo), y = "Frequency", title = paste("Histogram of", rlang::quo_name(variable_quo))) +
       ggplot2::theme_minimal()
-  } else if (is.factor(variable_data) || is.character(variable_data)) {
+  } else if (is.factor(variable_data) || is.character(variable_data) || type == "nominal") {
     ggplot2::ggplot(df, ggplot2::aes(!!variable_quo)) +
       ggplot2::geom_bar(fill = "steelblue") +
       ggplot2::labs(x = rlang::quo_name(variable_quo), y = "Count", title = paste("Bar Plot of", rlang::quo_name(variable_quo))) +

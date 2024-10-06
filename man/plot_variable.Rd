@@ -4,12 +4,14 @@
 \alias{plot_variable}
 \title{Plot a variable}
 \usage{
-plot_variable(df, variable)
+plot_variable(df, variable, type = "numeric")
 }
 \arguments{
 \item{df}{a data.frame}
 
 \item{variable}{the variable to use.}
+
+\item{type}{numeric (default) or nominal.}
 }
 \description{
 It returns a bar or a histogram of the variable
