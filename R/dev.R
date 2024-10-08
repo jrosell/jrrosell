@@ -22,12 +22,8 @@ rebuild_package_and_check <- function(build_site = FALSE) {
     Language = "en"
   ))
   # usethis::use_pkgdown_github_pages()
-  usethis::use_package("R", type = "Depends", min_version = "4.3.0")
-  write(
-    "URL: https://jrosell.github.io/jrrosell, https://github.com/jrosell/jrrosell",
-    here::here("DESCRIPTION"),
-    append = TRUE
-  )
+  usethis::use_package("R", type = "Depends", min_version = "4.3.0")  
+  usethis::use_github_links()
   usethis::use_cc0_license()
   suggests_packages <- c(
     "styler",

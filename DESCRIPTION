@@ -5,8 +5,7 @@ Authors@R:
     person("Jordi", "Rosell", , "jroselln@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-4349-1458"))
 Description: Useful functions for personal usage.
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+License: CC0
 Encoding: UTF-8
 Language: en
 Roxygen: list(markdown = TRUE)
@@ -15,3 +14,53 @@ Depends:
     R (>= 4.3.0)
 URL: https://github.com/jrosell/jrrosell
 BugReports: https://github.com/jrosell/jrrosell/issues
+Suggests: 
+    beepr,
+    blastula,
+    devtools,
+    doFuture,
+    doParallel,
+    dplyr,
+    forcats,
+    future,
+    ggplot2,
+    glmnet,
+    glue,
+    hardhat,
+    here,
+    httr,
+    httr2,
+    janitor,
+    modeldata,
+    openxlsx,
+    pak,
+    parallel,
+    parallelly,
+    parsnip,
+    pkgdown,
+    readr,
+    recipes,
+    sf,
+    stacks,
+    styler,
+    testthat,
+    tibble,
+    tictoc,
+    tidymodels,
+    tune,
+    usethis,
+    workflows,
+    workflowsets,
+    xgboost
+Imports: 
+    curl,
+    extrafont,
+    jsonlite,
+    purrr,
+    rlang,
+    scales,
+    showtext,
+    stringi,
+    sysfonts,
+    tidyr
+LazyData: true
