@@ -1,6 +1,6 @@
 Package: jrrosell
 Title: Personal R package for Jordi Rosell
-Version: 0.0.0.9009
+Version: 0.0.0.9010
 Authors@R: 
     person("Jordi", "Rosell", , "jroselln@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-4349-1458"))
