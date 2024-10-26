@@ -318,7 +318,7 @@ fit_results <- function(wf, resamples, param_info = NULL, grid = 10, fn = "tune_
 #' @param resamples rset
 #' @param grids for glmnet and lightgbm tuning
 #' @param metric to be compared
-
+#' @export
 score_recipe <- function(rec,
                          resamples,
                          grids = list(10, 10),
@@ -366,4 +366,18 @@ score_recipe <- function(rec,
     stack = model_stack,
     stack_metrics = stack_metrics
   )
+}
+
+
+#' Center and scale double vectors
+#'
+#' @keywords tidymodels
+#' @rdname normalize_vec
+#' @param ... a double vector or multiple double vectors
+#' @examples
+#' normalize_vec(1, 2, 3, )
+#' @export
+normalize_vec <- \(...){
+  x <- rlang::dbl(...)
+  (x - mean(x, na.rm = TRUE)) / sqrt(stats::var(x, na.rm = TRUE))
 }

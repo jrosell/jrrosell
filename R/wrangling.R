@@ -230,3 +230,36 @@ plot_variable <- function(df, variable, ..., type = "numeric") {
     stop("Unsupported outcome variable type.")
   }
 }
+
+
+
+#' Add hash for each row
+#'
+#' It sorts the column names, it hash every row and add the column.
+#'
+#' @rdname add_row_hash
+#' @keywords wrangling
+#' @param df a data.frame
+#' @param primary_keys the column anmes of the primary key
+#' @examples
+#' df <- data.frame(
+#'   id = c(1, 2, 3),
+#'   name = c("AAAAA", "BBBB", "CCC")
+#' )
+#' add_row_hash(df, id)
+#' @export
+add_row_hash <- \(df, primary_keys) {
+  df <- df[, sort(names(df)), drop = FALSE]
+  df[["row_hash"]] <-
+    df |>
+    dplyr::group_nest({{ primary_keys }}) |>
+    dplyr::mutate(
+      row = purrr::map_chr(.data[["data"]], \(x) paste0(x, collapse = "|"))
+    ) |>
+    dplyr::mutate(
+      row_hash = purrr::map_chr(.data[["row"]], \(x) rlang::hash(x))
+    ) |>
+    dplyr::pull(.data[["row_hash"]])
+
+  df
+}

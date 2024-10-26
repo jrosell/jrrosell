@@ -9,3 +9,6 @@ _pkgdown.yml
 ^pkgdown$
 ^data-raw$
 ^\.github$
+benchmark-*
+default.nix
+.Rprofile
