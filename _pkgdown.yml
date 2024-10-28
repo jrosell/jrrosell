@@ -1,87 +1,55 @@
 url: https://jrosell.github.io/jrrosell/
 template:
   bootstrap: 5
-
-
 home:
   links:
   - text: About me
     href: https://elnostreraco.com/blog/quant-a/
-
-
 reference:
-
 - title: read and write
-  desc: >
+  desc: |
     Some functions to help reading and writing files.
   contents:
   - has_keyword("read")
   - has_keyword("write")
-
 - title: tidymodels
-  desc: >
+  desc: |
     Some functions to help using tidymodels.
-  contents:
-  - has_keyword("tidymodels")
-
+  contents: has_keyword("tidymodels")
 - title: graphing
-  desc: >
+  desc: |
     Some functions to help ploting and customize look and feel.
-  contents:
-  - has_keyword("graphing")
-
+  contents: has_keyword("graphing")
 - title: packages
-  desc: >
+  desc: |
     Some functions to help managing packages and package versions.
-  contents:
-  - has_keyword("packages")
-
+  contents: has_keyword("packages")
 - title: Data wrangling
-  desc: >
+  desc: |
     Some functions to help data wrangling in R.
-  contents:
-  - has_keyword("wrangling")
-
+  contents: has_keyword("wrangling")
 - title: processing
-  desc: >
+  desc: |
     Some functions to help processing in R.
-  contents:
-  - has_keyword("processing")
-
+  contents: has_keyword("processing")
 - title: pipe
-  desc: >
+  desc: |
     Some functions to help piping.
-  contents:
-  - has_keyword("pipe")
-
+  contents: has_keyword("pipe")
 - title: parallel
-  desc: >
+  desc: |
     Some functions to help with parallel computing in R .
-  contents:
-  - has_keyword("parallel")
-
+  contents: has_keyword("parallel")
 - title: types
-  desc: >
+  desc: |
     Some functions to help with types in R .
-  contents:
-  - has_keyword("types")
-
+  contents: has_keyword("types")
 - title: data
-  desc: >
+  desc: |
     Datasets and objects included in my personal R package.
   contents:
   - spain_provinces
   - spain_ccaas
-
-
-# news:
-#   releases:
-#   - text: "Version 1.0.0"
-#     href: https://www.tidyverse.org/blog/2020/06/dplyr-1-0-0/
-#   - text: "Version 0.8.3"
-#     href: https://www.tidyverse.org/articles/2019/07/dplyr-0-8-3/
-
-
 development:
   mode: auto
 

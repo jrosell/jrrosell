@@ -48,3 +48,4 @@ default.nix
 !/inst/extdata/*.parquet
 !/data/*.rds
 !/data/*.parquet
+docs

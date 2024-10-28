@@ -19,11 +19,12 @@ rebuild_package_and_check <- function(build_site = FALSE) {
       role = c("aut", "cre"),
       comment = c(ORCID = "0000-0002-4349-1458")
     ),
+    "URL" = "https://github.com/jrosell/jrrosell",
+    "BugReports" = "https://github.com/jrosell/jrrosell/issues",
     Language = "en"
   ))
   # usethis::use_pkgdown_github_pages()
-  usethis::use_package("R", type = "Depends", min_version = "4.3.0")  
-  usethis::use_github_links(overwrite = TRUE)
+  usethis::use_package("R", type = "Depends", min_version = "4.3.0")    
   usethis::use_cc0_license()
   suggests_packages <- c(
     "styler",
