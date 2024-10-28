@@ -23,7 +23,7 @@ rebuild_package_and_check <- function(build_site = FALSE) {
   ))
   # usethis::use_pkgdown_github_pages()
   usethis::use_package("R", type = "Depends", min_version = "4.3.0")  
-  usethis::use_github_links()
+  usethis::use_github_links(overwrite = TRUE)
   usethis::use_cc0_license()
   suggests_packages <- c(
     "styler",

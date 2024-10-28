@@ -263,3 +263,46 @@ add_row_hash <- \(df, primary_keys) {
 
   df
 }
+
+
+
+#' Sanitize title with dashes
+#'
+#' It generates slugs URLs as WordPress does
+#'
+#' @rdname sanitize_title_with_dashes
+#' @keywords wrangling
+#' @param title the title
+#' @examples
+#' sanitize_title_with_dashes("Hello world")
+#' @export
+sanitize_title_with_dashes <- function(title) {
+  # Remove HTML tags
+  title <- gsub("<[^>]+>", "", title)
+
+  # Preserve escaped octets
+  title <- gsub("%([a-fA-F0-9][a-fA-F0-9])", "---\\1---", title)
+
+  # Remove percent signs that are not part of an octet
+  title <- gsub("%", "", title)
+
+  # Restore octets
+  title <- gsub("---([a-fA-F0-9][a-fA-F0-9])---", "%\\1", title)
+
+  # Convert title to lowercase
+  title <- tolower(title)
+
+  # Remove remaining HTML entities
+  title <- gsub("&[^;]+;", "", title)
+
+  # Replace dots with hyphens
+  title <- gsub("\\.", "-", title)
+
+  # Remove invalid characters, replace whitespace with hyphens, and trim excess hyphens
+  title <- gsub("[^%a-z0-9 _-]", "", title)
+  title <- gsub("\\s+", "-", title)
+  title <- gsub("-+", "-", title)
+  title <- sub("^-|-$", "", title)
+
+  return(title)
+}
