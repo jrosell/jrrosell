@@ -253,7 +253,7 @@ workflow_elasticnet <- function(rec, engine = "glmnet", ...) {
   outcome <- rec |>
     summary() |>
     dplyr::filter(.data$role == "outcome") |>
-    dplyr::pull(.data$variable)
+    dplyr::pull("variable")
   outcome_vec <- rec$template[[outcome]]
   n_outcome <- dplyr::n_distinct(outcome_vec)
   is_reg <- class(outcome_vec) == "integer" | class(outcome_vec) == "double"
