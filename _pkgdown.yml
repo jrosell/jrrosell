@@ -32,6 +32,10 @@ reference:
   desc: |
     Some functions to help processing in R.
   contents: has_keyword("processing")
+- title: strings
+  desc: |
+    Some functions to help with strings in R .
+  contents: has_keyword("strings")
 - title: pipe
   desc: |
     Some functions to help piping.
