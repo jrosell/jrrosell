@@ -6,7 +6,7 @@ Authors@R:
            comment = c(ORCID = "0000-0002-4349-1458"))
 Description: Useful functions for personal usage.
 License: CC0
-URL: https://github.com/jrosell/jrrosell, https://jrosell.github.io/jrrosell/
+URL: https://github.com/jrosell/jrrosell
 BugReports: https://github.com/jrosell/jrrosell/issues
 Encoding: UTF-8
 Language: en
@@ -60,7 +60,9 @@ Imports:
     rlang,
     scales,
     showtext,
+    stringdist,
     stringi,
     sysfonts,
-    tidyr
+    tidyr,
+    tm
 LazyData: true

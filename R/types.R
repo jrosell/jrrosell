@@ -40,5 +40,3 @@ chars <- function(x, ...) {
   stopifnot("chars expects a single input; try sapply(x, chars)" = length(x) == 1)
   strsplit(x, "")[[1]]
 }
-
-
