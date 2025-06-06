@@ -22,6 +22,7 @@ Suggests:
     doParallel,
     dplyr,
     forcats,
+    fst,
     future,
     ggplot2,
     glmnet,
@@ -51,7 +52,8 @@ Suggests:
     usethis,
     workflows,
     workflowsets,
-    xgboost
+    xgboost,
+    yyjsonr
 Imports: 
     curl,
     extrafont,

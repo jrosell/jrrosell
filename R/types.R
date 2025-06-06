@@ -19,24 +19,3 @@ as.bitstring <- function(x) {
   bitstring <- paste(rev(bits), collapse = "")
   return(bitstring)
 }
-
-
-
-#' Create a vector of characters from a string
-#'
-#' @rdname chars
-#' @keywords types
-#' @param x a vector of characters of length 1.
-#' @param ... unused
-#' @details
-#' `chars` expects a single string as input. To create a list of these,
-#' consider `lapply(strings, chars)`.
-#' @return a vector of characters
-#' @examples
-#' chars("hola")
-#' @seealso [https://github.com/jonocarroll/charcuterie](https://github.com/jonocarroll/charcuterie)
-#' @export
-chars <- function(x, ...) {
-  stopifnot("chars expects a single input; try sapply(x, chars)" = length(x) == 1)
-  strsplit(x, "")[[1]]
-}

@@ -151,3 +151,13 @@ test_that("count_sorted works", {
 #   print(p_numeric)
 
 # })
+
+
+test_that("resp_body_yyjson works", {
+  resp <- request_test("/post") |>
+    httr2::req_body_json(letters) |>
+    httr2::req_perform()
+  json <- resp_body_yyjson(resp)
+
+  expect_equal(json$json, letters)
+})

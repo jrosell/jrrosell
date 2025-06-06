@@ -105,3 +105,59 @@ read_xlsx <- function(xlsxFile, ..., sheet = 1, startRow = 1) {
     ...
   )
 }
+
+is_response <- function(x) {
+  inherits(x, "httr2_response")
+}
+
+check_response <- function(resp, arg = rlang::caller_arg(resp), call = rlang::caller_env()) {
+  if (!missing(resp) && is_response(resp)) {
+    return(invisible(NULL))
+  }
+
+  message <- sprintf(
+    "%s must be %s.",
+    arg,
+    "an HTTP response object"
+  )
+  rlang::abort(message, call = call, arg = arg)
+}
+
+request_test <- function(template = "/get", ...) {
+  req <- httr2::request(httr2::example_url())
+  req <- httr2::req_template(req, template, ..., .env = rlang::caller_env())
+  req
+}
+
+#' Extract body from httr2 response using yyjsonr
+#'
+#' @rdname resp_body_yyjson
+#' @keywords read
+#' @param resp A httr2::response object, created by httr2::req_perform().
+#' @param check_type Should the type actually be checked? Provided as a
+#'   convenience for when using this function inside `resp_body_*` helpers.
+#' @param simplifyVector Should JSON arrays containing only primitives (i.e.
+#'   booleans, numbers, and strings) be caused to atomic vectors?
+#' @param ... Other parameters
+#'
+#' @export
+resp_body_yyjson <- function(
+    resp,
+    check_type = TRUE,
+    simplifyVector = FALSE,
+    ...) {
+  check_response(resp)
+  rlang::check_installed("yyjsonr")
+  httr2::resp_check_content_type(
+    resp,
+    valid_types = "application/json",
+    valid_suffix = "json",
+    check_type = check_type
+  )
+  text <- httr2::resp_body_string(resp, "UTF-8")
+  yyjsonr::read_json_str(
+    text,
+    length1_array_asis = !simplifyVector,
+    ...
+  )
+}

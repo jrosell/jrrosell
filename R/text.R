@@ -5,7 +5,7 @@
 #' It also transliterates text to ASCII, splits words, and reconstructs a clean text string suitable for analysis.
 #'
 #' @rdname prepare_text
-#' @keywords strings
+#' @keywords text
 #' @param text A character vector or object that can be coerced to a character string. Represents the input text to be cleaned.
 #' @param stopwords A character vector specifying stopwords removal. Defaults to `"spanish"` stopwords from the tm:stopwords package.
 #'
@@ -43,7 +43,7 @@ prepare_text <- function(text, stopwords = NULL) {
 #' calculates a similarity score normalized by string lengths.
 #'
 #' @rdname fuzzy_token_set_ratio
-#' @keywords strings
+#' @keywords text
 #' @param s1 A character string. The first string to compare.
 #' @param s2 A character string. The second string to compare.
 #' @param score_cutoff A numeric value (default is `0`) specifying the minimum similarity score threshold.
@@ -130,4 +130,121 @@ fuzzy_calculate_diff_and_lengths <- function(tokens_a, tokens_b) {
   r$sect_ab_dist <- (r$intersect_len > 0) + r$diff_ab_len
   r$sect_ba_dist <- (r$intersect_len > 0) + r$diff_ba_len
   r
+}
+
+
+
+#' Create a vector of characters from a string
+#'
+#' @rdname chars
+#' @keywords text
+#' @param x a vector of characters of length 1.
+#' @param ... unused
+#' @details
+#' `chars` expects a single string as input. To create a list of these,
+#' consider `lapply(strings, chars)`.
+#' @return a vector of characters
+#' @examples
+#' chars("hola")
+#' @seealso [https://github.com/jonocarroll/charcuterie](https://github.com/jonocarroll/charcuterie)
+#' @export
+chars <- function(x, ...) {
+  stopifnot("chars expects a single input; try sapply(x, chars)" = length(x) == 1)
+  strsplit(x, "")[[1]]
+}
+
+
+
+
+#' Get a sentiments by language
+#'
+#' The multilingual sentiment lexicon was obtained from here on 2024-12-18 https://aclanthology.org/P14-2063/
+#'
+#' @rdname get_sentiments_by_language
+#' @keywords text
+#' @param language two letters language code.
+#' @param lexicon default and only valid value "chen_skiena"
+#' @return A tibble with word and sentiment columns
+#' @examples
+#' get_sentiments_by_language("ca")
+#' @details
+#' The files were generated this way:
+#' chen_skiena_lexicon <-
+#'    bind_rows(
+#'      here::here("P14-2063.Datasets", "readable_neg_words_list.txt") |>
+#'      read_delim(delim = " ", col_names = c("word", "lang")) |>
+#'      mutate(sentiment = factor("negative", levels = c("negative", "positive"))),
+#'      here::here("P14-2063.Datasets", "readable_pos_words_list.txt") |>
+#'      read_delim(delim = " ", col_names = c("word", "lang")) |>
+#'      mutate(sentiment = factor("positive", levels = c("negative", "positive")))
+#'    )
+#'  chen_skiena_lexicon |>
+#'    write_fst(
+#'      here::here("inst", "extdata", "chen_skiena_lexicon.fst"),
+#'      compress = 100
+#'    )
+#' top_languages <- rlang::chr(
+#' ca = 'catalan',
+#' zh = 'chinese_simplified',
+#' da = 'danish',
+#' nl = 'dutch',
+#' en = 'english',
+#' eo = 'esperanto',
+#' fi = 'finnish',
+#' fr = 'french',
+#' de = 'german',
+#' el = 'greek',
+#' hu = 'hungarian',
+#' it = 'italian',
+#' la = 'latin',
+#' pt = 'portuguese',
+#' es = 'spanish',
+#' sv = 'swedish'
+#' )
+#' nrc_lexicon <- read_delim("NRC-Emotion-Lexicon-ForVariousLanguages.txt", delim = "\\t") |>
+#' janitor::clean_names() |>
+#' pivot_longer(cols = anger:trust, names_to = "sentiment") |>
+#' rename(english = english_word) |>
+#' pivot_longer(cols = -c(sentiment, value), names_to = "language", values_to = "word") |>
+#' filter(sentiment %in% c("positive", "negative")) |>
+#' filter(language %in% top_languages) |>
+#' transmute(
+#'     sentiment = factor(sentiment, c("negative", "positive")),
+#'     language = factor(language, unique(language)),
+#'     word = factor(word, unique(word)),
+#'   ) |>
+#'   glimpse()
+#' nrc_lexicon |>
+#'   write_fst(
+#'     here::here("nrc_lexicon.fst"),
+#'     compress = 100
+#'   )
+#' @seealso [https://juliasilge.github.io/tidytext/reference/get_sentiments.html](https://juliasilge.github.io/tidytext/reference/get_sentiments.html)
+#' @export
+get_sentiments_by_language <- \(language = "en", lexicon = "chen_skiena") {
+  if (!requireNamespace("fst")) {
+    stop("The package `fst` is required for this functionality")
+  }
+  read_fst <- utils::getFromNamespace("read_fst", "fst")
+  if (!lexicon %in% c("chen_skiena", "nrc")) {
+    stop("Use a supported lexicon")
+  }
+  if (lexicon == "chen_skiena") {
+    file_path <- system.file("extdata", "chen_skiena_lexicon.fst", package = "jrrosell")
+    if (!file.exists(file_path)) {
+      stop("Lexicon file not found.")
+    }
+    return(read_fst(file_path) |>
+      dplyr::filter(.data[["lang"]] == language) |>
+      dplyr::select(-dplyr::all_of("lang")))
+  }
+  if (lexicon == "nrc") {
+    file_path <- system.file("extdata", "nrc_lexicon.fst", package = "jrrosell")
+    if (!file.exists(file_path)) {
+      stop("Lexicon file not found.")
+    }
+    return(read_fst(file_path) |>
+      dplyr::filter(.data[["lang"]] == language) |>
+      dplyr::select(-dplyr::all_of("lang")))
+  }
 }

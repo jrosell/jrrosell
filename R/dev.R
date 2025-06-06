@@ -29,6 +29,7 @@ rebuild_package_and_check <- function(build_site = FALSE) {
   suggests_packages <- c(
     "styler",
     "sf",
+    "fst",
     "stacks",
     "workflowsets",
     "doParallel",
@@ -64,6 +65,7 @@ rebuild_package_and_check <- function(build_site = FALSE) {
     "here",
     "ggplot2",
     "extrafont",
+    "yyjsonr",
     "pak"
   )
   suggests_packages |> purrr::map(
