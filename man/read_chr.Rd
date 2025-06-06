@@ -4,7 +4,20 @@
 \alias{read_chr}
 \title{Read character columns with clean names}
 \usage{
-read_chr(file, delim = ",", locale = NULL, ...)
+read_chr(
+  file,
+  delim = ",",
+  locale = NULL,
+  ...,
+  date_names = "en",
+  date_format = "\%AD",
+  time_format = "\%AT",
+  decimal_mark = ".",
+  grouping_mark = "",
+  tz = "CET",
+  encoding = "UTF-8",
+  asciify = FALSE
+)
 }
 \arguments{
 \item{file}{Either a path to a file, a connection, or literal data (either a single string or a raw vector).}
@@ -14,6 +27,22 @@ read_chr(file, delim = ",", locale = NULL, ...)
 \item{locale}{The locale controls defaults that vary from place to place. The default locale is US-centric (like R), but you can use locale() to create your own locale that controls things like the default time zone, encoding, decimal mark, big mark, and day/month names.}
 
 \item{...}{Other parameters to readr::read_delim.}
+
+\item{date_names}{"en"}
+
+\item{date_format}{"\%AD"}
+
+\item{time_format}{"\%AT"}
+
+\item{decimal_mark}{"."}
+
+\item{grouping_mark}{""}
+
+\item{tz}{"CET"}
+
+\item{encoding}{"UTF-8"}
+
+\item{asciify}{FALSE}
 }
 \description{
 It's useful for reading the most common types of flat file data,
@@ -24,8 +53,7 @@ The read_chr function works like \code{readr::read_delim}, except that
 column sreturned would be characters and with clean names. It requires readr and janitor packages installed.
 }
 \examples{
-es <- readr::locale("es", tz = "Europe/Madrid", decimal_mark = ",", grouping_mark = ".")
-read_chr(readr::readr_example("mtcars.csv"), delim = ",", locale = es)
+read_chr(readr::readr_example("mtcars.csv"), delim = ",")
 
 }
 \keyword{read}

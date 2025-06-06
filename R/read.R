@@ -9,16 +9,36 @@
 #' @param delim Single character used to separate fields within a record.
 #' @param locale The locale controls defaults that vary from place to place. The default locale is US-centric (like R), but you can use locale() to create your own locale that controls things like the default time zone, encoding, decimal mark, big mark, and day/month names.
 #' @param ... Other parameters to readr::read_delim.
+
+#' @param date_names "en" from readr::locale
+#' @param date_format "%AD" from readr::locale
+#' @param time_format "%AT" from readr::locale
+#' @param decimal_mark "." from readr::locale
+#' @param grouping_mark "" from readr::locale
+#' @param tz "CET"
+#' @param encoding "UTF-8"
+#' @param asciify FALSE
 #'
 #' @details The read_chr function works like \code{readr::read_delim}, except that
 #' column sreturned would be characters and with clean names. It requires readr and janitor packages installed.
 #'
 #' @examples
-#' es <- readr::locale("es", tz = "Europe/Madrid", decimal_mark = ",", grouping_mark = ".")
-#' read_chr(readr::readr_example("mtcars.csv"), delim = ",", locale = es)
+#' read_chr(readr::readr_example("mtcars.csv"), delim = ",")
 #'
 #' @export
-read_chr <- function(file, delim = ",", locale = NULL, ...) {
+read_chr <- function(
+    file,
+    delim = ",",
+    locale = NULL,
+    ...,
+    date_names = "en",
+    date_format = "%AD",
+    time_format = "%AT",
+    decimal_mark = ".",
+    grouping_mark = "",
+    tz = "CET",
+    encoding = "UTF-8",
+    asciify = FALSE) {
   if (!requireNamespace("readr", quietly = TRUE)) {
     return(NULL)
   }
@@ -27,15 +47,21 @@ read_chr <- function(file, delim = ",", locale = NULL, ...) {
   }
   if (is.null(locale)) {
     locale <- readr::locale(
-      "en",
-      tz = "EST", decimal_mark = ".", grouping_mark = ""
+      date_names = date_names,
+      date_format = date_format,
+      time_format = time_format,
+      decimal_mark = decimal_mark,
+      grouping_mark = grouping_mark,
+      tz = tz,
+      encoding = encoding,
+      asciify = FALSE
     )
   }
   readr::read_delim(
     file,
     delim,
     col_types = readr::cols(.default = "c"),
-    name_repair = ~ janitor::make_clean_names(.),
+    name_repair = janitor::make_clean_names,
     skip_empty_rows = FALSE,
     locale = locale,
     ...
