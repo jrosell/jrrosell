@@ -13,6 +13,8 @@
 theme_set_roboto_darkblue <- function(...) {
   ggplot2::update_geom_defaults("rect", list(fill = "darkblue", alpha = 0.8))
   ggplot2::update_geom_defaults("line", list(color = "darkblue", alpha = 0.8))
+  ggplot2::update_geom_defaults("point", list(color = "darkblue", alpha = 0.8))
+  ggplot2::update_geom_defaults("bar", list(fill = "darkblue", alpha = 0.8))
   ggplot2::theme_set(theme_roboto(...))
 }
 

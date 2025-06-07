@@ -28,15 +28,15 @@ read_chr(
 
 \item{...}{Other parameters to readr::read_delim.}
 
-\item{date_names}{"en"}
+\item{date_names}{"en" from readr::locale}
 
-\item{date_format}{"\%AD"}
+\item{date_format}{"\%AD" from readr::locale}
 
-\item{time_format}{"\%AT"}
+\item{time_format}{"\%AT" from readr::locale}
 
-\item{decimal_mark}{"."}
+\item{decimal_mark}{"." from readr::locale}
 
-\item{grouping_mark}{""}
+\item{grouping_mark}{"" from readr::locale}
 
 \item{tz}{"CET"}
 

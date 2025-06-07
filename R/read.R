@@ -132,10 +132,12 @@ read_xlsx <- function(xlsxFile, ..., sheet = 1, startRow = 1) {
   )
 }
 
+#' @noRd
 is_response <- function(x) {
   inherits(x, "httr2_response")
 }
 
+#' @noRd
 check_response <- function(resp, arg = rlang::caller_arg(resp), call = rlang::caller_env()) {
   if (!missing(resp) && is_response(resp)) {
     return(invisible(NULL))
@@ -149,6 +151,7 @@ check_response <- function(resp, arg = rlang::caller_arg(resp), call = rlang::ca
   rlang::abort(message, call = call, arg = arg)
 }
 
+#' @noRd
 request_test <- function(template = "/get", ...) {
   req <- httr2::request(httr2::example_url())
   req <- httr2::req_template(req, template, ..., .env = rlang::caller_env())

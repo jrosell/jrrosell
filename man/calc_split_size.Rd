@@ -7,10 +7,18 @@
 \url{https://stats.stackexchange.com/a/304996/7387}
 }
 \usage{
-calc_split_size(std_err = 0.001)
+calc_split_size(
+  std_err = NULL,
+  confidence_interval = 0.95,
+  margin_error = 0.02
+)
 }
 \arguments{
-\item{std_err}{The desired std_err numeric (default 0.001)}
+\item{std_err}{The desired std_err numeric (default NULL)}
+
+\item{confidence_interval}{(default 0.95)}
+
+\item{margin_error}{(default 0.02)}
 }
 \description{
 From binary classification problems, with the desired std_err it returns the
@@ -22,6 +30,7 @@ s
 }
 \examples{
 calc_split_size()
+calc_split_size(confidence_interval = 0.95, margin_error = 0.02)
 calc_split_size(std_err = 0.02)
 
 }

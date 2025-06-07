@@ -7,10 +7,12 @@
 \url{https://stats.stackexchange.com/a/305063/7387}
 }
 \usage{
-calc_split_prop(df)
+calc_split_prop(df, k = 10)
 }
 \arguments{
 \item{df}{A data frame}
+
+\item{k}{number of desired folds (default 10)}
 }
 \description{
 From a data frame, it returns the minimal split proportion for validation.

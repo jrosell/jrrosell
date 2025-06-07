@@ -11,7 +11,7 @@ Useful functions for personal usage.
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/jrosell/jrrosell}
+  \item \url{https://jrosell.github.io/jrrosell}
   \item Report bugs at \url{https://github.com/jrosell/jrrosell/issues}
 }
 

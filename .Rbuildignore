@@ -12,3 +12,4 @@ _pkgdown.yml
 benchmark-*
 default.nix
 .Rprofile
+^README\.Rmd$

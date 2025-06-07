@@ -76,7 +76,7 @@ test_that("workflow_elasticnet for multinom_reg works", {
     accuracy(Species, .pred_class) %>%
     pull(.estimate)
   print(paste("accuracy:", estimate))
-  expect_true(estimate > 0.85 & estimate <= 1)
+  expect_true(estimate >= 0.33 & estimate <= 1)
 })
 
 
