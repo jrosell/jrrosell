@@ -60,7 +60,9 @@ Sent from R at {Sys.time()}")), ...) |>
 
 
 #' Name unnamed chunks in .Rmd or .qmd files
-#' Use with caution.
+#' 
+#' Use with caution. It will overwrite your files.
+#' 
 #' @rdname name_unnamed_chunks
 #' @keywords processing
 #' @param file_path the file name
@@ -82,7 +84,7 @@ name_unnamed_chunks <- function(file_path) {
 generate_weird_name <- function() {
   adjectives <- c("bold", "brave", "calm", "clever", "eager", "fancy", "friendly", "gentle", "happy", "jolly")
   animals <- c("elephant", "fox", "giraffe", "hippo", "jaguar", "koala", "lemur", "moose", "otter", "panda")
-  paste(sample(adjectives, 1), sample(animals, 1), round(stats::runif(1, 10, 99)), sep = "_")
+  paste(sample(adjectives, 1), sample(animals, 1), round(stats::runif(1, 10, 999)), sep = "_")
 }
 
 #' @noRd

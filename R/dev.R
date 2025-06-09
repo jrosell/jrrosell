@@ -3,9 +3,8 @@
 #' if (FALSE) {
 #'   devtools::load_all(); rebuild_package_and_check(build_site = TRUE)
 #'   usethis::use_import_from(package = "stats", fun = "qnorm")
-#'   usethis::use_version(which = "dev", push = FALSE)
-#'   usethis::use_github_release()
 #'   rhub::rhub_check(platforms = "windows", r_versions = "4.5")
+#'   usethis::use_version(which = "dev", push = PUSH)
 #'   usethis::use_github_release()
 #' }
 #'
