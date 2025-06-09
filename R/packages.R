@@ -46,15 +46,15 @@ package_github_name <- function(x, file_lines = NULL) {
 #'
 #' Check if the last main github version is installed.
 #'
-#' @rdname check_installed_gihub
+#' @rdname check_installed_github
 #' @keywords packages
-#' @param repo a github repo/package. Ex: check_installed_gihub("tidyverse/dplyr")
+#' @param repo a github repo/package. Ex: check_installed_github("tidyverse/dplyr")
 #' @examples
 #' if (FALSE) {
-#'   check_installed_gihub("jrosell/jrrosell")
+#'   check_installed_github("jrosell/jrrosell")
 #' }
 #' @export
-check_installed_gihub <- function(repo) {
+check_installed_github <- function(repo) {
   # options("rlib_restart_package_not_found" = TRUE)
   file_lines <- package_github_read(repo)
   name <- package_github_name(repo, file_lines = file_lines)
@@ -67,8 +67,6 @@ check_installed_gihub <- function(repo) {
 #' @noRd
 #' @keywords internal
 package_github_read <- function(x) {
-  cat(glue::glue("package_github_read(\"{x}\")"))
-  cat("\n")
   glue::glue("https://raw.githubusercontent.com/{x}/master/DESCRIPTION") |>
     readLines()
 }
