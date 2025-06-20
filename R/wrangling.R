@@ -268,7 +268,7 @@ add_row_hash <- \(df, primary_keys) {
 
 #' Sanitize title with dashes
 #'
-#' It generates slugs URLs as WordPress does
+#' It generates slug URLs as WordPress does
 #'
 #' @rdname sanitize_title_with_dashes
 #' @keywords wrangling
@@ -277,6 +277,7 @@ add_row_hash <- \(df, primary_keys) {
 #' sanitize_title_with_dashes("Hello world")
 #' @export
 sanitize_title_with_dashes <- function(title) {
+  if (length(title) != 1 || !is.character(title)) stop("title must be a string not a vector")
   # Remove HTML tags
   title <- gsub("<[^>]+>", "", title)
 
@@ -305,4 +306,22 @@ sanitize_title_with_dashes <- function(title) {
   title <- sub("^-|-$", "", title)
 
   return(title)
+}
+
+#' Slugify character vectors
+#'
+#' It generates slug URLs handling ASCII normalization
+#'
+#' @rdname slugify
+#' @keywords wrangling
+#' @param x a character vector
+#' @examples
+#' sanitize_title_with_dashes("Hello world")
+#' @export
+slugify <- function(x) {
+  if (!is.character(x)) stop("x must be a character vector")
+  purrr::map_chr(x, function(title) {
+    iconv(title, from = "UTF-8", to = "ASCII//TRANSLIT") |>
+      sanitize_title_with_dashes()
+  })
 }

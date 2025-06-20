@@ -2,8 +2,7 @@
 % Please edit documentation in R/processing.R
 \name{name_unnamed_chunks}
 \alias{name_unnamed_chunks}
-\title{Name unnamed chunks in .Rmd or .qmd files
-Use with caution.}
+\title{Name unnamed chunks in .Rmd or .qmd files}
 \usage{
 name_unnamed_chunks(file_path)
 }
@@ -11,7 +10,6 @@ name_unnamed_chunks(file_path)
 \item{file_path}{the file name}
 }
 \description{
-Name unnamed chunks in .Rmd or .qmd files
-Use with caution.
+Use with caution. It will overwrite your files.
 }
 \keyword{processing}

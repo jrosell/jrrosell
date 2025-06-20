@@ -60,9 +60,9 @@ Sent from R at {Sys.time()}")), ...) |>
 
 
 #' Name unnamed chunks in .Rmd or .qmd files
-#' 
+#'
 #' Use with caution. It will overwrite your files.
-#' 
+#'
 #' @rdname name_unnamed_chunks
 #' @keywords processing
 #' @param file_path the file name
