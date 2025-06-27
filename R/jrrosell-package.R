@@ -5,5 +5,6 @@
 #' @importFrom rlang .data
 #' @importFrom rlang .env
 #' @importFrom stats qnorm
+#' @importFrom utils memory.size
 ## usethis namespace: end
 NULL

@@ -49,3 +49,4 @@ default.nix
 !/data/*.rds
 !/data/*.parquet
 docs
+*\.code-workspace

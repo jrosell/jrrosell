@@ -17,7 +17,7 @@ Select cores in max/min of the available cores.
 \details{
 The detect_cores function uses parallelly
 package. It returns the desired max cores if available or it fails if not
-min cores are available.
+min cores are available (excluding parallelly.availableCores.omit reserved cores or 1 if not defined).
 }
 \examples{
 cores <- detect_cores(max = 5, min = 1)
