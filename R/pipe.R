@@ -53,3 +53,29 @@ aside <- function(x, ...) {
   list(...)
   x
 }
+
+
+#' End a pipe
+#'
+#' It prints the value and it returns return invisible(NUL)
+#'
+#' @rdname end_pipe
+#' @keywords pipe
+#' @param x An object
+#' @param expr An expresion
+#' @examples
+#' library(ggplot2)
+#' rnorm(200) |>
+#'   matrix(ncol = 2) |>
+#'   as.data.frame() |>
+#'   end_pipe({
+#'     ggplot(x, aes(V1, V2)) +
+#'       geom_point()
+#'   })
+#'
+#' @export
+end_pipe <- function(x, expr) {
+  expr_sub <- substitute(expr)
+  val <- eval(expr_sub, list(x = x), parent.frame())
+  print(val)
+}
