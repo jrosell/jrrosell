@@ -23,6 +23,7 @@
 <url><loc>https://jrosell.github.io/jrrosell/reference/jrrosell-package.html</loc></url>
 <url><loc>https://jrosell.github.io/jrrosell/reference/last_fit_metrics.html</loc></url>
 <url><loc>https://jrosell.github.io/jrrosell/reference/name_unnamed_chunks.html</loc></url>
+<url><loc>https://jrosell.github.io/jrrosell/reference/normalize_text.html</loc></url>
 <url><loc>https://jrosell.github.io/jrrosell/reference/normalize_vec.html</loc></url>
 <url><loc>https://jrosell.github.io/jrrosell/reference/notify_finished.html</loc></url>
 <url><loc>https://jrosell.github.io/jrrosell/reference/package_github_name.html</loc></url>
@@ -33,10 +34,13 @@
 <url><loc>https://jrosell.github.io/jrrosell/reference/plot_variable.html</loc></url>
 <url><loc>https://jrosell.github.io/jrrosell/reference/prep_juice.html</loc></url>
 <url><loc>https://jrosell.github.io/jrrosell/reference/prep_juice_ncol.html</loc></url>
+<url><loc>https://jrosell.github.io/jrrosell/reference/prepare_docs.html</loc></url>
 <url><loc>https://jrosell.github.io/jrrosell/reference/prepare_text.html</loc></url>
+<url><loc>https://jrosell.github.io/jrrosell/reference/prepare_tokens.html</loc></url>
 <url><loc>https://jrosell.github.io/jrrosell/reference/read_chr.html</loc></url>
 <url><loc>https://jrosell.github.io/jrrosell/reference/read_url.html</loc></url>
 <url><loc>https://jrosell.github.io/jrrosell/reference/read_xlsx.html</loc></url>
+<url><loc>https://jrosell.github.io/jrrosell/reference/remove_stopwords.html</loc></url>
 <url><loc>https://jrosell.github.io/jrrosell/reference/request_max_safe_cores.html</loc></url>
 <url><loc>https://jrosell.github.io/jrrosell/reference/resp_body_yyjson.html</loc></url>
 <url><loc>https://jrosell.github.io/jrrosell/reference/sanitize_title_with_dashes.html</loc></url>
@@ -49,6 +53,7 @@
 <url><loc>https://jrosell.github.io/jrrosell/reference/tee.html</loc></url>
 <url><loc>https://jrosell.github.io/jrrosell/reference/theme_roboto.html</loc></url>
 <url><loc>https://jrosell.github.io/jrrosell/reference/theme_set_roboto_darkblue.html</loc></url>
+<url><loc>https://jrosell.github.io/jrrosell/reference/tokenize_text.html</loc></url>
 <url><loc>https://jrosell.github.io/jrrosell/reference/update_step.html</loc></url>
 <url><loc>https://jrosell.github.io/jrrosell/reference/workflow_boost_tree.html</loc></url>
 <url><loc>https://jrosell.github.io/jrrosell/reference/workflow_elasticnet.html</loc></url>
