@@ -57,7 +57,7 @@ aside <- function(x, ...) {
 
 #' End a pipe
 #'
-#' It prints the value and it returns return invisible(NUL)
+#' Print and expression and return invisible NULL at the end of a pipe.
 #'
 #' @rdname end_pipe
 #' @keywords pipe

@@ -12,7 +12,7 @@ end_pipe(x, expr)
 \item{expr}{An expresion}
 }
 \description{
-It prints the value and it returns return invisible(NUL)
+Print and expression and return invisible NULL at the end of a pipe.
 }
 \examples{
 library(ggplot2)

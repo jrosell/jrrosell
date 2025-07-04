@@ -70,31 +70,38 @@ read_chr <- function(
 
 #' Read the html text of an url
 #'
-#' It's useful for getting the text for webpages in a single character vector.
+
+
+#' Read the HTML text of a URL with rate-limiting
+#'
+#' It's useful for getting the text of webpages in a single character vector.
 #'
 #' @rdname read_url
 #' @keywords read
-#' @param url Full url including http or https protocol and the page path.
-#' @param sleep Seconds to sleep after the request is done and before returning the result.
+#' @param url Full URL to request
+#' @param sleep Time (in seconds) to refill the bucket. Default: 1
+#' @param capacity Max requests per refill period. Default: 1 (i.e., one request every `sleep` seconds)
+#' @param realm Optional unique throttling scope. Defaults to domain of URL.
 #'
-#' @details The read_url function works uses rvest::read_html and purr::possibly
-#' and it's fault tolearnt.
+#' @return HTML content as string or NULL on failure
 #'
 #' @examples
 #' if (FALSE) read_url("https://www.google.cat/", sleep = 1)
 #'
 #' @export
-read_url <- function(url, sleep = 0) {
-  if (!requireNamespace("purrr", quietly = TRUE)) stop("purrr package is required")
-  if (!requireNamespace("httr", quietly = TRUE)) stop("httr package is required")
+read_url <- function(url, sleep = 1, capacity = 1, realm = NULL) {
+  if (!requireNamespace("httr2", quietly = TRUE)) stop("httr2 package required")
+  if (!requireNamespace("purrr", quietly = TRUE)) stop("purrr package required")
 
-  possibly_read_url <- purrr::possibly(httr::GET, quiet = TRUE) |>
-    purrr::possibly(rawToChar, quiet = TRUE)
+  possibly_read <- purrr::possibly(function(url) {
+    req <- httr2::request(url) |>
+      httr2::req_throttle(capacity = capacity, fill_time_s = sleep, realm = realm)
 
-  result <- possibly_read_url(url)
-  Sys.sleep(sleep)
+    resp <- httr2::req_perform(req)
+    httr2::resp_body_string(resp)
+  }, otherwise = NULL, quiet = TRUE)
 
-  return(result)
+  possibly_read(url)
 }
 
 

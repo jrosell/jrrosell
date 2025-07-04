@@ -29,7 +29,6 @@ Suggests:
     glue,
     hardhat,
     here,
-    httr,
     httr2,
     janitor,
     modeldata,

@@ -4,19 +4,25 @@
 \alias{read_url}
 \title{Read the html text of an url}
 \usage{
-read_url(url, sleep = 0)
+read_url(url, sleep = 1, capacity = 1, realm = NULL)
 }
 \arguments{
-\item{url}{Full url including http or https protocol and the page path.}
+\item{url}{Full URL to request}
 
-\item{sleep}{Seconds to sleep after the request is done and before returning the result.}
+\item{sleep}{Time (in seconds) to refill the bucket. Default: 1}
+
+\item{capacity}{Max requests per refill period. Default: 1 (i.e., one request every \code{sleep} seconds)}
+
+\item{realm}{Optional unique throttling scope. Defaults to domain of URL.}
+}
+\value{
+HTML content as string or NULL on failure
 }
 \description{
-It's useful for getting the text for webpages in a single character vector.
+Read the HTML text of a URL with rate-limiting
 }
 \details{
-The read_url function works uses rvest::read_html and purr::possibly
-and it's fault tolearnt.
+It's useful for getting the text of webpages in a single character vector.
 }
 \examples{
 if (FALSE) read_url("https://www.google.cat/", sleep = 1)
