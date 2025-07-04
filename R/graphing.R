@@ -39,14 +39,15 @@ theme_set_roboto_darkblue <- function(...) {
 #' ggplot(iris, aes(Species)) +
 #'   geom_bar()
 #' @export
-theme_roboto <- function(base_size = 11,
-                         strip_text_size = 12,
-                         strip_text_margin = 5,
-                         subtitle_size = 13,
-                         subtitle_margin = 10,
-                         plot_title_size = 16,
-                         plot_title_margin = 10,
-                         ...) {
+theme_roboto <- function(
+    base_size = 13,
+    strip_text_size = 14,
+    strip_text_margin = 6,
+    subtitle_size = 14,
+    subtitle_margin = 10,
+    plot_title_size = 18,
+    plot_title_margin = 12,
+    ...) {
   ret <- ggplot2::theme_minimal(
     base_family = "Roboto Condensed",
     base_size = base_size, ...

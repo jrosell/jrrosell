@@ -2,6 +2,8 @@
 output:
   github_document:
     html_preview: false
+  html_document:
+    self_contained: true
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -51,6 +53,7 @@ ggplot(iris, aes(Species)) +
 You get:
 
 ```{r, message = FALSE}
+library(ggplot2)
 library(jrrosell)
 theme_set_roboto_darkblue()
 

@@ -69,6 +69,8 @@ rebuild_package_and_check <- function(build_site = FALSE) {
     "extrafont",
     "yyjsonr",
     "webfakes",
+    "spacyr",
+    "udpipe",
     "pak"
   )
   suggests_packages |>

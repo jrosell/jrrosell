@@ -6,8 +6,7 @@
 #'
 #' @rdname prepare_text
 #' @keywords text
-#' @param text A character vector or object that can be coerced to a character string. Represents the input text to be cleaned.
-#' @param stopwords A character vector specifying stopwords removal. Defaults to `"spanish"` stopwords from the tm:stopwords package.
+#' @param ... paramters passed to `"prepare_tokens"`
 #'
 #' @return A cleaned character string, with stopwords removed and text formatted for analysis.
 #' @examples
@@ -17,23 +16,199 @@
 #' @importFrom purrr keep
 #' @importFrom tm stopwords
 #' @export
-prepare_text <- function(text, stopwords = NULL) {
-  if (is.null(stopwords)) {
-    stopwords <- tm::stopwords("spanish")
-  }
-  text |>
-    as.character() |>
-    tolower() |>
-    gsub("\\d+", "", x = _) |>
-    gsub("[^a-zA-Z0-9\\s]", " ", x = _) |>
-    gsub("\\s+", " ", x = _) |>
-    trimws() |>
-    iconv(to = "ASCII//TRANSLIT") |>
-    strsplit("\\s+") |>
-    unlist() |>
-    purrr::keep(\(words) !words %in% stopwords) |>
+prepare_text <- function(...) {
+  prepare_tokens(...) |>
     paste(collapse = " ")
 }
+
+#' Prepare tokens from text for Analysis
+#'
+#' This function processes a given text string by converting it to lowercase, removing numbers,
+#' non-alphanumeric characters, extra whitespace, and stopwords based on a specified language.
+#' It also transliterates text to ASCII, splits words, and reconstructs a clean text string suitable for analysis.
+#'
+#' @rdname prepare_tokens
+#' @keywords text
+#' @param text A character vector or object that can be coerced to a character string. Represents the input text to be cleaned.
+#' @param stopwords A character vector specifying stopwords removal. Defaults tm:stopwords package.
+#' @param lang defaults to `"spanish"`
+#' @param sep separator for spliting defaults to `"\\s+"`
+#' @param remove_digits = TRUE
+#' @param remove_accents = TRUE
+#' @param lemmatize = c("none", "udpipe", "spacyr") defaults to `"none"`
+#' @param model_dir defaults to getwd()
+#'
+#' @return A cleaned character vector, with stopwords removed and text formatted for analysis and can be lemmatized optionally and then returns a character vector of lemmas.
+#' @examples
+#' # Example usage:
+#' prepare_tokens("¡Hola! Esto es una prueba 123.", lemmatize = "none")
+#'
+#' @export
+prepare_tokens <- function(
+    text, stopwords = NULL, lang = "spanish", sep = "\\s+",
+    remove_digits = TRUE, remove_accents = TRUE, lemmatize = c("none", "udpipe", "spacyr"), model_dir = getwd()) {
+  lemmatize <- match.arg(lemmatize)
+  tokens <- text |>
+    normalize_text(remove_digits = remove_digits, remove_accents = remove_accents) |>
+    tokenize_text(sep = sep) |>
+    remove_stopwords(stopwords = stopwords, lang = lang)
+
+  if (lemmatize == "udpipe") {
+    ud_model <- udpipe::udpipe_download_model(language = lang, model_dir = model_dir, overwrite = FALSE)
+    ud_model <- udpipe::udpipe_load_model(ud_model$file_model)
+    if (is.null(ud_model)) stop("Error loading the udpipe model for lemmatization")
+    ann <- udpipe::udpipe_annotate(ud_model, x = paste(tokens, collapse = " ")) |> tibble::as_tibble()
+    tokens <- ann$lemma[!is.na(ann$lemma)]
+  }
+
+  if (lemmatize == "spacyr") {
+    spacy_model <- get_spacy_model(lang)
+    # if (!spacyr::spacy_initialized()) spacyr::spacy_initialize(model = lang)
+    parsed <- spacyr::spacy_parse(paste(tokens, collapse = " "), lemma = TRUE)
+    tokens <- parsed$lemma[!is.na(parsed$lemma)]
+  }
+
+  tokens
+}
+
+#' @noRd
+get_spacy_model <- function(lang) {
+  spacy_model <- lang |>
+    switch(
+      german = "de_core_news_sm",
+      french = "fr_core_news_sm",
+      italian = "it_core_news_sm",
+      portuguese = "pt_core_news_sm",
+      polish = "pl_core_news_sm",
+      catalan = "ca_core_news_sm",
+      spanish = "es_core_news_lg",
+      english = "en_core_web_lg",
+      "xx_ent_wiki_sm"
+    )
+  if (!get("spacy_initialized", envir = .jrrosell_env, inherits = FALSE)) {
+    tryCatch(
+      {
+        spacyr::spacy_install(force = FALSE)
+        spacyr::spacy_download_langmodel(lang_models = spacy_model, force = FALSE)
+        assign("spacy_initialized", TRUE, envir = .jrrosell_env)
+      },
+      error = function(e) {
+        stop("spacyr failed to initialize. Ensure the correct language model is installed.")
+      }
+    )
+    spacyr::spacy_initialize(model = spacy_model)
+  }
+}
+
+#' Prepare docs for Analysis
+#'
+#' @rdname prepare_docs
+#' @keywords text
+#' @param df data frame with and id and text columns.
+#' @param id column name defaults to `"id"`
+#' @param text column name defaults to `"text"`
+#' @param ... paramters passed to `"prepare_tokens"`
+#'
+#' @return A df with a list of tokens and character vector prepared_text columns.
+#' @examples
+#' # Example usage:
+#' prepare_docs(data.frame(id = 1, text = "¡Hola! Esto es una prueba 123."))
+#'
+#' @export
+prepare_docs <- function(df, id = "id", text = "text", ...) {
+  stopifnot(id %in% names(df), text %in% names(df))
+
+  df |>
+    dplyr::mutate(
+      tokens = purrr::map(.data[[text]], ~ prepare_tokens(.x, ...)),
+      prepared_text = purrr::map_chr(.data[["tokens"]], ~ paste(.x, collapse = " "))
+    )
+}
+
+#' Normalize text
+#'
+#' This function processes a given text string by converting it to lowercase, removing numbers,
+#' non-alphanumeric characters, extra whitespace.
+#' It also transliterates text to ASCII, splits words, and reconstructs a clean text string suitable for analysis.
+#'
+#' @rdname normalize_text
+#' @keywords text
+#' @param text A character vector or object that can be coerced to a character string. Represents the input text to be cleaned.
+#' @param remove_digits = TRUE
+#' @param remove_accents = TRUE
+#'
+#' @return A normalized character vector
+#' @examples
+#' # Example usage:
+#' normalize_text("¡Hola! Esto es una prueba 123.")
+#'
+#' @export
+normalize_text <- \(text, remove_digits = TRUE, remove_accents = TRUE){
+  text <- as.character(text) |> tolower()
+  if (remove_digits) {
+    text <- gsub("\\d+", "", text)
+    regex <- "[^a-zA-Z\\s]"
+  } else {
+    regex <- "[^a-zA-Z0-9\\s]"
+  }
+  if (remove_accents) {
+    text <- iconv(text, to = "ASCII//TRANSLIT")
+  }
+  text |>
+    gsub(regex, " ", x = _) |>
+    gsub("\\s+", " ", x = _) |>
+    trimws()
+}
+
+#' Tokenize text
+#'
+#' This function generates a character vector for a given text string
+#'
+#' @rdname tokenize_text
+#' @keywords text
+#' @param text A character vector or object that can be coerced to a character string. Represents the input text to be cleaned.
+#' @param  sep = "\\s+"
+#'
+#' @return A character vector
+#' @examples
+#' # Example usage:
+#' normalize_text("¡Hola! Esto es una prueba 123.") |> tokenize_text()
+#'
+#' @export
+tokenize_text <- function(text, sep = "\\s+") {
+  text |>
+    strsplit(sep) |>
+    unlist()
+}
+
+#' Remove stopwords
+#'
+#' This function processes character vectors and remove the specified stop words
+#' or the stoop words of the langauge from the tm package
+#'
+#' @rdname remove_stopwords
+#' @keywords text
+#' @param text A character vector or object that can be coerced to a character string. Represents the input text to be cleaned.
+#' @param stopwords A character vector specifying stopwords removal. Defaults tm:stopwords package.
+#' @param lang defaults to `"spanish"`
+#'
+#' @return A character vector without stopwords
+#' @examples
+#' # Example usage:
+#' normalize_text("¡Hola! Esto es una prueba 123.") |>
+#'   tokenize_text() |>
+#'   remove_stopwords()
+#'
+#' @export
+remove_stopwords <- \(text, stopwords = NULL, lang = "spanish"){
+  if (is.null(stopwords)) {
+    stopwords <- tm::stopwords(lang)
+  }
+  text |>
+    purrr::keep(\(x) !x %in% stopwords)
+}
+
+
 
 #' Fuzzy Token Set Ratio
 #'

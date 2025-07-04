@@ -4,12 +4,10 @@
 \alias{prepare_text}
 \title{Prepare Text for Analysis}
 \usage{
-prepare_text(text, stopwords = NULL)
+prepare_text(...)
 }
 \arguments{
-\item{text}{A character vector or object that can be coerced to a character string. Represents the input text to be cleaned.}
-
-\item{stopwords}{A character vector specifying stopwords removal. Defaults to \code{"spanish"} stopwords from the tm:stopwords package.}
+\item{...}{paramters passed to \code{"prepare_tokens"}}
 }
 \value{
 A cleaned character string, with stopwords removed and text formatted for analysis.

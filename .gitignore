@@ -50,3 +50,5 @@ default.nix
 !/data/*.parquet
 docs
 *\.code-workspace
+README.html
+README_files/

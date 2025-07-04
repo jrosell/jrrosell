@@ -39,6 +39,7 @@ ggplot(iris, aes(Species)) +
 You get:
 
 ``` r
+library(ggplot2)
 library(jrrosell)
 theme_set_roboto_darkblue()
 
