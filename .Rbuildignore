@@ -13,4 +13,6 @@ benchmark-*
 default.nix
 .Rprofile
 ^README\.Rmd$
+^README\.html$
 ^.*\.code-workspace
+README_files/

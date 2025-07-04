@@ -23,12 +23,12 @@ options(tibble.print_min = 5, tibble.print_max = 5)
 
 ## Overview
 
-jrrosell is a personal R package for Jordi Rosell
+[jrrosell] is a personal R package for Jordi Rosell.
 
 ## Installation
 
 ```{r, eval = FALSE}
-# Ton get the last r-universe release, use:
+# To get the last r-universe release, use:
 install.packages("jrrosell", repos = c("https://jrosell.r-universe.dev", "https://cloud.r-project.org"))
 
 # For the last development version, use:
@@ -37,20 +37,28 @@ pak::pak("jrosell/jrrosell")
 
 ## Usage
 
-For theming ggplot plots:
+For example, you can use it for theming ggplot plots. 
+
+Instead of:
 
 ```{r, message = FALSE}
-library(jrrosell)
 library(ggplot2)
 
 ggplot(iris, aes(Species)) +
   geom_bar()
+```
 
+You get:
+
+```{r, message = FALSE}
+library(jrrosell)
 theme_set_roboto_darkblue()
 
 ggplot(iris, aes(Species)) +
   geom_bar()
 ```
+
+Are you looking for other functions? [Check the reference here](https://jrosell.github.io/jrrosell/reference/index.html).
 
 ## Getting help
 
