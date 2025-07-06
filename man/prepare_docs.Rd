@@ -4,19 +4,15 @@
 \alias{prepare_docs}
 \title{Prepare docs for Analysis}
 \usage{
-prepare_docs(df, id = "id", text = "text", ...)
+prepare_docs(df, ...)
 }
 \arguments{
 \item{df}{data frame with and id and text columns.}
 
-\item{id}{column name defaults to \code{"id"}}
-
-\item{text}{column name defaults to \code{"text"}}
-
 \item{...}{paramters passed to \code{"prepare_tokens"}}
 }
 \value{
-A df with a list of tokens and character vector prepared_text columns.
+A df with a list of tokens and character vector prepared_text columns for documents at column id and text at column "text"
 }
 \description{
 Prepare docs for Analysis

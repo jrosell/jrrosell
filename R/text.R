@@ -105,22 +105,20 @@ get_spacy_model <- function(lang) {
 #' @rdname prepare_docs
 #' @keywords text
 #' @param df data frame with and id and text columns.
-#' @param id column name defaults to `"id"`
-#' @param text column name defaults to `"text"`
 #' @param ... paramters passed to `"prepare_tokens"`
 #'
-#' @return A df with a list of tokens and character vector prepared_text columns.
+#' @return A df with a list of tokens and character vector prepared_text columns for documents at column id and text at column "text"
 #' @examples
 #' # Example usage:
 #' prepare_docs(data.frame(id = 1, text = "¡Hola! Esto es una prueba 123."))
 #'
 #' @export
-prepare_docs <- function(df, id = "id", text = "text", ...) {
-  stopifnot(id %in% names(df), text %in% names(df))
+prepare_docs <- function(df, ...) {
+  stopifnot("id" %in% names(df), "text" %in% names(df))
 
   df |>
     dplyr::mutate(
-      tokens = purrr::map(.data[[text]], ~ prepare_tokens(.x, ...)),
+      tokens = purrr::map(.data[["text"]], ~ prepare_tokens(.x, ...)),
       prepared_text = purrr::map_chr(.data[["tokens"]], ~ paste(.x, collapse = " "))
     )
 }
