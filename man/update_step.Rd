@@ -16,9 +16,4 @@ update_step(object, target_id, ...)
 \description{
 Update the vaules of a specific recipe step located by id
 }
-\examples{
-recipes::recipe(spray ~ ., data = InsectSprays) |>
-  recipes::step_ns(count, deg_free = hardhat::tune(), id = "ns") |>
-  update_step("ns", deg_free = 1)
-}
 \keyword{tidymodels}

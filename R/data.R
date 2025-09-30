@@ -9,10 +9,6 @@
 #'   \item{geometry}{}
 #' }
 #' @source <https://github.com/koldLight/curso-r-dataviz/blob/master/dat/spain_ccaas.geojson>
-#' @examples
-#' library(sf)
-#' data(spain_ccaas)
-#' head(spain_ccaas)
 "spain_ccaas"
 
 #' spain_provinces
@@ -26,8 +22,4 @@
 #'   \item{geometry}{}
 #' }
 #' @source <https://github.com/koldLight/curso-r-dataviz/blob/master/dat/spain_provinces.geojson>
-#' @examples
-#' library(sf)
-#' data(spain_provinces)
-#' head(spain_provinces)
 "spain_provinces"

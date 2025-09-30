@@ -17,9 +17,4 @@ A character vector
 \description{
 This function generates a character vector for a given text string
 }
-\examples{
-# Example usage:
-normalize_text("¡Hola! Esto es una prueba 123.") |> tokenize_text()
-
-}
 \keyword{text}

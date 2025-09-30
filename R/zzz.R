@@ -10,11 +10,14 @@
 
 #' @noRd
 .onLoad <- function(libname, pkgname) {
-  try({
-    sysfonts::font_add_google("Roboto")
-    sysfonts::font_add_google("Roboto Condensed")
-    showtext::showtext_auto()
-  })
+  if (interactive()) {
+    try({
+      sysfonts::font_add_google("Roboto")
+      sysfonts::font_add_google("Roboto Condensed")
+      showtext::showtext_auto()
+      extrafont::loadfonts(device = "all", quiet = TRUE)
+    })
+  }
   .jrrosell_env$roboto_installed <- FALSE
   n_roboto <-
     extrafont::fonts() |>
@@ -23,8 +26,8 @@
   if (n_roboto > 0) {
     .jrrosell_env$roboto_installed <- TRUE
   }
-  extrafont::loadfonts(device = "all", quiet = TRUE)
 }
+
 
 #' @noRd
 ignore_unused_imports <- function() {

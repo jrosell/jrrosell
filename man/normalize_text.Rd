@@ -21,9 +21,4 @@ This function processes a given text string by converting it to lowercase, remov
 non-alphanumeric characters, extra whitespace.
 It also transliterates text to ASCII, splits words, and reconstructs a clean text string suitable for analysis.
 }
-\examples{
-# Example usage:
-normalize_text("¡Hola! Esto es una prueba 123.")
-
-}
 \keyword{text}

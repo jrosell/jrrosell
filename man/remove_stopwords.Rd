@@ -20,11 +20,4 @@ A character vector without stopwords
 This function processes character vectors and remove the specified stop words
 or the stoop words of the langauge from the tm package
 }
-\examples{
-# Example usage:
-normalize_text("¡Hola! Esto es una prueba 123.") |>
-  tokenize_text() |>
-  remove_stopwords()
-
-}
 \keyword{text}

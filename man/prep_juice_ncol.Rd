@@ -12,8 +12,4 @@ prep_juice_ncol(object)
 \description{
 Prep, juice and get cols from a recipe or workflow
 }
-\examples{
-recipes::recipe(spray ~ ., data = InsectSprays) |>
-  prep_juice_ncol()
-}
 \keyword{tidymodels}

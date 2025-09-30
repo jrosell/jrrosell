@@ -40,9 +40,4 @@ This function processes a given text string by converting it to lowercase, remov
 non-alphanumeric characters, extra whitespace, and stopwords based on a specified language.
 It also transliterates text to ASCII, splits words, and reconstructs a clean text string suitable for analysis.
 }
-\examples{
-# Example usage:
-prepare_tokens("¡Hola! Esto es una prueba 123.", lemmatize = "none")
-
-}
 \keyword{text}

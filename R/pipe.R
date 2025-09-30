@@ -12,16 +12,6 @@
 #' @details The tee pipe works like \code{|>}, except the
 #' return value is `x` itself, and not the result of `expr` call.
 #'
-#' @examples
-#' rnorm(200) |>
-#'   matrix(ncol = 2) |>
-#'   as.data.frame() |>
-#'   tee(\(x) {
-#'     ggplot(x, aes(V1, V2)) +
-#'       geom_point()
-#'   }) |>
-#'   colSums()
-#'
 #' @section Thanks:
 #' I want to give credit to Michael Milton and Matthew Kay for the idea and the code.
 #'
@@ -63,15 +53,6 @@ aside <- function(x, ...) {
 #' @keywords pipe
 #' @param x An object
 #' @param expr An expresion
-#' @examples
-#' library(ggplot2)
-#' rnorm(200) |>
-#'   matrix(ncol = 2) |>
-#'   as.data.frame() |>
-#'   end_pipe({
-#'     ggplot(x, aes(V1, V2)) +
-#'       geom_point()
-#'   })
 #'
 #' @export
 end_pipe <- function(x, expr) {

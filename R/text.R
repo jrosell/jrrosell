@@ -39,25 +39,42 @@ prepare_text <- function(...) {
 #' @param model_dir defaults to getwd()
 #'
 #' @return A cleaned character vector, with stopwords removed and text formatted for analysis and can be lemmatized optionally and then returns a character vector of lemmas.
-#' @examples
-#' # Example usage:
-#' prepare_tokens("¡Hola! Esto es una prueba 123.", lemmatize = "none")
 #'
 #' @export
 prepare_tokens <- function(
-    text, stopwords = NULL, lang = "spanish", sep = "\\s+",
-    remove_digits = TRUE, remove_accents = TRUE, lemmatize = c("none", "udpipe", "spacyr"), model_dir = getwd()) {
+  text,
+  stopwords = NULL,
+  lang = "spanish",
+  sep = "\\s+",
+  remove_digits = TRUE,
+  remove_accents = TRUE,
+  lemmatize = c("none", "udpipe", "spacyr"),
+  model_dir = getwd()
+) {
   lemmatize <- match.arg(lemmatize)
   tokens <- text |>
-    normalize_text(remove_digits = remove_digits, remove_accents = remove_accents) |>
+    normalize_text(
+      remove_digits = remove_digits,
+      remove_accents = remove_accents
+    ) |>
     tokenize_text(sep = sep) |>
     remove_stopwords(stopwords = stopwords, lang = lang)
 
   if (lemmatize == "udpipe") {
-    ud_model <- udpipe::udpipe_download_model(language = lang, model_dir = model_dir, overwrite = FALSE)
+    ud_model <- udpipe::udpipe_download_model(
+      language = lang,
+      model_dir = model_dir,
+      overwrite = FALSE
+    )
     ud_model <- udpipe::udpipe_load_model(ud_model$file_model)
-    if (is.null(ud_model)) stop("Error loading the udpipe model for lemmatization")
-    ann <- udpipe::udpipe_annotate(ud_model, x = paste(tokens, collapse = " ")) |> tibble::as_tibble()
+    if (is.null(ud_model)) {
+      stop("Error loading the udpipe model for lemmatization")
+    }
+    ann <- udpipe::udpipe_annotate(
+      ud_model,
+      x = paste(tokens, collapse = " ")
+    ) |>
+      tibble::as_tibble()
     tokens <- ann$lemma[!is.na(ann$lemma)]
   }
 
@@ -89,11 +106,16 @@ get_spacy_model <- function(lang) {
     tryCatch(
       {
         spacyr::spacy_install(force = FALSE)
-        spacyr::spacy_download_langmodel(lang_models = spacy_model, force = FALSE)
+        spacyr::spacy_download_langmodel(
+          lang_models = spacy_model,
+          force = FALSE
+        )
         assign("spacy_initialized", TRUE, envir = .jrrosell_env)
       },
       error = function(e) {
-        stop("spacyr failed to initialize. Ensure the correct language model is installed.")
+        stop(
+          "spacyr failed to initialize. Ensure the correct language model is installed."
+        )
       }
     )
     spacyr::spacy_initialize(model = spacy_model)
@@ -119,7 +141,10 @@ prepare_docs <- function(df, ...) {
   df |>
     dplyr::mutate(
       tokens = purrr::map(.data[["text"]], ~ prepare_tokens(.x, ...)),
-      prepared_text = purrr::map_chr(.data[["tokens"]], ~ paste(.x, collapse = " "))
+      prepared_text = purrr::map_chr(
+        .data[["tokens"]],
+        ~ paste(.x, collapse = " ")
+      )
     )
 }
 
@@ -136,12 +161,9 @@ prepare_docs <- function(df, ...) {
 #' @param remove_accents = TRUE
 #'
 #' @return A normalized character vector
-#' @examples
-#' # Example usage:
-#' normalize_text("¡Hola! Esto es una prueba 123.")
 #'
 #' @export
-normalize_text <- \(text, remove_digits = TRUE, remove_accents = TRUE){
+normalize_text <- \(text, remove_digits = TRUE, remove_accents = TRUE) {
   text <- as.character(text) |> tolower()
   if (remove_digits) {
     text <- gsub("\\d+", "", text)
@@ -168,9 +190,6 @@ normalize_text <- \(text, remove_digits = TRUE, remove_accents = TRUE){
 #' @param  sep = "\\s+"
 #'
 #' @return A character vector
-#' @examples
-#' # Example usage:
-#' normalize_text("¡Hola! Esto es una prueba 123.") |> tokenize_text()
 #'
 #' @export
 tokenize_text <- function(text, sep = "\\s+") {
@@ -191,21 +210,15 @@ tokenize_text <- function(text, sep = "\\s+") {
 #' @param lang defaults to `"spanish"`
 #'
 #' @return A character vector without stopwords
-#' @examples
-#' # Example usage:
-#' normalize_text("¡Hola! Esto es una prueba 123.") |>
-#'   tokenize_text() |>
-#'   remove_stopwords()
 #'
 #' @export
-remove_stopwords <- \(text, stopwords = NULL, lang = "spanish"){
+remove_stopwords <- \(text, stopwords = NULL, lang = "spanish") {
   if (is.null(stopwords)) {
     stopwords <- tm::stopwords(lang)
   }
   text |>
     purrr::keep(\(x) !x %in% stopwords)
 }
-
 
 
 #' Fuzzy Token Set Ratio
@@ -253,15 +266,32 @@ fuzzy_token_set_ratio <- function(s1, s2, score_cutoff = 0) {
   if (r$intersect_len > 0 && (r$diff_ab_len == 0 || r$diff_ba_len == 0)) {
     return(100)
   }
-  lcs_distance <- stringdist::stringdist(r$diff_ab_joined, r$diff_ba_joined, method = "lcs")
+  lcs_distance <- stringdist::stringdist(
+    r$diff_ab_joined,
+    r$diff_ba_joined,
+    method = "lcs"
+  )
   normalized_indel_distance <- fuzzy_norm_distance(
-    lcs_distance, r$sect_ab_len, r$sect_ba_len, score_cutoff
+    lcs_distance,
+    r$sect_ab_len,
+    r$sect_ba_len,
+    score_cutoff
   )
   if (r$intersect_len == 0) {
     return(normalized_indel_distance)
   }
-  sect_ab_ratio <- fuzzy_norm_distance(r$sect_ab_dist, r$intersect_len, r$sect_ab_len, score_cutoff)
-  sect_ba_ratio <- fuzzy_norm_distance(r$sect_ba_dist, r$intersect_len, r$sect_ba_len, score_cutoff)
+  sect_ab_ratio <- fuzzy_norm_distance(
+    r$sect_ab_dist,
+    r$intersect_len,
+    r$sect_ab_len,
+    score_cutoff
+  )
+  sect_ba_ratio <- fuzzy_norm_distance(
+    r$sect_ba_dist,
+    r$intersect_len,
+    r$sect_ba_len,
+    score_cutoff
+  )
   return(max(normalized_indel_distance, sect_ab_ratio, sect_ba_ratio))
 }
 
@@ -306,7 +336,6 @@ fuzzy_calculate_diff_and_lengths <- function(tokens_a, tokens_b) {
 }
 
 
-
 #' Create a vector of characters from a string
 #'
 #' @rdname chars
@@ -322,11 +351,11 @@ fuzzy_calculate_diff_and_lengths <- function(tokens_a, tokens_b) {
 #' @seealso [https://github.com/jonocarroll/charcuterie](https://github.com/jonocarroll/charcuterie)
 #' @export
 chars <- function(x, ...) {
-  stopifnot("chars expects a single input; try sapply(x, chars)" = length(x) == 1)
+  stopifnot(
+    "chars expects a single input; try sapply(x, chars)" = length(x) == 1
+  )
   strsplit(x, "")[[1]]
 }
-
-
 
 
 #' Get a sentiments by language
@@ -403,21 +432,29 @@ get_sentiments_by_language <- \(language = "en", lexicon = "chen_skiena") {
     stop("Use a supported lexicon")
   }
   if (lexicon == "chen_skiena") {
-    file_path <- system.file("extdata", "chen_skiena_lexicon.fst", package = "jrrosell")
+    file_path <- system.file(
+      "extdata",
+      "chen_skiena_lexicon.fst",
+      package = "jrrosell"
+    )
     if (!file.exists(file_path)) {
       stop("Lexicon file not found.")
     }
-    return(read_fst(file_path) |>
-      dplyr::filter(.data[["lang"]] == language) |>
-      dplyr::select(-dplyr::all_of("lang")))
+    return(
+      read_fst(file_path) |>
+        dplyr::filter(.data[["lang"]] == language) |>
+        dplyr::select(-dplyr::all_of("lang"))
+    )
   }
   if (lexicon == "nrc") {
     file_path <- system.file("extdata", "nrc_lexicon.fst", package = "jrrosell")
     if (!file.exists(file_path)) {
       stop("Lexicon file not found.")
     }
-    return(read_fst(file_path) |>
-      dplyr::filter(.data[["lang"]] == language) |>
-      dplyr::select(-dplyr::all_of("lang")))
+    return(
+      read_fst(file_path) |>
+        dplyr::filter(.data[["lang"]] == language) |>
+        dplyr::select(-dplyr::all_of("lang"))
+    )
   }
 }

@@ -27,18 +27,19 @@
 #'
 #' @export
 read_chr <- function(
-    file,
-    delim = ",",
-    locale = NULL,
-    ...,
-    date_names = "en",
-    date_format = "%AD",
-    time_format = "%AT",
-    decimal_mark = ".",
-    grouping_mark = "",
-    tz = "CET",
-    encoding = "UTF-8",
-    asciify = FALSE) {
+  file,
+  delim = ",",
+  locale = NULL,
+  ...,
+  date_names = "en",
+  date_format = "%AD",
+  time_format = "%AT",
+  decimal_mark = ".",
+  grouping_mark = "",
+  tz = "CET",
+  encoding = "UTF-8",
+  asciify = FALSE
+) {
   if (!requireNamespace("readr", quietly = TRUE)) {
     return(NULL)
   }
@@ -71,7 +72,6 @@ read_chr <- function(
 #' Read the html text of an url
 #'
 
-
 #' Read the HTML text of a URL with rate-limiting
 #'
 #' It's useful for getting the text of webpages in a single character vector.
@@ -90,20 +90,31 @@ read_chr <- function(
 #'
 #' @export
 read_url <- function(url, sleep = 1, capacity = 1, realm = NULL) {
-  if (!requireNamespace("httr2", quietly = TRUE)) stop("httr2 package required")
-  if (!requireNamespace("purrr", quietly = TRUE)) stop("purrr package required")
+  if (!requireNamespace("httr2", quietly = TRUE)) {
+    stop("httr2 package required")
+  }
+  if (!requireNamespace("purrr", quietly = TRUE)) {
+    stop("purrr package required")
+  }
 
-  possibly_read <- purrr::possibly(function(url) {
-    req <- httr2::request(url) |>
-      httr2::req_throttle(capacity = capacity, fill_time_s = sleep, realm = realm)
+  possibly_read <- purrr::possibly(
+    function(url) {
+      req <- httr2::request(url) |>
+        httr2::req_throttle(
+          capacity = capacity,
+          fill_time_s = sleep,
+          realm = realm
+        )
 
-    resp <- httr2::req_perform(req)
-    httr2::resp_body_string(resp)
-  }, otherwise = NULL, quiet = TRUE)
+      resp <- httr2::req_perform(req)
+      httr2::resp_body_string(resp)
+    },
+    otherwise = NULL,
+    quiet = TRUE
+  )
 
   possibly_read(url)
 }
-
 
 
 #' Read a sheet from a xlsx file into a tibbles
@@ -120,10 +131,10 @@ read_url <- function(url, sleep = 1, capacity = 1, realm = NULL) {
 #' @details The write_xlsx it's a wroapper for \code{openxls::write.xlsx}.
 #'
 #' @examples
-#' l <- list("IRIS" = iris, "MTCARS" = mtcars, matrix(runif(1000), ncol = 5))
+#' l <- list("IRIS" = iris, "MTCARS" = mtcars)
 #' tmp_file <- tempfile(fileext = ".xlsx")
-#' write_xlsx(l, tmp_file, colWidths = c(NA, "auto", "auto"))
-#' read_xlsx(tmp_file)
+#' write_xlsx(l, tmp_file)
+#' df <- read_xlsx(tmp_file)
 #' file.remove(tmp_file)
 #'
 #' @export
@@ -145,7 +156,11 @@ is_response <- function(x) {
 }
 
 #' @noRd
-check_response <- function(resp, arg = rlang::caller_arg(resp), call = rlang::caller_env()) {
+check_response <- function(
+  resp,
+  arg = rlang::caller_arg(resp),
+  call = rlang::caller_env()
+) {
   if (!missing(resp) && is_response(resp)) {
     return(invisible(NULL))
   }
@@ -178,10 +193,11 @@ request_test <- function(template = "/get", ...) {
 #'
 #' @export
 resp_body_yyjson <- function(
-    resp,
-    check_type = TRUE,
-    simplifyVector = FALSE,
-    ...) {
+  resp,
+  check_type = TRUE,
+  simplifyVector = FALSE,
+  ...
+) {
   check_response(resp)
   rlang::check_installed("yyjsonr")
   httr2::resp_check_content_type(

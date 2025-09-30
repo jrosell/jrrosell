@@ -16,3 +16,5 @@ default.nix
 ^README\.html$
 ^.*\.code-workspace
 README_files/
+^[\.]?air\.toml$
+^\.vscode$

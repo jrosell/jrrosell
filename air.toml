@@ -1,0 +1,10 @@
+[format]
+exclude = [
+  "R/RcppExports\\.R",
+  "R/cpp11\\.R",
+  "R/import-standalone.*\\.R",
+  "R/dev\\.R",
+  "inst/**/*",
+  "src/**/*.c",
+  "src/**/*.cpp"
+]

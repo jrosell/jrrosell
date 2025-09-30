@@ -22,22 +22,4 @@ fit_results(wf, resamples, param_info = NULL, grid = 10, fn = "tune_grid", ...)
 \description{
 Fit a workflow with specific parameters
 }
-\examples{
-library(tidymodels)
-library(xgboost)
-library(modeldata)
-data(cells)
-split <- cells |>
-  mutate(across(where(is.character), as.factor)) |>
-  sample_n(500) |>
-  initial_split(strata = case)
-train <- training(split)
-resamples <- vfold_cv(train, v = 2, strata = case)
-wf_spec <- train |>
-  recipe(case ~ .) |>
-  step_integer(all_nominal_predictors()) |>
-  workflow(boost_tree(mode = "classification"))
-res_spec <- wf_spec |> fit_results(resamples)
-res_spec |> collect_metrics()
-}
 \keyword{tidymodels}

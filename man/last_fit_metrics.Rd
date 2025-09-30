@@ -16,35 +16,4 @@ last_fit_metrics(res, split, metric)
 \description{
 Do the last fit and get the metrics
 }
-\examples{
-library(tidymodels)
-library(xgboost)
-library(modeldata)
-data(cells)
-split <- cells |>
-  mutate(across(where(is.character), as.factor)) |>
-  sample_n(500) |>
-  initial_split(strata = class)
-train <- training(split)
-folds <- vfold_cv(train, v = 2, strata = class)
-wf <- train |>
-  recipe(case ~ .) |>
-  step_integer(all_nominal_predictors()) |>
-  workflow_boost_tree()
-res <- wf |>
-  tune::tune_grid(
-    resamples = folds,
-    grid = 2,
-    metrics = metric_set(roc_auc),
-    control = tune::control_grid(save_workflow = TRUE, verbose = FALSE)
-  )
-res |> collect_metrics()
-res |> last_fit_metrics(split, "roc_auc")
-best <- res |> fit_best()
-best |>
-  augment(testing(split)) |>
-  roc_auc(case, .pred_Test) |>
-  pull(.estimate)
-
-}
 \keyword{tidymodels}

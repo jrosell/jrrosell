@@ -14,21 +14,24 @@
 #' @examples
 #' cores <- detect_cores(max = 5, min = 1)
 #' print(cores)
-#' if (FALSE) {
-#'   library(jrrosell)
-#'   library(future)
-#'   plan(multisession, workers = detect_cores(max = 10, min = 2))
-#'   plan(sequential)
-#' }
+#'
 #' @export
 detect_cores <- function(max = 10, min = 2) {
-  if (!requireNamespace("parallelly", quietly = TRUE)) stop("parallelly package is required")
-  available <- parallelly::availableCores(omit = getOption("parallelly.availableCores.omit", 1L))
+  if (!requireNamespace("parallelly", quietly = TRUE)) {
+    stop("parallelly package is required")
+  }
+  available <- parallelly::availableCores(
+    omit = getOption("parallelly.availableCores.omit", 1L)
+  )
   requested <- min(available, max)
   if (requested < min) {
     stop(paste0(
-      "Only ", available, " usable core(s) available. ",
-      "Minimum required is ", min, ". ",
+      "Only ",
+      available,
+      " usable core(s) available. ",
+      "Minimum required is ",
+      min,
+      ". ",
       "Consider reducing 'min' or freeing system resources."
     ))
   }
@@ -52,18 +55,24 @@ detect_cores <- function(max = 10, min = 2) {
 #'
 #' @exportPattern pattern
 request_max_safe_cores_from_rss <- function(
-    estimated_max_rss,
-    memory_usage = 0.5,
-    verbose = TRUE) {
+  estimated_max_rss,
+  memory_usage = 0.5,
+  verbose = TRUE
+) {
   if (!requireNamespace("parallelly", quietly = TRUE)) {
-    stop("The 'parallelly' package is required. Please install it with install.packages('parallelly').")
+    stop(
+      "The 'parallelly' package is required. Please install it with install.packages('parallelly')."
+    )
   }
   total_cores <- detect_cores(50, 2)
 
   total_mem_gb <- tryCatch(
     {
       if (.Platform$OS.type == "unix") {
-        mem_kb <- as.numeric(system("awk '/MemTotal/ {print $2}' /proc/meminfo", intern = TRUE))
+        mem_kb <- as.numeric(system(
+          "awk '/MemTotal/ {print $2}' /proc/meminfo",
+          intern = TRUE
+        ))
         mem_kb / 1024^2
       } else if (.Platform$OS.type == "windows") {
         memory.size(max = TRUE) / 1024

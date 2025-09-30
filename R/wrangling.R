@@ -3,14 +3,13 @@
 #' @rdname summarize_n_distinct
 #' @keywords wrangling
 #' @param df a data.frame
-#' @examples
-#' summarize_n_distinct(data.frame(a = c(1, 2), b = c(2, 3)))
-#' summarize_n_distinct(data.frame(a = c(1, 1), b = c(2, 3)))
+#'
 #' @export
 summarize_n_distinct <- function(df) {
-  df |> dplyr::summarise(
-    dplyr::across(dplyr::everything(), dplyr::n_distinct)
-  )
+  df |>
+    dplyr::summarise(
+      dplyr::across(dplyr::everything(), dplyr::n_distinct)
+    )
 }
 
 #' Sum the missing values from a data.frame
@@ -18,18 +17,17 @@ summarize_n_distinct <- function(df) {
 #' @rdname sum_missing
 #' @keywords wrangling
 #' @param ... one or multiple data.frame
-#' @examples
-#' sum_missing(data.frame(a = c(1, 2), b = c(3, 4)))
-#' sum_missing(data.frame(a = c(1, NA), b = c(3, 4)))
-#' sum_missing(data.frame(a = c(1, NA), b = c(NA, 4)))
-#' sum_missing(data.frame(a = c(NA, NA), b = c(NA, NA)))
+#'
 #' @export
 sum_missing <- function(...) {
   dfs <- list(...)
   summarize_df <- function(df, df_name) {
     n_missing <- sum(colSums(is.na(df)))
     summary_string <- paste(
-      df_name, "has", n_missing, "missing values."
+      df_name,
+      "has",
+      n_missing,
+      "missing values."
     )
     return(summary_string)
   }
@@ -77,12 +75,20 @@ glimpses <- function(...) {
     n_cols <- ncol(df)
     distinct_counts <- sapply(df, function(col) length(unique(col)))
     distinct_summary <- paste(
-      names(distinct_counts), distinct_counts,
-      sep = " ", collapse = ", "
+      names(distinct_counts),
+      distinct_counts,
+      sep = " ",
+      collapse = ", "
     )
     summary_string <- paste(
-      df_name, n_rows, "rows and",
-      n_cols, "columns", "with", distinct_summary, "distinct values."
+      df_name,
+      n_rows,
+      "rows and",
+      n_cols,
+      "columns",
+      "with",
+      distinct_summary,
+      "distinct values."
     )
     return(summary_string)
   }
@@ -104,10 +110,20 @@ glimpses <- function(...) {
 plot_missing <- function(df) {
   missing_data <- df |>
     dplyr::summarise(dplyr::across(dplyr::everything(), \(x) mean(is.na(x)))) |>
-    tidyr::pivot_longer(dplyr::everything(), names_to = "column", values_to = "missing_pct") |>
+    tidyr::pivot_longer(
+      dplyr::everything(),
+      names_to = "column",
+      values_to = "missing_pct"
+    ) |>
     dplyr::arrange(.data$missing_pct) # Order by percentage of missing values
 
-  ggplot2::ggplot(missing_data, ggplot2::aes(x = stats::reorder(.data$column, .data$missing_pct), y = .data$missing_pct)) +
+  ggplot2::ggplot(
+    missing_data,
+    ggplot2::aes(
+      x = stats::reorder(.data$column, .data$missing_pct),
+      y = .data$missing_pct
+    )
+  ) +
     ggplot2::geom_bar(stat = "identity", fill = "steelblue") +
     ggplot2::labs(x = "", y = "Percentage Missing") +
     ggplot2::coord_flip() +
@@ -217,20 +233,37 @@ plot_variable <- function(df, variable, ..., type = "numeric") {
   variable_data <- df |> dplyr::pull(!!variable_quo)
   if (is.numeric(variable_data) && type == "numeric") {
     ggplot2::ggplot(df, ggplot2::aes(!!variable_quo)) +
-      ggplot2::geom_histogram(binwidth = 1, fill = "steelblue", color = "white", ...) +
-      ggplot2::labs(x = rlang::quo_name(variable_quo), y = "Frequency", title = paste("Histogram of", rlang::quo_name(variable_quo))) +
+      ggplot2::geom_histogram(
+        binwidth = 1,
+        fill = "steelblue",
+        color = "white",
+        ...
+      ) +
+      ggplot2::labs(
+        x = rlang::quo_name(variable_quo),
+        y = "Frequency",
+        title = paste("Histogram of", rlang::quo_name(variable_quo))
+      ) +
       NULL
-  } else if (is.factor(variable_data) || is.character(variable_data) || type == "nominal") {
-    ggplot2::ggplot(df, ggplot2::aes(x = forcats::fct_rev(forcats::fct_infreq(!!variable_quo)))) +
+  } else if (
+    is.factor(variable_data) || is.character(variable_data) || type == "nominal"
+  ) {
+    ggplot2::ggplot(
+      df,
+      ggplot2::aes(x = forcats::fct_rev(forcats::fct_infreq(!!variable_quo)))
+    ) +
       ggplot2::geom_bar(fill = "steelblue", ...) +
-      ggplot2::labs(x = rlang::quo_name(variable_quo), y = "Count", title = paste("Bar Plot of", rlang::quo_name(variable_quo))) +
+      ggplot2::labs(
+        x = rlang::quo_name(variable_quo),
+        y = "Count",
+        title = paste("Bar Plot of", rlang::quo_name(variable_quo))
+      ) +
       ggplot2::coord_flip() +
       NULL
   } else {
     stop("Unsupported outcome variable type.")
   }
 }
-
 
 
 #' Add hash for each row
@@ -265,7 +298,6 @@ add_row_hash <- \(df, primary_keys) {
 }
 
 
-
 #' Sanitize title with dashes
 #'
 #' It generates slug URLs as WordPress does
@@ -277,7 +309,9 @@ add_row_hash <- \(df, primary_keys) {
 #' sanitize_title_with_dashes("Hello world")
 #' @export
 sanitize_title_with_dashes <- function(title) {
-  if (length(title) != 1 || !is.character(title)) stop("title must be a string not a vector")
+  if (length(title) != 1 || !is.character(title)) {
+    stop("title must be a string not a vector")
+  }
   # Remove HTML tags
   title <- gsub("<[^>]+>", "", title)
 
@@ -319,7 +353,9 @@ sanitize_title_with_dashes <- function(title) {
 #' sanitize_title_with_dashes("Hello world")
 #' @export
 slugify <- function(x) {
-  if (!is.character(x)) stop("x must be a character vector")
+  if (!is.character(x)) {
+    stop("x must be a character vector")
+  }
   purrr::map_chr(x, function(title) {
     iconv(title, from = "UTF-8", to = "ASCII//TRANSLIT") |>
       sanitize_title_with_dashes()

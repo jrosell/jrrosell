@@ -25,9 +25,4 @@ spain_provinces
 \description{
 spain_provinces
 }
-\examples{
-library(sf)
-data(spain_provinces)
-head(spain_provinces)
-}
 \keyword{datasets}

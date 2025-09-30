@@ -28,15 +28,4 @@ return value is \code{x} itself, and not the result of \code{expr} call.
 I want to give credit to Michael Milton and Matthew Kay for the idea and the code.
 }
 
-\examples{
-rnorm(200) |>
-  matrix(ncol = 2) |>
-  as.data.frame() |>
-  tee(\(x) {
-    ggplot(x, aes(V1, V2)) +
-      geom_point()
-  }) |>
-  colSums()
-
-}
 \keyword{pipe}

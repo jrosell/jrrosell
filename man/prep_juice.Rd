@@ -15,11 +15,4 @@ prep_juice(object)
 \description{
 Prep, juice and glimpse a recipe or workflow
 }
-\examples{
-recipes::recipe(spray ~ ., data = InsectSprays) |>
-  prep_juice()
-recipes::recipe(spray ~ ., data = InsectSprays) |>
-  workflows::workflow(parsnip::linear_reg()) |>
-  prep_juice()
-}
 \keyword{tidymodels}

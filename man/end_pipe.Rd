@@ -14,15 +14,4 @@ end_pipe(x, expr)
 \description{
 Print and expression and return invisible NULL at the end of a pipe.
 }
-\examples{
-library(ggplot2)
-rnorm(200) |>
-  matrix(ncol = 2) |>
-  as.data.frame() |>
-  end_pipe({
-    ggplot(x, aes(V1, V2)) +
-      geom_point()
-  })
-
-}
 \keyword{pipe}

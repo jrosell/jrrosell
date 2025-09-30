@@ -18,7 +18,11 @@
 #'
 #' @source <https://stats.stackexchange.com/a/304996/7387>
 #' @export
-calc_split_size <- function(std_err = NULL, confidence_interval = 0.95, margin_error = 0.02) {
+calc_split_size <- function(
+  std_err = NULL,
+  confidence_interval = 0.95,
+  margin_error = 0.02
+) {
   expected_p <- 0.5
   if (is.null(std_err)) {
     alpha <- 1 - confidence_interval
@@ -56,6 +60,8 @@ calc_split_prop <- function(df, k = 10) {
   fold_min_prop <- (1 / sqrt(2 * fold_total))
   fold_rows <- round(fold_total * fold_min_prop)
   cat(glue::glue("Info: Minimal validation split of {rows}/{total} rows.\n\n"))
-  cat(glue::glue("Info: Resamples of {fold_rows}/{fold_total} rows for {k} of folds.\n\n"))
+  cat(glue::glue(
+    "Info: Resamples of {fold_rows}/{fold_total} rows for {k} of folds.\n\n"
+  ))
   return(min_prop)
 }

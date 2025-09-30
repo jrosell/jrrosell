@@ -12,10 +12,4 @@ sum_missing(...)
 \description{
 Sum the missing values from a data.frame
 }
-\examples{
-sum_missing(data.frame(a = c(1, 2), b = c(3, 4)))
-sum_missing(data.frame(a = c(1, NA), b = c(3, 4)))
-sum_missing(data.frame(a = c(1, NA), b = c(NA, 4)))
-sum_missing(data.frame(a = c(NA, NA), b = c(NA, NA)))
-}
 \keyword{wrangling}

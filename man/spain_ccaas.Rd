@@ -25,9 +25,4 @@ spain_ccaas
 \description{
 spain_ccaas
 }
-\examples{
-library(sf)
-data(spain_ccaas)
-head(spain_ccaas)
-}
 \keyword{datasets}

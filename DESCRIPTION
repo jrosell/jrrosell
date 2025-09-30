@@ -8,12 +8,12 @@ Description: Useful functions for personal usage.
 License: CC0
 URL: https://jrosell.github.io/jrrosell
 BugReports: https://github.com/jrosell/jrrosell/issues
+Depends: 
+    R (>= 4.3.0)
 Encoding: UTF-8
 Language: en
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
-Depends: 
-    R (>= 4.3.0)
+RoxygenNote: 7.3.2.9000
 Suggests: 
     beepr,
     blastula,
@@ -21,6 +21,7 @@ Suggests:
     doFuture,
     doParallel,
     dplyr,
+    ellmer,
     forcats,
     fst,
     future,
@@ -31,36 +32,34 @@ Suggests:
     here,
     httr2,
     janitor,
-    modeldata,
-    openxlsx,
     pak,
     parallel,
-    parallelly,
-    parsnip,
     pkgdown,
+    rcmdcheck,
     readr,
-    recipes,
+    rstudioapi,
     sf,
     spacyr,
     stacks,
+    stringr,
     styler,
     testthat,
     tibble,
     tictoc,
-    tidymodels,
-    tune,
     udpipe,
     usethis,
     webfakes,
-    workflows,
     workflowsets,
-    xgboost,
     yyjsonr
 Imports: 
     curl,
     extrafont,
     jsonlite,
+    openxlsx,
+    parallelly,
+    parsnip,
     purrr,
+    recipes,
     rlang,
     scales,
     showtext,
@@ -68,5 +67,7 @@ Imports:
     stringi,
     sysfonts,
     tidyr,
-    tm
+    tm,
+    tune,
+    workflows
 LazyData: true

@@ -12,8 +12,4 @@ summarize_n_distinct(df)
 \description{
 Select constant columns from a data.frame
 }
-\examples{
-summarize_n_distinct(data.frame(a = c(1, 2), b = c(2, 3)))
-summarize_n_distinct(data.frame(a = c(1, 1), b = c(2, 3)))
-}
 \keyword{wrangling}

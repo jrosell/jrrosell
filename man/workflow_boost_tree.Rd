@@ -18,37 +18,4 @@ workflow_boost_tree(rec, engine = "xgboost", counts = TRUE, ...)
 \description{
 Create an xgboost tunable workflow for regression and classification
 }
-\examples{
-library(tidymodels)
-library(xgboost)
-library(modeldata)
-library(future)
-data(cells)
-split <- cells |>
-  mutate(across(where(is.character), as.factor)) |>
-  sample_n(500) |>
-  initial_split(strata = class)
-train <- training(split)
-folds <- vfold_cv(train, v = 2, strata = class)
-wf <- train |>
-  recipe(case ~ .) |>
-  step_integer(all_nominal_predictors()) |>
-  workflow_boost_tree()
-doFuture::registerDoFuture()
-plan(sequential)
-res <- wf |>
-  tune::tune_grid(
-    folds,
-    grid = 2,
-    metrics = metric_set(roc_auc),
-    control = tune::control_grid(save_workflow = TRUE, verbose = FALSE)
-  )
-res |> collect_metrics()
-res |> last_fit_metrics(split, "roc_auc")
-best <- res |> fit_best()
-best |>
-  augment(testing(split)) |>
-  roc_auc(case, .pred_Test) |>
-  pull(.estimate)
-}
 \keyword{tidymodels}
