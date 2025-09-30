@@ -59,61 +59,6 @@
 
 </dl></div>
 
-    <div class="section level2">
-    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidymodels.tidymodels.org" class="external-link">tidymodels</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://glmnet.stanford.edu" class="external-link">glmnet</a></span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loading required package: Matrix</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Attaching package: ‘Matrix’</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from ‘package:tidyr’:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     expand, pack, unpack</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Loaded glmnet 4.1-9</span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://modeldata.tidymodels.org" class="external-link">modeldata</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://future.futureverse.org" class="external-link">future</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">cells</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">split</span> <span class="op">&lt;-</span> <span class="va">cells</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">mutate</span><span class="op">(</span><span class="fu">across</span><span class="op">(</span><span class="fu">where</span><span class="op">(</span><span class="va">is.character</span><span class="op">)</span>, <span class="va">as.factor</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">sample_n</span><span class="op">(</span><span class="fl">500</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">initial_split</span><span class="op">(</span>strata <span class="op">=</span> <span class="va">class</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">train</span> <span class="op">&lt;-</span> <span class="fu">training</span><span class="op">(</span><span class="va">split</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">folds</span> <span class="op">&lt;-</span> <span class="fu">vfold_cv</span><span class="op">(</span><span class="va">train</span>, v <span class="op">=</span> <span class="fl">2</span>, strata <span class="op">=</span> <span class="va">class</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">wf</span> <span class="op">&lt;-</span> <span class="va">train</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">recipe</span><span class="op">(</span><span class="va">case</span> <span class="op">~</span> <span class="va">.</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">step_integer</span><span class="op">(</span><span class="fu">all_nominal_predictors</span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">workflow_elasticnet</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "logistic_reg binary classification"</span>
-<span class="r-in"><span><span class="fu">doFuture</span><span class="fu">::</span><span class="fu"><a href="https://doFuture.futureverse.org/reference/registerDoFuture.html" class="external-link">registerDoFuture</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://future.futureverse.org/reference/plan.html" class="external-link">plan</a></span><span class="op">(</span><span class="va">sequential</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="va">wf</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">tune</span><span class="fu">::</span><span class="fu"><a href="https://tune.tidymodels.org/reference/tune_grid.html" class="external-link">tune_grid</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="va">folds</span>,</span></span>
-<span class="r-in"><span>    grid <span class="op">=</span> <span class="fl">2</span>,</span></span>
-<span class="r-in"><span>    metrics <span class="op">=</span> <span class="fu">metric_set</span><span class="op">(</span><span class="va">roc_auc</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    control <span class="op">=</span> <span class="fu">tune</span><span class="fu">::</span><span class="fu"><a href="https://tune.tidymodels.org/reference/control_grid.html" class="external-link">control_grid</a></span><span class="op">(</span>save_workflow <span class="op">=</span> <span class="cn">TRUE</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">res</span> <span class="op">|&gt;</span> <span class="fu">collect_metrics</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 8</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        penalty mixture .metric .estimator  mean     n std_err .config           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> 1               0.05 roc_auc binary     0.483     2 0.013<span style="text-decoration: underline;">6</span>  Preprocessor1_Mod…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> 0.000<span style="text-decoration: underline;">000</span>000<span style="text-decoration: underline;">1</span>    1    roc_auc binary     0.519     2 0.005<span style="text-decoration: underline;">26</span> Preprocessor1_Mod…</span>
-<span class="r-in"><span><span class="va">res</span> <span class="op">|&gt;</span> <span class="fu"><a href="last_fit_metrics.html">last_fit_metrics</a></span><span class="op">(</span><span class="va">split</span>, <span class="st">"roc_auc"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 3 × 4</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .metric     .estimator .estimate .config             </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> accuracy    binary         0.608 Preprocessor1_Model1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> roc_auc     binary         0.624 Preprocessor1_Model1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> brier_class binary         0.256 Preprocessor1_Model1</span>
-<span class="r-in"><span><span class="va">best</span> <span class="op">&lt;-</span> <span class="va">res</span> <span class="op">|&gt;</span> <span class="fu">fit_best</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">best</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">augment</span><span class="op">(</span><span class="fu">testing</span><span class="op">(</span><span class="va">split</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">roc_auc</span><span class="op">(</span><span class="va">case</span>, <span class="va">.pred_Test</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu">pull</span><span class="op">(</span><span class="va">.estimate</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.6235897</span>
-</code></pre></div>
-    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 
