@@ -1,0 +1,165 @@
+# Package index
+
+## read and write
+
+Some functions to help reading and writing files.
+
+- [`read_chr()`](https://jrosell.github.io/jrrosell/reference/read_chr.md)
+  : Read character columns with clean names
+- [`read_url()`](https://jrosell.github.io/jrrosell/reference/read_url.md)
+  : Read the html text of an url
+- [`read_xlsx()`](https://jrosell.github.io/jrrosell/reference/read_xlsx.md)
+  : Read a sheet from a xlsx file into a tibbles
+- [`resp_body_yyjson()`](https://jrosell.github.io/jrrosell/reference/resp_body_yyjson.md)
+  : Extract body from httr2 response using yyjsonr
+- [`write_xlsx()`](https://jrosell.github.io/jrrosell/reference/write_xlsx.md)
+  : Write a list of tibbles to a xlsx file
+
+## tidymodels
+
+Some functions to help using tidymodels.
+
+- [`calc_split_prop()`](https://jrosell.github.io/jrrosell/reference/calc_split_prop.md)
+  : Calculate split proportion
+- [`calc_split_size()`](https://jrosell.github.io/jrrosell/reference/calc_split_size.md)
+  : Calculate split size
+- [`fit_results()`](https://jrosell.github.io/jrrosell/reference/fit_params.md)
+  : Fit a workflow with specific parameters
+- [`last_fit_metrics()`](https://jrosell.github.io/jrrosell/reference/last_fit_metrics.md)
+  : Do the last fit and get the metrics
+- [`normalize_vec()`](https://jrosell.github.io/jrrosell/reference/normalize_vec.md)
+  : Center and scale double vectors
+- [`prep_juice()`](https://jrosell.github.io/jrrosell/reference/prep_juice.md)
+  : Prep, juice and glimpse a recipe or workflow
+- [`prep_juice_ncol()`](https://jrosell.github.io/jrrosell/reference/prep_juice_ncol.md)
+  : Prep, juice and get cols from a recipe or workflow
+- [`score_recipe()`](https://jrosell.github.io/jrrosell/reference/score_recipe.md)
+  : Tune a recipe using glmnet and lightgbm and stacks
+- [`update_step()`](https://jrosell.github.io/jrrosell/reference/update_step.md)
+  : Update recipe step values by id
+- [`workflow_boost_tree()`](https://jrosell.github.io/jrrosell/reference/workflow_boost_tree.md)
+  : Create an xgboost tunable workflow for regression and classification
+- [`workflow_elasticnet()`](https://jrosell.github.io/jrrosell/reference/workflow_elasticnet.md)
+  : Create a tuneable glmnet worfklow for regression and classification
+
+## graphing
+
+Some functions to help ploting and customize look and feel.
+
+- [`theme_roboto()`](https://jrosell.github.io/jrrosell/reference/theme_roboto.md)
+  : Sets a minimal theme using the Roboto font family
+- [`theme_set_roboto_darkblue()`](https://jrosell.github.io/jrrosell/reference/theme_set_roboto_darkblue.md)
+  : Sets a dark blue colored dark minimal theme using the Roboto font
+  family
+
+## packages
+
+Some functions to help managing packages and package versions.
+
+- [`addin_generate_documentation()`](https://jrosell.github.io/jrrosell/reference/addin_generate_documentation.md)
+  : Adding to generate documentation
+- [`check_installed_github()`](https://jrosell.github.io/jrrosell/reference/check_installed_github.md)
+  : Check if the last github version is installed
+- [`generate_documentation()`](https://jrosell.github.io/jrrosell/reference/generate_documentation.md)
+  : Generate documentation
+- [`package_github_name()`](https://jrosell.github.io/jrrosell/reference/package_github_name.md)
+  : Github name of the package
+- [`package_github_version()`](https://jrosell.github.io/jrrosell/reference/package_github_version.md)
+  : Github version of the package
+
+## Data wrangling
+
+Some functions to help data wrangling in R.
+
+- [`add_row_hash()`](https://jrosell.github.io/jrrosell/reference/add_row_hash.md)
+  : Add hash for each row
+- [`count_duplicated_rows()`](https://jrosell.github.io/jrrosell/reference/count_duplicated_rows.md)
+  : Count the number of duplicated rows
+- [`count_sorted()`](https://jrosell.github.io/jrrosell/reference/count_sorted.md)
+  : Count a variable or variables sorted
+- [`glimpses()`](https://jrosell.github.io/jrrosell/reference/glimpses.md)
+  : Glimpse multiple datasets
+- [`plot_bars()`](https://jrosell.github.io/jrrosell/reference/plot_bars.md)
+  : Plot bars for non double columns
+- [`plot_histograms()`](https://jrosell.github.io/jrrosell/reference/plot_histograms.md)
+  : Plot histograms for double columns
+- [`plot_missing()`](https://jrosell.github.io/jrrosell/reference/plot_missing.md)
+  : Plot missing values
+- [`plot_variable()`](https://jrosell.github.io/jrrosell/reference/plot_variable.md)
+  : Plot a variable
+- [`sanitize_title_with_dashes()`](https://jrosell.github.io/jrrosell/reference/sanitize_title_with_dashes.md)
+  : Sanitize title with dashes
+- [`slugify()`](https://jrosell.github.io/jrrosell/reference/slugify.md)
+  : Slugify character vectors
+- [`sum_missing()`](https://jrosell.github.io/jrrosell/reference/sum_missing.md)
+  : Sum the missing values from a data.frame
+- [`summarize_n_distinct()`](https://jrosell.github.io/jrrosell/reference/summarize_n_distinct.md)
+  : Select constant columns from a data.frame
+
+## processing
+
+Some functions to help processing in R.
+
+- [`name_unnamed_chunks()`](https://jrosell.github.io/jrrosell/reference/name_unnamed_chunks.md)
+  : Name unnamed chunks in .Rmd or .qmd files
+- [`notify_finished()`](https://jrosell.github.io/jrrosell/reference/notify_finished.md)
+  : Make a sound and send an email when a process finished
+
+## text
+
+Some functions to help with text in R .
+
+- [`chars()`](https://jrosell.github.io/jrrosell/reference/chars.md) :
+  Create a vector of characters from a string
+- [`fuzzy_token_set_ratio()`](https://jrosell.github.io/jrrosell/reference/fuzzy_token_set_ratio.md)
+  : Fuzzy Token Set Ratio
+- [`get_sentiments_by_language()`](https://jrosell.github.io/jrrosell/reference/get_sentiments_by_language.md)
+  : Get a sentiments by language
+- [`normalize_text()`](https://jrosell.github.io/jrrosell/reference/normalize_text.md)
+  : Normalize text
+- [`prepare_docs()`](https://jrosell.github.io/jrrosell/reference/prepare_docs.md)
+  : Prepare docs for Analysis
+- [`prepare_text()`](https://jrosell.github.io/jrrosell/reference/prepare_text.md)
+  : Prepare Text for Analysis
+- [`prepare_tokens()`](https://jrosell.github.io/jrrosell/reference/prepare_tokens.md)
+  : Prepare tokens from text for Analysis
+- [`remove_stopwords()`](https://jrosell.github.io/jrrosell/reference/remove_stopwords.md)
+  : Remove stopwords
+- [`tokenize_text()`](https://jrosell.github.io/jrrosell/reference/tokenize_text.md)
+  : Tokenize text
+
+## pipe
+
+Some functions to help piping.
+
+- [`aside()`](https://jrosell.github.io/jrrosell/reference/aside.md) :
+  Multiple aside functions with base R pipe
+- [`end_pipe()`](https://jrosell.github.io/jrrosell/reference/end_pipe.md)
+  : End a pipe
+- [`tee()`](https://jrosell.github.io/jrrosell/reference/tee.md) : Tee
+  pipe that return the original value instead of the result
+
+## parallel
+
+Some functions to help with parallel computing in R .
+
+- [`detect_cores()`](https://jrosell.github.io/jrrosell/reference/detect_cores.md)
+  : Detect cores that could be used
+- [`request_max_safe_cores_from_rss()`](https://jrosell.github.io/jrrosell/reference/request_max_safe_cores.md)
+  : Request the maximum safe number of cores
+
+## types
+
+Some functions to help with types in R .
+
+- [`as.bitstring()`](https://jrosell.github.io/jrrosell/reference/as.bitstring.md)
+  : Data type utilities
+
+## data
+
+Datasets and objects included in my personal R package.
+
+- [`spain_provinces`](https://jrosell.github.io/jrrosell/reference/spain_provinces.md)
+  : spain_provinces
+- [`spain_ccaas`](https://jrosell.github.io/jrrosell/reference/spain_ccaas.md)
+  : spain_ccaas
