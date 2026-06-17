@@ -32,7 +32,6 @@ test_that("summarize_n_distinct works", {
 #   sum_missing(df)
 # })
 
-
 test_that("duplicate_rows works", {
   library(jrrosell)
   library(tibble)
@@ -65,7 +64,6 @@ test_that("duplicate_rows works", {
 #   print(p)
 # })
 
-
 # test_that("plot_histograms works", {
 #   library(jrrosell)
 #   library(tibble)
@@ -96,7 +94,6 @@ test_that("duplicate_rows works", {
 #   print(p)
 # })
 
-
 # test_that("glimpses works", {
 #   library(jrrosell)
 #   library(tibble)
@@ -116,7 +113,6 @@ test_that("duplicate_rows works", {
 #   )
 #   glimpses(df1, df2)
 # })
-
 
 test_that("count_sorted works", {
   library(jrrosell)
@@ -151,7 +147,6 @@ test_that("count_sorted works", {
 #   print(p_numeric)
 
 # })
-
 
 test_that("resp_body_yyjson works", {
   resp <- request_test("/post") |>

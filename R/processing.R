@@ -6,7 +6,7 @@
 #' @keywords processing
 #' @param name The process name (Required)
 #' @param body The contents of the email (Default "")
-#' @param ...  Additional arguments to pass to the template function. If you're using the default template, you can use font_family to control the base font, and content_width to control the width of the main content; see blastula_template(). By default, the content_width is set to ⁠1000px⁠. Using widths less than ⁠600px⁠ is generally not advised but, if necessary, be sure to test such HTML emails with a wide range of email clients before sending to the intended recipients. The Outlook mail client (Windows, Desktop) does not respect content_width.
+#' @param ...  Additional arguments to pass to the template function. If you're using the default template, you can use font_family to control the base font, and content_width to control the width of the main content; see blastula_template(). By default, the content_width is set to 1000px. Using widths less than 600px is generally not advised but, if necessary, be sure to test such HTML emails with a wide range of email clients before sending to the intended recipients. The Outlook mail client (Windows, Desktop) does not respect content_width.
 #' @param sound The sound for beepr::beep call (Default 1)
 #' @param tictoc_result the result from tictoc::toc (Default NULL)
 #'
@@ -38,13 +38,24 @@ notify_finished <- \(name, body = "", ..., sound = 1, tictoc_result = NULL) {
   elapsed <- ""
   if (length(tictoc_result) > 0) {
     elapsed <- round(tictoc_result$toc - tictoc_result$tic)
-    body <- blastula::md(glue::glue("{elapsed}s elapsed.
-{body}"))
+    body <- blastula::md(glue::glue(
+      "{elapsed}s elapsed.
+{body}"
+    ))
   }
-  provider <- ifelse(!is.null(Sys.getenv("MY_SMTP_PROVIDER")), Sys.getenv("MY_SMTP_PROVIDER"), "gmail")
-  blastula::compose_email(blastula::md(glue::glue("{body}
+  provider <- ifelse(
+    !is.null(Sys.getenv("MY_SMTP_PROVIDER")),
+    Sys.getenv("MY_SMTP_PROVIDER"),
+    "gmail"
+  )
+  blastula::compose_email(
+    blastula::md(glue::glue(
+      "{body}
 
-Sent from R at {Sys.time()}")), ...) |>
+Sent from R at {Sys.time()}"
+    )),
+    ...
+  ) |>
     blastula::smtp_send(
       subject = glue::glue("Finished {name}"),
       from = Sys.getenv("MY_SMTP_USER"),
@@ -56,7 +67,6 @@ Sent from R at {Sys.time()}")), ...) |>
       )
     )
 }
-
 
 
 #' Name unnamed chunks in .Rmd or .qmd files
@@ -82,9 +92,36 @@ name_unnamed_chunks <- function(file_path) {
 
 #' @noRd
 generate_weird_name <- function() {
-  adjectives <- c("bold", "brave", "calm", "clever", "eager", "fancy", "friendly", "gentle", "happy", "jolly")
-  animals <- c("elephant", "fox", "giraffe", "hippo", "jaguar", "koala", "lemur", "moose", "otter", "panda")
-  paste(sample(adjectives, 1), sample(animals, 1), round(stats::runif(1, 10, 999)), sep = "_")
+  adjectives <- c(
+    "bold",
+    "brave",
+    "calm",
+    "clever",
+    "eager",
+    "fancy",
+    "friendly",
+    "gentle",
+    "happy",
+    "jolly"
+  )
+  animals <- c(
+    "elephant",
+    "fox",
+    "giraffe",
+    "hippo",
+    "jaguar",
+    "koala",
+    "lemur",
+    "moose",
+    "otter",
+    "panda"
+  )
+  paste(
+    sample(adjectives, 1),
+    sample(animals, 1),
+    round(stats::runif(1, 10, 999)),
+    sep = "_"
+  )
 }
 
 #' @noRd
@@ -97,7 +134,11 @@ is_named_chunk <- function(chunk_string) {
 rename_chunk <- function(line) {
   unique_name <- generate_weird_name()
   if (grepl("```\\{r\\s*,", line)) {
-    new_line <- sub("^(```\\{r)(\\s*)(.*?)(\\})", paste0("\\1 ", unique_name, "\\2\\3"), line)
+    new_line <- sub(
+      "^(```\\{r)(\\s*)(.*?)(\\})",
+      paste0("\\1 ", unique_name, "\\2\\3"),
+      line
+    )
   } else {
     new_line <- sub("^(```\\{r)(\\s*)", paste0("\\1 ", unique_name, ""), line)
   }

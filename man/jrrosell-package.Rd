@@ -19,5 +19,10 @@ Useful links:
 \author{
 \strong{Maintainer}: Jordi Rosell \email{jroselln@gmail.com} (\href{https://orcid.org/0000-0002-4349-1458}{ORCID})
 
+Authors:
+\itemize{
+  \item Jordi Rosell \email{jroselln@gmail.com} (\href{https://orcid.org/0000-0002-4349-1458}{ORCID})
+}
+
 }
 \keyword{internal}
